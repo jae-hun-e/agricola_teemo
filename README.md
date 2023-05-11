@@ -1,38 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Agricola_TeeMo
 
-## Getting Started
+## Description
 
-First, run the development server:
+## FE라이브러리
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## JS
+- next.js
+- react-query
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## CSS
+- tailwindcss
+- framer-motion 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Next 디렉토리 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Atomic design pattern 을 따른다
+(참고 : https://fe-developers.kakaoent.com/2022/220505-how-page-part-use-atomic-design-system/)
 
-## Learn More
+- src
+  - apis
+    - api
+    - socket
+  - atom
+  - components
+    - button
+    - input
+    - ...
+  - constants
+  - hooks
+  - pages
+  - styles
+  - types
+  - utils
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# 컨밴션
 
-## Deploy on Vercel
+## 디렉토리 구조
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### apis
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- api 관련 로직은 는 api 폴더에 넣는다.
+
+### atom
+
+- 상태관리는 atom으로 모은다 
+
+### components
+- 컴포넌트명은 대문자로 시작한다.
+- 컴포넌트명은 카멜케이스로 한다.
+- 컴포넌트의 레이아웃 관련 스타일을 외부 주입으로 한다 
+
+### constants
+
+- 상수를 모아둔다.
+
+### hooks
+
+- 커스텀 훅을 모아둔다.
+
+### pages
+
+- next.js의 pages 폴더에 해당한다.
+
+### styles
+
+- tailwindcss 관련 스타일을 모아둔다.
+
+### types
+
+- 타입스크립트 타입을 모아둔다.
+
+### utils
+
+- 자주쓰는 함수는 utils에 넣는다.
+
+
+## 우리의 약속
+
+### 커밋 메시지
+
+### 라이브러리 정리
+
+- 새로운 라이브러리를 사용시 README.md에 정리한다.
