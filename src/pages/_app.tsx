@@ -2,7 +2,7 @@ import "src/styles/globals.css";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
-import Layout from "../components/Layout";
+import Layout from "@components/Share/Layout";
 
 const queryClient = new QueryClient({
   defaultOptions: {

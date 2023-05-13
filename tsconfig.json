@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@libs/*": ["src/libs/*"],
+      "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@ITypes/*": ["src/types/*"],
       "@public/*": ["public/*"],
