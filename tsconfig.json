@@ -18,6 +18,7 @@
     "paths": {
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
+      "@atom/*" : ["src/atoms/*"],
       "@ITypes/*": ["src/types/*"],
       "@public/*": ["public/*"],
     },

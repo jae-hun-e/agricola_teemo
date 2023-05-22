@@ -8,8 +8,8 @@ const ActionBox = ({ layout, name }: Props) => {
   return (
     <div
       className={cls(
-        "w-[100px] h-[70px] bg-demo cursor-pointer",
-        layout ? layout : ""
+        "w-[100px]  bg-demo cursor-pointer",
+        layout ? layout : "h-[70px]"
       )}
     >
       <p>Act : {name}</p>

@@ -1,16 +1,15 @@
 # Agricola_TeeMo
 
-## Description
-
 ## FE라이브러리
 
 ## JS
 - next.js
 - react-query
+- recoil
 
 ## CSS
 - tailwindcss
-- framer-motion 
+- framer-motion
 
 
 
@@ -24,13 +23,17 @@ Atomic design pattern 을 따른다
     - api
     - socket
   - atom
+    - components끼리 공유해야 할 데이터
   - components
     - button
     - input
     - ...
   - constants
+    - 
   - hooks
+    - 
   - pages
+    - 라우팅된 페이지들
   - styles
   - types
   - utils
