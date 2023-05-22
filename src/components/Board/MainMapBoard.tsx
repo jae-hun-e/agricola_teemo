@@ -6,7 +6,7 @@ import ActionBox from "@components/Box/ActionBox";
 
 const MainMapBoard = () => {
   return (
-    <div className="w-[1060px] h-[490px] flex gap-[10px] mt-[20px] mb-[20px]">
+    <div className="w-[1060px] h-[490px] flex gap-[10px] mt-[20px] mb-[20px] text-xs">
       {/* 라운드카드 이전*/}
       <div className="w-[240px] h-[490px] flex flex-row gap-[20px]">
         {/*  첫째 줄*/}
