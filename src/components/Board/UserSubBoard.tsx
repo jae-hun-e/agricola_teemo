@@ -51,7 +51,7 @@ const UserSubBoard = ({ direction }: Props) => {
           >
             <p
               className={cls(
-                "bg-gray-500",
+                "bg-demo2",
                 "flex justify-center items-center",
                 direction === "left" ? "w-[50px] h-[46px]" : "",
                 direction === "right" ? "w-[50px] h-[46px]" : "",
