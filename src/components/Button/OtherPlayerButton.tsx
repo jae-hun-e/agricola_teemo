@@ -11,10 +11,9 @@ const OtherPlayerButton = ({ direction }: Props) => {
         <ModalButton
           name="Player"
           layoutCSS="w-[70px] h-[70px] bg-demo rounded-full flex justify-center items-center cursor-pointer"
-          childrenCSS="w-[800px] h-[600px] bg-demo"
         >
           <div className="flex flex-col items-center pt-10 gap-3">
-            <p> 상대 유저 보드</p>
+            <p> 상대 프로필</p>
             <UserBoard />
           </div>
         </ModalButton>

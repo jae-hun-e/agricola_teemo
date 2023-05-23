@@ -1,5 +1,7 @@
 import OtherPlayerButton from "@components/Button/OtherPlayerButton";
 import { cls } from "@utils/util";
+import ModalButton from "@components/Button/ModalButton";
+import UserBoard from "@components/Board/UserBoard";
 interface Props {
   direction: string;
 }
@@ -26,10 +28,32 @@ const UserSubBoard = ({ direction }: Props) => {
         "",
         direction === "left" || direction === "right"
           ? "flex flex-col w-[90px] h-[688px] "
-          : "flex flex-row h-[90px] w-[688px]"
+          : "flex flex-row h-[90px] w-[688px] relative"
       )}
     >
       <OtherPlayerButton direction={direction} />
+      <div
+        className={cls(
+          "absolute ",
+          direction === "left" || direction === "right"
+            ? "top-[90px]"
+            : "left-[90px]"
+        )}
+      >
+        <ModalButton
+          layoutCSS={cls(
+            direction === "left" || direction === "right"
+              ? "w-[90px] h-[598px]"
+              : "w-[598px] h-[90px] flex "
+          )}
+          childrenCSS="w-[800px] h-[600px] bg-demo"
+        >
+          <div className="flex flex-col items-center pt-10 gap-3">
+            <p> 상대 보드</p>
+            <UserBoard />
+          </div>
+        </ModalButton>
+      </div>
       <div
         className={cls(
           "bg-demo text-xs",

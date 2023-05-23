@@ -1,7 +1,7 @@
 import RoundCard from "@components/Card/RoundCard";
 import AccumlatedBox from "@components/Box/AccumlatedBox";
 import MainFacilityCard from "@components/Card/MainFacilityCard";
-import SubFacilityCard from "@components/Card/SubFacilityCard";
+
 import ActionBox from "@components/Box/ActionBox";
 
 const MainMapBoard = () => {
@@ -67,9 +67,6 @@ const MainMapBoard = () => {
 
           <div className="w-[100px] h-[150px] flex justify-center items-center">
             <MainFacilityCard />
-          </div>
-          <div className="w-[100px] h-[150px] flex justify-center items-center">
-            <SubFacilityCard />
           </div>
         </div>
       </div>
