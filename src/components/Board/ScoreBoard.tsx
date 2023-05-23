@@ -1,14 +1,14 @@
 import ModalButton from "@components/Button/ModalButton";
 
-const JobCard = () => {
+const ScoreBoard = () => {
   return (
     <ModalButton
-      name="직업카드"
+      name="점수표"
       layoutCSS="bg-demo h-[80px] w-[80px] flex justify-center"
     >
-      <div>직업들</div>
+      <div>점수 계산 방법 설명</div>
     </ModalButton>
   );
 };
 
-export default JobCard;
+export default ScoreBoard;

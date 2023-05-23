@@ -5,6 +5,7 @@ import ModalButton from "@components/Button/ModalButton";
 import JobCard from "@components/Card/JobCard";
 import UserBoard from "@components/Board/UserBoard";
 import ChatBox from "@components/Box/ChatBox";
+import ScoreBoard from "@components/Board/ScoreBoard";
 
 const Play: NextPage = () => {
   return (
@@ -15,12 +16,7 @@ const Play: NextPage = () => {
           <UserSubBoard direction={"top"} />
           <MainMapBoard />
           <div className="flex flex-row justify-between w-full relative">
-            <ModalButton
-              name="점수표"
-              layoutCSS="bg-demo h-[80px] w-[80px] flex justify-center"
-            >
-              <div>점수 계산 방법 설명</div>
-            </ModalButton>
+            <ScoreBoard />
             <UserSubBoard direction={"bottom"} />
             <JobCard />
             <div className="absolute right-0 -top-11">
