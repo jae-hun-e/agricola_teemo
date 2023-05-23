@@ -3,19 +3,12 @@ import { ReactNode, useState } from "react";
 
 interface Props {
   layoutCSS?: string;
-  buttonCSS?: string;
   name?: string;
   children: ReactNode;
   childrenCSS?: string;
 }
 
-const ModalButton = ({
-  layoutCSS,
-  buttonCSS,
-  name,
-  children,
-  childrenCSS,
-}: Props) => {
+const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = (idx: number) => {
     console.log("모달 열기");
@@ -31,11 +24,7 @@ const ModalButton = ({
     <div className={layoutCSS}>
       <button
         onClick={() => handleShowModal(1)}
-        className={
-          buttonCSS
-            ? buttonCSS
-            : "flex justify-center items-center w-full h-full"
-        }
+        className="flex justify-center items-center w-full h-full"
       >
         {name}
       </button>

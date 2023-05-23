@@ -1,7 +1,10 @@
 import FarmBox from "@components/Box/FarmBox";
 import RoomBox from "@components/Box/RoomBox";
 
-const UserBoard = () => {
+interface Props {
+  owner?: string;
+}
+const UserBoard = ({ owner }: Props) => {
   return (
     <div
       className="w-[598px] h-[368px] bg-demo2
@@ -12,11 +15,13 @@ const UserBoard = () => {
       <FarmBox />
       <FarmBox />
       <FarmBox />
+
       <RoomBox />
       <FarmBox />
       <FarmBox />
       <FarmBox />
       <FarmBox />
+
       <RoomBox />
       <FarmBox />
       <FarmBox />

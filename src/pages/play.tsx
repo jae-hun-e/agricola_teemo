@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import MainMapBoard from "@components/Board/MainMapBoard";
 import UserSubBoard from "@components/Board/UserSubBoard";
-import ModalButton from "@components/Button/ModalButton";
 import JobCard from "@components/Card/JobCard";
 import UserBoard from "@components/Board/UserBoard";
 import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
+import MyFacilityCard from "@components/Card/MyFacilityCard";
 
 const Play: NextPage = () => {
   return (
@@ -18,7 +18,10 @@ const Play: NextPage = () => {
           <div className="flex flex-row justify-between w-full relative">
             <ScoreBoard />
             <UserSubBoard direction={"bottom"} />
-            <JobCard />
+            <div className="flex gap-[15px]">
+              <MyFacilityCard />
+              <JobCard />
+            </div>
             <div className="absolute right-0 -top-11">
               <ChatBox />
             </div>
@@ -26,8 +29,8 @@ const Play: NextPage = () => {
         </div>
         <UserSubBoard direction={"right"} />
       </div>
-      <div className="absolute left-[386px]">
-        <UserBoard />
+      <div className="absolute left-[338.5px]">
+        <UserBoard owner="my" />
       </div>
     </div>
   );
