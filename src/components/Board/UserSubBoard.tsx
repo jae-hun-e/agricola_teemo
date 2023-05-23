@@ -29,7 +29,7 @@ const UserSubBoard = ({ direction }: Props) => {
           : "flex flex-row h-[90px] w-[688px]"
       )}
     >
-      <OtherPlayerButton />
+      <OtherPlayerButton direction={direction} />
       <div
         className={cls(
           "bg-demo text-xs",

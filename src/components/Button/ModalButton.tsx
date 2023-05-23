@@ -6,9 +6,16 @@ interface Props {
   buttonCSS?: string;
   name?: string;
   children: ReactNode;
+  childrenCSS?: string;
 }
 
-const ModalButton = ({ layoutCSS, buttonCSS,name, children }: Props) => {
+const ModalButton = ({
+  layoutCSS,
+  buttonCSS,
+  name,
+  children,
+  childrenCSS,
+}: Props) => {
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = (idx: number) => {
     console.log("모달 열기");
@@ -27,12 +34,16 @@ const ModalButton = ({ layoutCSS, buttonCSS,name, children }: Props) => {
         className={
           buttonCSS
             ? buttonCSS
-            : "flex justify-center items-center"
+            : "flex justify-center items-center w-full h-full"
         }
       >
-          {name}
+        {name}
       </button>
-      <Modal show={showModal} handleClose={() => handleCloseModal(1)}>
+      <Modal
+        show={showModal}
+        handleClose={() => handleCloseModal(1)}
+        childrenCSS={childrenCSS}
+      >
         {children}
       </Modal>
     </div>
