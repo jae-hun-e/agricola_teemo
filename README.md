@@ -6,6 +6,7 @@
 - next.js
 - react-query
 - recoil
+- react-hook-form
 
 ## CSS
 - tailwindcss
