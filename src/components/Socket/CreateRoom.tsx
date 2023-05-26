@@ -21,18 +21,18 @@ const CreateRoom = ({ roomId }: Props) => {
   const detailData = detailRoomData.data[roomId];
   // console.log("detailData", detailData);
 
-  const viewOtherUser = () => {
-    return (
-      <ModalButton>
-        <div>상대 유저</div>
-      </ModalButton>
-    );
+  const joinRoom = () => {
+    // console.log("joinRoom_user");
+    alert(`'${detailData.option.title}'방 참가완료`);
   };
 
-  const joinRoom = () => {};
+  const createRoom = () => {
+    alert(`'${getValues("title")}'방 생성완료`);
+  };
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+    return roomId === 0 ? createRoom() : joinRoom();
+    // console.log("data", data);
   };
 
   const checkKeyDown = (e) => {
@@ -71,18 +71,33 @@ const CreateRoom = ({ roomId }: Props) => {
                 <div
                   key={idx}
                   className={cls(
-                    "w-[160px] h-[160px]  flex justify-center items-center cursor-pointer hover:bg-yellow-200",
+                    "w-[160px] h-[160px]  flex justify-center items-center ",
                     user ? "bg-demo2" : "bg-gray-200"
                   )}
-                  onClick={user ? () => viewOtherUser(user) : () => joinRoom}
                 >
+                  {user ? (
+                    <ModalButton
+                      layoutCSS="w-[160px] h-[160px]  flex justify-center items-center cursor-pointer hover:bg-yellow-200 bg-demo2 cursor-pointer"
+                      name={user.name}
+                    >
+                      <div className="flex flex-col ">
+                        {user.name}
+                        {user.img}
+                        {user.user_detail}
+                      </div>
+                    </ModalButton>
+                  ) : (
+                    <div className="w-full h-full flex justify-center items-center">
+                      <p>빈 자리</p>
+                    </div>
+                  )}
+
                   {/*TODO 호스트가 나갔을 경우 다음 순번으로 호스트 처리*/}
                   {user && idx === 0 ? (
                     <div className="w-[20px] h-[20px] bg-white absolute top-0 left-0 flex justify-center items-center">
                       H
                     </div>
                   ) : null}
-                  <p>{user ? user.name : "참가하기"}</p>
                 </div>
               );
             })}
