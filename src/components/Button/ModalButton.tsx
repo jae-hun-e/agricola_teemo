@@ -11,18 +11,19 @@ interface Props {
 const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = (idx: number) => {
-    console.log("모달 열기");
+    // console.log("모달 열기");
     setShowModal(!showModal);
   };
 
   const handleCloseModal = (idx: number) => {
-    console.log("모달 닫기");
+    // console.log("모달 닫기");
     setShowModal(!showModal);
   };
 
   return (
     <div className={layoutCSS}>
       <button
+        type="button"
         onClick={() => handleShowModal(1)}
         className="flex justify-center items-center w-full h-full"
       >

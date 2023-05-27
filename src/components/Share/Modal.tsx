@@ -26,6 +26,7 @@ const Modal = ({ handleClose, show, children, childrenCSS }: Props) => {
           {children}
         </div>
         <button
+          type="button"
           onClick={handleClose}
           className="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
         >

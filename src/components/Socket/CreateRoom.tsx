@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { detailRoomData } from "../../constants/demoData";
 import { useForm } from "react-hook-form";
 import { cls } from "@utils/util";
@@ -22,7 +22,6 @@ const CreateRoom = ({ roomId }: Props) => {
   // console.log("detailData", detailData);
 
   const joinRoom = () => {
-    // console.log("joinRoom_user");
     alert(`'${detailData.option.title}'방 참가완료`);
   };
 
@@ -32,10 +31,9 @@ const CreateRoom = ({ roomId }: Props) => {
 
   const onSubmit = (data: any) => {
     return roomId === 0 ? createRoom() : joinRoom();
-    // console.log("data", data);
   };
 
-  const checkKeyDown = (e) => {
+  const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter") e.preventDefault();
   };
   return (
@@ -81,9 +79,9 @@ const CreateRoom = ({ roomId }: Props) => {
                       name={user.name}
                     >
                       <div className="flex flex-col ">
-                        {user.name}
-                        {user.img}
-                        {user.user_detail}
+                        <div>{user.name}</div>
+                        <div>{user.img}</div>
+                        <div>{user.user_detail}</div>
                       </div>
                     </ModalButton>
                   ) : (
