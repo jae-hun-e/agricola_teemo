@@ -10,12 +10,8 @@ interface Props {
 
 const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
   const [showModal, setShowModal] = useState(false);
-  const handleShowModal = (idx: number) => {
-    // console.log("모달 열기");
-    setShowModal(!showModal);
-  };
 
-  const handleCloseModal = (idx: number) => {
+  const toggleModal = () => {
     // console.log("모달 닫기");
     setShowModal(!showModal);
   };
@@ -24,14 +20,14 @@ const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
     <div className={layoutCSS}>
       <button
         type="button"
-        onClick={() => handleShowModal(1)}
+        onClick={toggleModal}
         className="flex justify-center items-center w-full h-full"
       >
         {name}
       </button>
       <Modal
         show={showModal}
-        handleClose={() => handleCloseModal(1)}
+        handleClose={toggleModal}
         childrenCSS={childrenCSS}
       >
         {children}

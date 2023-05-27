@@ -8,13 +8,6 @@ interface Props {
   roomId: number;
 }
 const CreateRoom = ({ roomId }: Props) => {
-  const [members, setMembers] = useState<string[]>([
-    "user1",
-    "user2",
-    "user3",
-    "user4",
-  ]);
-
   const { register, handleSubmit, getValues, reset } = useForm();
 
   // TODO 실데이터로 변결 할 것
@@ -29,7 +22,7 @@ const CreateRoom = ({ roomId }: Props) => {
     alert(`'${getValues("title")}'방 생성완료`);
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     return roomId === 0 ? createRoom() : joinRoom();
   };
 
