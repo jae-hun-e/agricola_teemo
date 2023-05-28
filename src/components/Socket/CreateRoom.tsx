@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent } from "react";
 import { detailRoomData } from "../../constants/demoData";
 import { useForm } from "react-hook-form";
 import { cls } from "@utils/util";
