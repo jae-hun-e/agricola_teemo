@@ -3,6 +3,14 @@ import AccumlatedBox from "@components/Box/AccumlatedBox";
 import MainFacilityCard from "@components/Card/MainFacilityCard";
 
 import ActionBox from "@components/Box/ActionBox";
+import { action_on_round } from "@ITypes/play";
+
+interface Props {
+  turn: number;
+  round: number;
+  phase: number;
+  action_on_round: action_on_round[];
+}
 
 const MainMapBoard = () => {
   return (
@@ -66,7 +74,7 @@ const MainMapBoard = () => {
           <RoundCard idx={7}></RoundCard>
 
           <div className="w-[100px] h-[150px] flex justify-center items-center">
-            <MainFacilityCard />
+            <MainFacilityCard owner={0} />
           </div>
         </div>
       </div>
