@@ -6,11 +6,21 @@
 - next.js
 - react-query
 - recoil
+- react-hook-form
+- socket.io-client
 
 ## CSS
 - tailwindcss
 - framer-motion
 
+## test
+- jest
+- jest-environment-jsdom
+- @testing-library/react
+- @testing-library/jest-dom
+- babel-jest
+- ts-jest
+- ts-loader
 
 
 ## Next 디렉토리 구조
@@ -38,6 +48,11 @@ Atomic design pattern 을 따른다
   - types
   - utils
 
+- public
+  - static 파일들
+
+- __tests__
+  - test 파일들
 
 
 # 컨밴션

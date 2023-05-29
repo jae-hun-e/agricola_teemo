@@ -21,6 +21,7 @@ const ChatBox = () => {
       {isChatOpen && (
         <div className="absolute top-[24px] bg-demo w-full h-[150px]">
           <div>채팅내용</div>
+          <div>채팅내용</div>
         </div>
       )}
     </div>
