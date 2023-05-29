@@ -20,7 +20,7 @@ const UserBoard = ({ owner }: Props) => {
 
   const [fencesList, setFencesList] = useState<number[][]>([]);
 
-  console.log("fencesList", fencesList);
+  // console.log("fencesList", fencesList);
   const haddleFence = (matrix: number[], checked: boolean) => {
     console.log("matrix, checked", matrix, checked);
 
