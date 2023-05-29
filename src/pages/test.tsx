@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+// import { w3cwebsocket as W3CWebSocket } from "websocket";
 let client;
 const Test = () => {
   const [message, setMessage] = useState("");
@@ -7,7 +7,7 @@ const Test = () => {
   const [allMessages, setAllMessages] = useState([]);
 
   useEffect(() => {
-    client = new W3CWebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/1");
+    client = new WebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/1");
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
@@ -16,6 +16,16 @@ const Test = () => {
     };
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    client.send(
+      JSON.stringify({
+        command: "message",
+        message: message,
+      })
+    );
+    setMessage("");
+  };
   return (
     <div>
       <h1>Chat app</h1>
@@ -31,15 +41,15 @@ const Test = () => {
 
         <br />
 
-        {/*<form onSubmit={handleSubmit}>*/}
-        {/*  <input*/}
-        {/*    name="message"*/}
-        {/*    placeholder="enter your message"*/}
-        {/*    value={message}*/}
-        {/*    onChange={(e) => setMessage(e.target.value)}*/}
-        {/*    autoComplete={"off"}*/}
-        {/*  />*/}
-        {/*</form>*/}
+        <form onSubmit={handleSubmit}>
+          <input
+            name="message"
+            placeholder="test msg"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            autoComplete={"off"}
+          />
+        </form>
       </div>
     </div>
   );
