@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-let client = new WebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/2");
+let client = new WebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/1");
 const Test = () => {
   const [message, setMessage] = useState("");
   const [username, setUsername] = useState("");

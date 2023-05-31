@@ -18,7 +18,7 @@ const UserBoard = ({ owner }: Props) => {
 
   const [fencesList, setFencesList] = useState<number[][]>([]);
 
-  console.log("fencesList", fencesList);
+  // console.log("fencesList", fencesList);
 
   if (fencesList.length === fenceNum) {
     // @ts-ignore
