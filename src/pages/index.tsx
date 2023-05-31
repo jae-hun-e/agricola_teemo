@@ -15,7 +15,7 @@ export default function Home() {
           href="/lobby"
           className="w-[500px] h-[80px] bg-demo flex justify-center items-center"
         >
-          Start
+          <p>Start</p>
         </Link>
       </div>
     </div>

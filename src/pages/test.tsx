@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-// import { w3cwebsocket as W3CWebSocket } from "websocket";
-let client;
+let client = new WebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/2");
 const Test = () => {
   const [message, setMessage] = useState("");
   const [username, setUsername] = useState("");
   const [allMessages, setAllMessages] = useState([]);
 
   useEffect(() => {
-    client = new WebSocket("ws://127.0.0.1:8000/ws/v1/chat/3/1");
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
@@ -16,7 +14,7 @@ const Test = () => {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     client.send(
       JSON.stringify({
@@ -25,6 +23,16 @@ const Test = () => {
       })
     );
     setMessage("");
+
+    client.onmessage = (message) => {
+      const data = JSON.parse(message.data).data;
+      const newChat = {
+        username: data.user,
+        message: data.message,
+      };
+      setAllMessages((allMessages) => [...allMessages, newChat]);
+      console.log(data);
+    };
   };
   return (
     <div>

@@ -27,6 +27,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
     fence,
     barn,
     family,
+    // @ts-ignore
   } = owner.resources;
 
   const materials = [
@@ -53,6 +54,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
           : "flex flex-row h-[90px] w-[688px] relative"
       )}
     >
+      {/*// @ts-ignore*/}
       <OtherPlayerButton direction={direction} name={owner.name} />
       <div
         className={cls(

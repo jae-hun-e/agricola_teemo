@@ -3,11 +3,9 @@ interface Props {
 }
 
 export function fenceValidation(fencelist: Props) {
-  const n = fencelist.length;
+  let answer: boolean = false;
 
-  let answer = false;
-
-  const row = [
+  const row: number[][] = [
       [-1, 0, -1, 0],
       [1, 0, 1, 0],
       [0, -1, -1, 0],
@@ -15,7 +13,7 @@ export function fenceValidation(fencelist: Props) {
       [1, -1, 0, 0],
       [1, 0, 0, 1],
     ],
-    col = [
+    col: number[][] = [
       [0, -1, 0, -1],
       [0, 1, 0, 1],
       [-1, 0, 0, -1],
@@ -25,42 +23,30 @@ export function fenceValidation(fencelist: Props) {
     ];
 
   function dfs(dep: number, cur: number[], list: number[][]) {
-    // dep = n+1 일 때 처음것과 동일 하다면
+    /* TODO : 종료 로직 변경
+    다 돌고나면
+    1. y1===y2인 값들(가로)
+      1. x1,x2 동일하고 y1,y2차이가 동일한 fence가 존재하면 list에서 제거
+    2. x1===x2인 값들(세로)
+      1. y1,y2 동일하고 x1,x2차이가 동일한 fence가 존재하면 list에서 제거
+    3. list.length === 0 이면 true
+    */
     if (list.length === 0) {
       // console.log("cur", cur);
       // console.log("=========끝=========");
       if (cur[1] === cur[3]) {
-        const checkList = [];
-        for (const [dx1, dy1, dx2, dy2] of row) {
-          let [x1, y1, x2, y2] = cur;
+        const checkList: number[][] = [];
+        creatCheckedList(checkList, cur, row);
 
-          x1 += dx1;
-          y1 += dy1;
-          x2 += dx2;
-          y2 += dy2;
-          // 범위 검사
-          if (range([x1, y1, x2, y2])) continue;
-          checkList.push([x1, y1, x2, y2]);
-        }
-
+        // @ts-ignore
         if (checkList.find((list) => list.join("") === fencelist[0].join(""))) {
           answer = true;
           return;
         } else return;
       } else {
-        const checkList = [];
-        for (const [dx1, dy1, dx2, dy2] of col) {
-          let [x1, y1, x2, y2] = cur;
-
-          x1 += dx1;
-          y1 += dy1;
-          x2 += dx2;
-          y2 += dy2;
-          // 범위 검사
-          if (range([x1, y1, x2, y2])) continue;
-          checkList.push([x1, y1, x2, y2]);
-        }
-
+        const checkList: number[][] = [];
+        creatCheckedList(checkList, cur, col);
+        // @ts-ignore
         if (checkList.find((list) => list.join("") === fencelist[0].join(""))) {
           answer = true;
           return;
@@ -89,14 +75,8 @@ export function fenceValidation(fencelist: Props) {
 
         // 존재하면 list에서 없애주고 dfs
         if (next) {
-          // console.log("cur", cur);
-          // console.log("next", next);
-          // console.log("[x1, y1, x2, y2]", [x1, y1, x2, y2]);
-          // console.log("list1", list);
           list = list.filter((item) => item.join("") !== next.join(""));
 
-          // console.log("list2", list);
-          // console.log("============================");
           dfs(dep + 1, [x1, y1, x2, y2], list);
         }
       }
@@ -121,20 +101,14 @@ export function fenceValidation(fencelist: Props) {
 
         // 존재하면 list에서 없애주고 dfs
         if (next) {
-          // console.log("cur", cur);
-          // console.log("next", next);
-          // console.log("[x1, y1, x2, y2]", [x1, y1, x2, y2]);
-          // console.log("list1", list);
           list = list.filter((item) => item.join("") !== next.join(""));
 
-          // console.log("list2", list);
-          // console.log("============================");
           dfs(dep + 1, [x1, y1, x2, y2], list);
         }
       }
     }
   }
-
+  // @ts-ignore
   dfs(0, fencelist[0], fencelist.slice(1));
 
   return answer;
@@ -143,13 +117,31 @@ export function fenceValidation(fencelist: Props) {
 function range([x1, y1, x2, y2]: number[]) {
   if (
     x1 < 0 ||
-    x1 > 3 ||
+    x1 > 5 ||
     x2 < 0 ||
-    x2 > 3 ||
+    x2 > 5 ||
     y1 < 0 ||
     y1 > 3 ||
     y2 < 0 ||
     y2 > 3
   )
     return true;
+}
+
+function creatCheckedList(
+  checkList: number[][],
+  cur: number[],
+  direction: number[][]
+) {
+  for (const [dx1, dy1, dx2, dy2] of direction) {
+    let [x1, y1, x2, y2] = cur;
+
+    x1 += dx1;
+    y1 += dy1;
+    x2 += dx2;
+    y2 += dy2;
+    // 범위 검사
+    if (range([x1, y1, x2, y2])) continue;
+    checkList.push([x1, y1, x2, y2]);
+  }
 }

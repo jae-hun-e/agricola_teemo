@@ -11,6 +11,7 @@ import { playData } from "../constants/demoData";
 const Play: NextPage = () => {
   const { turn, round, phase, action_on_round, common_resources, players } =
     playData;
+
   return (
     <div className="relative">
       <div className="flex gap-[20px]">
