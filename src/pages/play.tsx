@@ -20,6 +20,7 @@ const Play: NextPage = () => {
   const { register, handleSubmit, reset } = useForm();
   const [userId, setUserId] = useState(0);
   const onSubmit = (data: FieldValues) => {
+    if (data.testId === "") return;
     setUserId(data.testId);
     reset({ testId: "" });
   };

@@ -1,4 +1,4 @@
-import { KeyboardEvent } from "react";
+import { KeyboardEvent, useEffect } from "react";
 import { detailRoomData } from "../../constants/demoData";
 import { useForm } from "react-hook-form";
 import { cls } from "@utils/util";
@@ -6,9 +6,13 @@ import ModalButton from "@components/Button/ModalButton";
 
 interface Props {
   roomId: number;
+  userId: number;
 }
-const CreateRoom = ({ roomId }: Props) => {
+const CreateRoom = ({ roomId, userId }: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
+
+  if (roomId !== 0) {
+  }
 
   // TODO 실데이터로 변결 할 것
   const detailData = detailRoomData.data[roomId];

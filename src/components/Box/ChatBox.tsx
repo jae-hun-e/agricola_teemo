@@ -48,8 +48,8 @@ const ChatBox = ({ userId }: Props) => {
 
     client.send(
       JSON.stringify({
-        command: "sync",
-        // command: "message",
+        // command: "sync",
+        command: "message",
         message: data.msg,
       })
     );
@@ -62,7 +62,7 @@ const ChatBox = ({ userId }: Props) => {
         user: data.user,
         msg: data.message,
       };
-      console.log(data);
+      console.log(data, newChat);
       setAllChatMsg((allChatMsg) => [...allChatMsg, newChat]);
     };
 
