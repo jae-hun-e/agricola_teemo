@@ -8,6 +8,7 @@
 - recoil
 - react-hook-form
 - websocket
+- next-auth
 
 ## CSS
 - tailwindcss

@@ -1,6 +1,7 @@
 import LoginButton from "@components/Button/LoginButton";
 import GameRuleButton from "@components/Button/GameRuleButton";
 import Link from "next/link";
+import Login from "@components/Share/Login";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         아그리지콜라 메인 이미지
       </div>
       <div className="flex flex-col gap-[50px]">
-        <LoginButton />
+        <Login />
         <GameRuleButton />
         <Link
           href="/lobby"
