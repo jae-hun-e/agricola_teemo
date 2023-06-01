@@ -1,172 +1,95 @@
-import FarmBox from "@components/Box/FarmBox";
+import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
-import { useState } from "react";
-import FenceBox from "@components/Box/FenceBox";
+import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
-import { fenceValidation } from "@utils/fencen1";
+import { fenceValidation } from "@utils/fence";
 
 interface Props {
   owner?: object;
 }
 
 // 임시값
-let fenceNum = 6;
+let limit = 6;
 let isHide = false;
 
 const UserBoard = ({ owner }: Props) => {
-  // console.log("MyBoard", owner);
+  const [landInfo, setLandInfo] = useState(
+    Array.from({ length: 13 }, (_, i) => ({
+      idx: i + 1,
+      mode: null,
+      fence: [],
+    }))
+  );
 
-  const [fencesList, setFencesList] = useState<number[][]>([]);
+  const [fenceList, setFenceList] = useState<number[][]>(
+    Array.from({ length: 13 }, () => [])
+  );
 
-  // console.log("fencesList", fencesList);
+  // const sum = fenceList.reduce((acc, cur) => acc + cur.length, 0);
 
-  if (fencesList.length === fenceNum) {
-    // @ts-ignore
-    if (fenceValidation(fencesList)) alert("성공");
-    else {
-      alert("실패");
-      setFencesList([]);
-    }
-  }
+  useEffect(() => {
+    setFenceList(() => fenceValidation(landInfo, limit));
+  }, [landInfo]);
 
-  const handleFence = (matrix: number[], checked: boolean) => {
-    // console.log("matrix, checked", matrix, checked);
+  useEffect(() => {
+    // fence합쳐주기
+    //
+    // console.log(sum);
+    // if (sum > limit) {
+    //   console.log("울타리 개수를 초과했습니다.");
+    // }
+  }, [fenceList]);
 
-    // fencesList에 추가
-    if (checked) setFencesList((prev) => [...prev, matrix]);
-    // fencesList에서 제거
-    else {
-      const newList = [...fencesList].filter(
-        (list) => list.join("") !== matrix.join("")
-      );
-      setFencesList(newList);
-    }
-  };
   return (
-    <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap p-[4px]">
+    <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]">
       {/*첫 줄*/}
       {[1, 2, 3, 4, 5].map((i) => (
-        <div key={i} className="flex flex-col h-[115px]">
-          <div className="ml-[15px]">
-            <FenceBox
-              plusFence={handleFence}
-              direction={"col"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 0, i, 0]}
+        <div key={i} className="flex flex-col  justify-center items-center ">
+          <div className={cls("w-[100px]", "flex")}>
+            <LandBox
+              setFenceList={setFenceList}
+              // fenceList={fenceList}
+              fenceList={fenceList[i - 1]}
+              idx={i}
+              landInfo={landInfo[i]}
+              setLandInfo={setLandInfo}
             />
           </div>
-          <div className={cls(i === 5 ? "w-[130px]" : "w-[115px]", "flex")}>
-            <FenceBox
-              plusFence={handleFence}
-              direction={"row"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 0, i - 1, 1]}
-            />
-            <FarmBox idx={i} />
-            {i === 5 && (
-              <FenceBox
-                plusFence={handleFence}
-                direction={"row"}
-                list={fencesList}
-                isHide={isHide}
-                matrix={[i, 0, i, 1]}
-              />
-            )}
-          </div>
-          {i === 1 && (
-            <div className="ml-[15px]">
-              <FenceBox
-                plusFence={handleFence}
-                direction={"col"}
-                list={fencesList}
-                isHide={isHide}
-                matrix={[0, 1, 1, 1]}
-              />
-            </div>
-          )}
         </div>
       ))}
 
       {/* 둘째 줄*/}
-      <div className="w-[115px] mt-[15px] flex justify-end items-end">
-        <RoomBox />
-      </div>
+
+      <RoomBox idx={14} />
       {[2, 3, 4, 5].map((i) => (
-        <div key={i + 4} className="flex flex-col h-[115px]">
-          <div className="ml-[15px]">
-            <FenceBox
-              plusFence={handleFence}
-              direction={"col"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 1, i, 1]}
+        <div key={i + 4} className="flex flex-col ">
+          <div className={cls("w-[100px]", "flex")}>
+            <LandBox
+              setFenceList={setFenceList}
+              // fenceList={fenceList}
+              fenceList={fenceList[i + 3]}
+              idx={i + 4}
+              landInfo={landInfo[i + 4]}
+              setLandInfo={setLandInfo}
             />
-          </div>
-          <div className={cls(i === 5 ? "w-[130px]" : "w-[115px]", "flex")}>
-            <FenceBox
-              plusFence={handleFence}
-              direction={"row"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 1, i - 1, 2]}
-            />
-            <FarmBox idx={i + 4} />
-            {i === 5 && (
-              <FenceBox
-                plusFence={handleFence}
-                direction={"row"}
-                list={fencesList}
-                isHide={isHide}
-                matrix={[i, 1, i, 2]}
-              />
-            )}
           </div>
         </div>
       ))}
 
       {/*셋째 줄*/}
-      <div className="w-[115px] h-[115px] flex justify-end items-end">
-        <RoomBox />
-      </div>
+
+      <RoomBox idx={15} />
+
       {[2, 3, 4, 5].map((i) => (
-        <div key={i} className="flex flex-col h-[130px]">
-          <div className="ml-[15px]">
-            <FenceBox
-              plusFence={handleFence}
-              direction={"col"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 2, i, 2]}
-            />
-          </div>
-          <div className={cls(i === 5 ? "w-[130px]" : "w-[115px]", "flex")}>
-            <FenceBox
-              plusFence={handleFence}
-              direction={"row"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 2, i - 1, 3]}
-            />
-            <FarmBox idx={i + 8} />
-            {i === 5 && (
-              <FenceBox
-                plusFence={handleFence}
-                direction={"row"}
-                list={fencesList}
-                isHide={isHide}
-                matrix={[i, 2, i, 3]}
-              />
-            )}
-          </div>
-          <div className="ml-[15px]">
-            <FenceBox
-              plusFence={handleFence}
-              direction={"col"}
-              list={fencesList}
-              isHide={isHide}
-              matrix={[i - 1, 3, i, 3]}
+        <div key={i} className="flex flex-col">
+          <div className={cls("w-[100px]", "flex")}>
+            <LandBox
+              setFenceList={setFenceList}
+              // fenceList={fenceList}
+              fenceList={fenceList[i + 7]}
+              idx={i + 8}
+              landInfo={landInfo[i + 8]}
+              setLandInfo={setLandInfo}
             />
           </div>
         </div>
