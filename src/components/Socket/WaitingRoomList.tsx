@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { roomList } from "../../constants/demoData";
-import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
-interface IRoomList {
+
+export interface IRoomList {
   host: number;
   room_id: number;
   participant: number;
@@ -10,36 +8,42 @@ interface IRoomList {
 }
 
 interface Props {
-  changeViewRoom: (room_id: number) => void;
   userId: number;
   roomList: IRoomList[];
+  changeViewRoom: (room_id: number) => void;
 }
 
-const WaitingRoomList = ({ changeViewRoom, userId, roomList }: Props) => {
-  // console.log("roomList", roomList, roomList[0].host);
-  // console.log("userId", userId, typeof Number(userId)); // 이왜진???
-
+const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
   const myCreateRoom = roomList.find((room) => room.host === Number(userId));
-  const list = myCreateRoom
-    ? [myCreateRoom, ...roomList.filter((room) => room.host !== Number(userId))]
-    : roomList;
-  console.log("list", list);
 
-  const detailRoom = (room_id: number) => {
-    console.log(roomList[room_id - 1]);
-    if (roomList[room_id - 1]?.options.mode === "private") {
+  let list;
+  if (myCreateRoom) {
+    list = [
+      myCreateRoom,
+      ...roomList.filter((room) => room.host !== Number(userId)),
+    ];
+    changeViewRoom(myCreateRoom.room_id);
+  } else {
+    list = roomList;
+  }
+  // console.log("list", list);
+
+  const detailRoom = (room_idx: number) => {
+    console.log("room_id", room_idx);
+    console.log("detailRoom", roomList[room_idx]);
+    if (roomList[room_idx]?.options.mode === "private") {
       const inputValue = prompt("비밀번호를 입력해주세요:");
 
-      if (inputValue !== roomList[room_id - 1]?.options.password) {
+      if (inputValue !== roomList[room_idx]?.options.password) {
         alert("비밀번호가 틀렸습니다.");
         return;
       } else {
         alert("방에 입장했습니다.");
-        changeViewRoom(room_id);
+        changeViewRoom(roomList[room_idx].room_id);
       }
       return;
     }
-    changeViewRoom(room_id);
+    changeViewRoom(roomList[room_idx].room_id);
   };
 
   return (
@@ -53,7 +57,7 @@ const WaitingRoomList = ({ changeViewRoom, userId, roomList }: Props) => {
         </div>
       </div>
       <div className="flex flex-col justify-start w-[612px] h-[455px] overflow-auto pt-[1px] px-[1px] bg-white gap-[8px] ">
-        {list.map((room) => {
+        {list.map((room, idx) => {
           return (
             <div
               key={room.room_id}
@@ -61,7 +65,7 @@ const WaitingRoomList = ({ changeViewRoom, userId, roomList }: Props) => {
                 room.host === Number(userId) ? "bg-yellow-200" : "bg-demo",
                 "flex w-[610px] min-h-[60px] items-center justify-center hover:bg-demo2 cursor-pointer"
               )}
-              onClick={() => detailRoom(room.room_id)}
+              onClick={() => detailRoom(idx)}
             >
               <div className="w-[40px]">logo</div>
               <div className="w-[calc(100%-40px)] flex justify-between  text-center">
