@@ -8,10 +8,9 @@ import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import { playData } from "../constants/demoData";
 import { FieldValues, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Simulate } from "react-dom/test-utils";
 import input = Simulate.input;
-import { connectSocket } from "../hooks/useConnectSocket";
 
 const Play: NextPage = () => {
   const { turn, round, phase, action_on_round, common_resources, players } =

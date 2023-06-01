@@ -10,7 +10,7 @@ interface Props {
 const DetailRoom = ({ userId, roomId }: Props) => {
   // console.log("roomId", roomId);
   const [detailData, setDetailData] = useState();
-  let room;
+  let room: WebSocket;
   useEffect(() => {
     room = new WebSocket(
       "ws://127.0.0.1:8000/ws/v1/lobby/" + roomId + "/" + userId
@@ -19,7 +19,7 @@ const DetailRoom = ({ userId, roomId }: Props) => {
       console.log("room Connected : ", room);
     };
 
-    room.onmessage = (msg) => {
+    room.onmessage = (msg: MessageEvent) => {
       setDetailData(() => JSON.parse(msg.data));
     };
 
@@ -40,7 +40,8 @@ const DetailRoom = ({ userId, roomId }: Props) => {
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
             {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
-              const user = null;
+              // TODO 참가자 정보들 가져오기
+              const user = user ? null : null;
 
               return (
                 <div

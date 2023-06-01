@@ -1,9 +1,6 @@
-import { KeyboardEvent, useEffect } from "react";
-import { detailRoomData } from "../../constants/demoData";
+import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { cls } from "@utils/util";
-import ModalButton from "@components/Button/ModalButton";
-import { IRoomList } from "@components/Socket/WaitingRoomList";
 
 export interface IRoom {
   command: string;
@@ -13,7 +10,7 @@ export interface IRoom {
 
 interface Props {
   socket: WebSocket;
-  setOpenCreateRoom: (openCreateRoom: boolean) => void;
+  setOpenCreateRoom: Dispatch<SetStateAction<boolean>>;
 }
 const CreateRoom = ({ socket, setOpenCreateRoom }: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
@@ -30,7 +27,7 @@ const CreateRoom = ({ socket, setOpenCreateRoom }: Props) => {
     };
     socket.send(JSON.stringify(createRoomInfo));
 
-    setOpenCreateRoom((prev) => !prev);
+    setOpenCreateRoom((prev: boolean) => !prev);
 
     alert(`'${getValues("title")}'방 생성완료`);
   };
