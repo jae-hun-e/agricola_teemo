@@ -37,3 +37,5 @@ next-env.d.ts
 # test
 /coverage
 __tests__/__snapshots__/
+
+.env

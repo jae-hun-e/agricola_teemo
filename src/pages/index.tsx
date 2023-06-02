@@ -2,6 +2,7 @@ import LoginButton from "@components/Button/LoginButton";
 import GameRuleButton from "@components/Button/GameRuleButton";
 import Link from "next/link";
 import Login from "@components/Share/Login";
+import KakaoLogIn from "./login";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
         아그리지콜라 메인 이미지
       </div>
       <div className="flex flex-col gap-[50px]">
-        <Login />
+        <KakaoLogIn />
+        {/*<LoginButton />*/}
         <GameRuleButton />
         <Link
           href="/lobby"

@@ -41,7 +41,8 @@ const DetailRoom = ({ userId, roomId }: Props) => {
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
             {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
-              const user = user ? null : null;
+              // const user = user ? null : null;
+              const user = null;
 
               return (
                 <div
