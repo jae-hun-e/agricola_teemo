@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Home from "../src/pages/index";
+import Home from "../../src/pages";
 import "@testing-library/jest-dom/extend-expect";
 import { ReactElement } from "react";
 import React from "react";
