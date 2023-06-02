@@ -1,21 +1,23 @@
-import { signIn, useSession, signOut } from "next-auth/react";
+import KakaoLogin from "react-kakao-login";
 
-export default function Login() {
-  const { data: session } = useSession();
-
-  console.log("session", session);
-  if (session) {
-    return (
-      <>
-        {session.user?.name}님 반갑습니다 <br />
-        <button onClick={() => signOut()}>로그아웃</button>
-      </>
-    );
-  }
+const SocialKakao = () => {
+  const kakaoClientId = "d115e866452615f40c51368a934a188c";
+  const kakaoOnSuccess = async (data) => {
+    console.log(data);
+    const idToken = data.response.id_token; // 인가코드 백엔드로 전달
+  };
+  const kakaoOnFailure = (error) => {
+    console.log(error);
+  };
   return (
     <>
-      로그인이 되지 않았습니다. <br />
-      <button onClick={() => signIn("kakao")}>로그인</button>
+      <KakaoLogin
+        token={kakaoClientId}
+        onSuccess={kakaoOnSuccess}
+        onFail={kakaoOnFailure}
+      />
     </>
   );
-}
+};
+
+export default SocialKakao;
