@@ -7,10 +7,23 @@ import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import { playData } from "../constants/demoData";
+import { FieldValues, useForm } from "react-hook-form";
+import { useState } from "react";
+import { Simulate } from "react-dom/test-utils";
+import input = Simulate.input;
 
 const Play: NextPage = () => {
   const { turn, round, phase, action_on_round, common_resources, players } =
     playData;
+
+  const { register, handleSubmit, reset } = useForm();
+  const [userId, setUserId] = useState(0);
+  const onSubmit = (data: FieldValues) => {
+    if (data.testId === "") return;
+    setUserId(data.testId);
+    reset({ testId: "" });
+  };
+
   return (
     <div className="relative">
       <div className="flex gap-[20px]">
@@ -30,7 +43,16 @@ const Play: NextPage = () => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              <ChatBox />
+              {/*TODO test용도*/}
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  type="text"
+                  {...register("testId")}
+                  className="bg-demo"
+                />
+                <button type="submit">dev</button>
+              </form>
+              <ChatBox userId={userId} />
             </div>
           </div>
         </div>

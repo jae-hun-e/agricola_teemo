@@ -7,7 +7,8 @@
 - react-query
 - recoil
 - react-hook-form
-- socket.io-client
+- websocket
+- next-auth
 
 ## CSS
 - tailwindcss
