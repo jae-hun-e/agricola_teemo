@@ -1,18 +1,7 @@
-// import { useEffect } from "react";
-//
-// const KakaoAuthHandler = (props) => {
-//   useEffect(() => {
-//     // 꺼내온 code(인가코드)를 미들웨어를 통해 백엔드로 넘겨준다.
-//     const code = new URL(window.location.href).searchParams.get("code");
-//     console.log(code);
-//   }, []);
-// };
-//
-// export default KakaoAuthHandler;
-
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import axios from "axios";
 
 interface ResponseType {
   ok: boolean;
@@ -25,38 +14,38 @@ const Kakao: NextPage = () => {
 
   const loginHandler = useCallback(
     async (code: string | string[]) => {
-      // const res: ResponseType = axios
-      //   .post("/api/users/kakao-login", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       authCode: code,
-      //     }),
-      //   })
-      //   .then((res) => console.log(res));
-      const URL = "http://localhost:8000/login";
+      const URL = "http://127.0.0.1:8000/account/login";
 
       try {
+        // const res: ResponseType = axios
+        //   .post("/api/users/kakao-login", {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       authCode: code,
+        //     }),
+        //   })
+        //   .then((res) => console.log(res));
+
         const response: ResponseType = await fetch(URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            authCode: code,
+            access_token: authCode,
           }),
         }).then((res) => res.json());
-
         if (response.ok) {
           // 성공하면 홈으로 리다이렉트
           // router.push("/");
-          window.close();
+          // window.close();
         }
       } catch (e) {
         console.log("error", e);
-        window.close();
+        // window.close();
       }
     },
     [router]
