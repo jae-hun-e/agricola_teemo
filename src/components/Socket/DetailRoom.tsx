@@ -23,7 +23,11 @@ const DetailRoom = ({ userId, roomId }: Props) => {
       setDetailData(() => JSON.parse(msg.data));
     };
 
-    return () => {};
+    return () => {
+      room.onclose = () => {
+        console.log("WebSocket Client Closed");
+      };
+    };
   }, [roomId]);
 
   const onJoin = () => {

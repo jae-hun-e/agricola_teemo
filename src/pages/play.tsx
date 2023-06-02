@@ -34,7 +34,7 @@ const Play: NextPage = () => {
           {/* Main Map*/}
           <MainMapBoard />
 
-          {/* User Board*/}
+          {/* User sub Board*/}
           <div className="flex flex-row justify-between w-full relative">
             <ScoreBoard />
             <UserSubBoard direction={"bottom"} owner={players[0]} num={1} />
@@ -58,6 +58,8 @@ const Play: NextPage = () => {
         </div>
         <UserSubBoard direction={"right"} owner={players[3]} num={4} />
       </div>
+
+      {/* User main Board*/}
       <div className="absolute left-[338.5px]">
         <UserBoard owner={players[0]} />
       </div>

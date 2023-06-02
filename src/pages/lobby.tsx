@@ -37,7 +37,10 @@ const Lobby: NextPage = () => {
         );
 
         if (myCreateRoom) {
-          list = [myCreateRoom, ...list.filter((room) => room.host !== userId)];
+          list = [
+            myCreateRoom,
+            ...list.filter((room: IRoomList) => room.host !== userId),
+          ];
           return list;
         } else {
           return list;

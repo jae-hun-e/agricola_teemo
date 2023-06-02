@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { cls } from "@utils/util";
 import { boolean } from "zod";
-import { fenceValidation } from "@utils/fence";
+import { fenceAddValidation, fenceDelValidation } from "@utils/fence";
 
 interface Prop {
-  // fenceList: number[][];
-  fenceList: number[];
+  fenceList: number[][];
+  // fenceList: number[];
   setFenceList: Function;
   idx: number;
   landInfo: object;
@@ -18,25 +18,33 @@ const LandBox = ({
   landInfo,
   setLandInfo,
 }: Prop) => {
-  const [check, setCheck] = useState(false);
-  const onClick = () => {
-    setCheck(!check);
-    // 빈방일 때
-    if (landInfo.mode === null) {
-      //   1차
-      setLandInfo((prev: any) => {
-        const newInfo = [...prev];
-        newInfo[idx - 1].fence = [1, 2, 3, 4];
-        return newInfo;
-      });
+  const [isChecked, setChecked] = useState(false);
 
-      // fence 합치기
-      // setFenceList((prev: any) => {
-      //   const newFence = [...prev];
-      //   newFence[idx - 1] = [1, 2, 3, 4];
-      //   return newFence;
-      // });
-      // fenceValidation(fenceList, 6);
+  const delFence = () => {
+    let newFence = [...fenceList];
+    newFence[idx - 1] = [];
+    newFence = fenceDelValidation(newFence, idx - 1);
+    setFenceList(newFence);
+    setChecked(!isChecked);
+  };
+
+  const addFence = () => {
+    // fenceValidation isChecked
+    let newFence = [...fenceList];
+    newFence[idx - 1] = [1, 2, 3, 4];
+    newFence = fenceAddValidation(newFence);
+
+    const sum = newFence.reduce((acc, cur) => acc + cur.length, 0);
+    console.log("sum", sum);
+    if (sum > 10) {
+      alert("6개 이상 선택할 수 없습니다.");
+      return;
+    } else {
+      // 빈방일 때
+      setChecked(!isChecked);
+      if (landInfo.filed_type === null) {
+        setFenceList(newFence);
+      }
     }
   };
 
@@ -44,14 +52,14 @@ const LandBox = ({
     <div
       className={cls(
         "w-[100px] h-[100px]  flex justify-center items-center",
-        check ? "bg-yellow-200" : "bg-demo",
+        isChecked ? "bg-yellow-200" : "bg-demo",
         "border-solid border-red-500",
-        fenceList?.includes(1) && "border-l-[5px]",
-        fenceList?.includes(2) && "border-t-[5px]",
-        fenceList?.includes(3) && "border-r-[5px]",
-        fenceList?.includes(4) && "border-b-[5px]"
+        fenceList[idx - 1]?.includes(1) && "border-l-[5px]",
+        fenceList[idx - 1]?.includes(2) && "border-t-[5px]",
+        fenceList[idx - 1]?.includes(3) && "border-r-[5px]",
+        fenceList[idx - 1]?.includes(4) && "border-b-[5px]"
       )}
-      onClick={onClick}
+      onClick={isChecked ? delFence : addFence}
     >
       농장{idx}
     </div>

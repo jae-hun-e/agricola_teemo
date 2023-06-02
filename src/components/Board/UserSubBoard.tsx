@@ -21,14 +21,14 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
     grain,
     vegetable,
     sheep,
-    pig,
-    cow,
+    boar,
+    cattle,
     food,
     fence,
     barn,
     family,
     // @ts-ignore
-  } = owner.resources;
+  } = owner.resource;
 
   const materials = [
     { 나무: wood },
@@ -38,11 +38,11 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
     { 곡식종자: grain },
     { 채소종자: vegetable },
     { 양: sheep },
-    { 돼지: pig },
-    { 소: cow },
+    { 돼지: boar },
+    { 소: cattle },
     { 음식: food },
     { 울타리: fence },
-    { 외양간: barn },
+    { 외양간: family },
     { 가족: family },
   ];
   return (
