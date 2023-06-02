@@ -1,6 +1,7 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { cls } from "@utils/util";
+import { IRoomList } from "@components/Socket/WaitingRoomList";
 
 export interface IRoom {
   command: string;
@@ -11,23 +12,28 @@ export interface IRoom {
 interface Props {
   socket: WebSocket;
   setOpenCreateRoom: Dispatch<SetStateAction<boolean>>;
+  userId: number;
+  roomList: IRoomList[];
+  changeViewRoom: (room_id: number) => void;
 }
-const CreateRoom = ({ socket, setOpenCreateRoom }: Props) => {
+const CreateRoom = ({
+  socket,
+  setOpenCreateRoom,
+  userId,
+  roomList,
+  changeViewRoom,
+}: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
 
   // socket
 
   const onSubmit = (data: FieldValues) => {
-    console.log("data", data);
-
     const createRoomInfo = {
       command: "create",
       mode: "public",
       title: data.title,
     };
     socket.send(JSON.stringify(createRoomInfo));
-
-    setOpenCreateRoom((prev: boolean) => !prev);
 
     alert(`'${getValues("title")}'방 생성완료`);
   };
