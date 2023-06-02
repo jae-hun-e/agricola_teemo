@@ -4,7 +4,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { ReactElement } from "react";
 import React from "react";
 
-describe("Home", () => {
+describe("main page 렌더링 확인", () => {
   it("should render Home", () => {
     const home = render(<Home />);
 
