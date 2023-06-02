@@ -9,10 +9,11 @@ import { FieldValues, useForm } from "react-hook-form";
 import DetailRoom from "@components/Socket/DetailRoom";
 
 const Lobby: NextPage = () => {
-  const [viewRoom, setViewRoom] = useState<number>(1);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(13);
+  // todo user_id로 바꿀 것
+  const [userId, setUserId] = useState(2);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
+  const [viewRoom, setViewRoom] = useState<number>(1);
   const { register, handleSubmit, reset } = useForm();
 
   const createRoom = () => {
@@ -31,19 +32,16 @@ const Lobby: NextPage = () => {
     client.onmessage = (message) => {
       setRoomList(() => {
         let list = JSON.parse(message.data);
+        const myCreateRoom = list.find(
+          (room: IRoomList) => room.host === userId
+        );
 
-        console.log("list-1", list);
-        const myCreateRoom = list.find((room) => room.host === userId);
-        console.log("myCreateRoom", myCreateRoom);
         if (myCreateRoom) {
-          console.log(
-            "noMyroom",
-            list.filter((room) => room.host !== userId)
-          );
           list = [myCreateRoom, ...list.filter((room) => room.host !== userId)];
-          console.log("newList", list);
           return list;
-        } else return list;
+        } else {
+          return list;
+        }
       });
     };
 
@@ -53,8 +51,6 @@ const Lobby: NextPage = () => {
       };
     };
   }, []);
-
-  // 내가 만든 방 상단으로 올리기
 
   // console.log("list", list);
 
