@@ -6,10 +6,16 @@ import UserBoard from "@components/Board/UserBoard";
 import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
-import { playData } from "../constants/demoData";
-import { useState } from "react";
+import { playDataInit } from "../constants/demoData";
+import { useEffect, useState } from "react";
+import { IPlayData } from "@ITypes/play";
+import { Simulate } from "react-dom/test-utils";
+import input = Simulate.input;
+import { connectSocket } from "@utils/socket";
 
 const Play: NextPage = () => {
+  const [playData, setPlayData] = useState<IPlayData>(playDataInit);
+  // console.log("play data", playData);
   const {
     first,
     turn,
@@ -21,8 +27,23 @@ const Play: NextPage = () => {
     round_cards,
     common_resources,
   } = playData;
+  const [userId, setUserId] = useState(3);
 
-  const [userId, setUserId] = useState(1);
+  useEffect(() => {
+    // socket
+    const client = connectSocket("/play/", userId);
+
+    client.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+      setPlayData(data);
+    };
+
+    return () => {
+      client.onclose = () => {
+        console.log("WebSocket Client Closed");
+      };
+    };
+  }, []);
 
   return (
     <div className="relative">

@@ -4,26 +4,23 @@ import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
 
 import DetailRoom from "@components/Socket/DetailRoom";
+import { connectSocket } from "@utils/socket";
 
 const Lobby: NextPage = () => {
   const [viewRoom, setViewRoom] = useState<number>(1);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
   const [userId, setUserId] = useState(5);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
-
+  const [client, setClient] = useState<WebSocket>();
   const createRoom = () => {
     setOpenCreateRoom(!openCreateRoom);
   };
 
-  //socket
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
-  const namespace = "/lobby/";
-  const client = new WebSocket(baseURL + namespace + userId);
-
   useEffect(() => {
-    client.onopen = () => {
-      console.log("roomList Connected : ", client, namespace, userId);
-    };
+    //socket
+    const client = connectSocket("/lobby/", userId);
+    setClient(client);
+
     client.onmessage = (message) => {
       // 내가 만든 방 상단으로 올리기
       setRoomList(() => {

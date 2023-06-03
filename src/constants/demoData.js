@@ -1,4 +1,4 @@
-export const playData = {
+export const playDataInit = {
   first: 0,
   turn: 0,
   round: 0,
@@ -7,7 +7,7 @@ export const playData = {
     {
       name: "1",
       resource: {
-        wood: 0,
+        wood: 1,
         clay: 0,
         reed: 0,
         stone: 0,
@@ -22,12 +22,8 @@ export const playData = {
         fence: 0,
         barn: 0,
       },
-      fields: [
-        { filed_type: "room", position: 6, is_in: { familly: 1 } },
-        { filed_type: "room", position: 11, is_in: { familly: 1 } },
-      ],
+      fields: [],
       cards: [],
-      // fences: { 1: [1, 2, 3, 4] },
       fences: {},
     },
     {
@@ -48,10 +44,7 @@ export const playData = {
         fence: 0,
         barn: 0,
       },
-      fields: [
-        { filed_type: "room", position: 6, is_in: { familly: 1 } },
-        { filed_type: "room", position: 11, is_in: { familly: 1 } },
-      ],
+      fields: [],
       cards: [],
       fences: {},
     },
@@ -73,10 +66,7 @@ export const playData = {
         fence: 0,
         barn: 0,
       },
-      fields: [
-        { filed_type: "room", position: 6, is_in: { familly: 1 } },
-        { filed_type: "room", position: 11, is_in: { familly: 1 } },
-      ],
+      fields: [],
       cards: [],
       fences: {},
     },
@@ -98,12 +88,9 @@ export const playData = {
         fence: 0,
         barn: 0,
       },
-      fields: [
-        { filed_type: "room", position: 6, is_in: { familly: 1 } },
-        { filed_type: "room", position: 11, is_in: { familly: 1 } },
-      ],
+      fields: [],
       cards: [],
-      fences: { 1: [1, 2, 3, 4] },
+      fences: {},
     },
   ],
   actions: [],

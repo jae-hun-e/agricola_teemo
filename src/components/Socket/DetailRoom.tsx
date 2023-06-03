@@ -1,6 +1,8 @@
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import { useEffect, useState } from "react";
+import connect from "next/dist/client/dev/error-overlay/hot-dev-client";
+import { connectSocket } from "@utils/socket";
 
 interface Props {
   userId: number;
@@ -11,18 +13,17 @@ const DetailRoom = ({ userId, roomId }: Props) => {
   const [detailData, setDetailData] = useState();
   let room: WebSocket;
   useEffect(() => {
-    room = new WebSocket(
-      "ws://127.0.0.1:8000/ws/v1/lobby/" + roomId + "/" + userId
-    );
-    room.onopen = () => {
-      console.log("room Connected : ", room);
-    };
+    room = connectSocket(`/lobby/${roomId}/`, userId);
 
     room.onmessage = (msg: MessageEvent) => {
       setDetailData(() => JSON.parse(msg.data));
     };
 
-    return () => {};
+    return () => {
+      room.onclose = () => {
+        console.log("WebSocket Client Closed");
+      };
+    };
   }, [roomId]);
 
   const onJoin = () => {

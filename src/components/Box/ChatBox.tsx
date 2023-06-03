@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { connectSocket } from "@utils/socket";
 
 interface IMsg {
   user: number;
@@ -10,18 +11,16 @@ interface Props {
   userId: number;
 }
 
-const baseURL = "ws://127.0.0.1:8000/ws/v1";
-const namespace = "/chat/3/";
-
 const ChatBox = ({ userId }: Props) => {
-  const client = new WebSocket(baseURL + namespace + userId);
   useEffect(() => {
+    const client = connectSocket("/chat/3/", userId);
+
     return () => {
       client.onclose = () => {
         console.log("WebSocket Client Closed");
       };
     };
-  }, [userId]);
+  }, []);
 
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [allChatMsg, setAllChatMsg] = useState<IMsg[]>([]);

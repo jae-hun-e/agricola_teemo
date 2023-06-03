@@ -10,7 +10,7 @@ export interface IRoom {
 }
 
 interface Props {
-  socket: WebSocket;
+  socket: WebSocket | undefined;
   setOpenCreateRoom: Dispatch<SetStateAction<boolean>>;
   userId: number;
   roomList: IRoomList[];
@@ -33,7 +33,7 @@ const CreateRoom = ({
       mode: "public",
       title: data.title,
     };
-    socket.send(JSON.stringify(createRoomInfo));
+    socket?.send(JSON.stringify(createRoomInfo));
     setOpenCreateRoom((pre) => !pre);
 
     alert(`'${getValues("title")}'방 생성완료`);
