@@ -9,12 +9,11 @@ import FacilityCard from "@components/Card/FacilityCard";
 import { playDataInit } from "../constants/demoData";
 import { useEffect, useState } from "react";
 import { IPlayData } from "@ITypes/play";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
 import { connectSocket } from "@utils/socket";
 
 const Play: NextPage = () => {
   const [playData, setPlayData] = useState<IPlayData>(playDataInit);
+  const [chatSocket, setChatSocket] = useState<WebSocket>();
   // console.log("play data", playData);
   const {
     first,
@@ -32,7 +31,8 @@ const Play: NextPage = () => {
   useEffect(() => {
     // socket
     const client = connectSocket("/play/", userId);
-
+    const chatting = connectSocket("/chat/3/", userId);
+    setChatSocket(chatting);
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
       setPlayData(data);
@@ -40,10 +40,15 @@ const Play: NextPage = () => {
 
     return () => {
       client.onclose = () => {
-        console.log("WebSocket Client Closed");
+        console.log("play WebSocket Client Closed");
+      };
+      chatting.onclose = () => {
+        console.log("chatting WebSocket Client Closed");
       };
     };
   }, []);
+
+  if (chatSocket === undefined) return <div>loading...</div>;
 
   return (
     <div className="relative">
@@ -64,7 +69,7 @@ const Play: NextPage = () => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              <ChatBox userId={userId} />
+              <ChatBox userId={userId} client={chatSocket} />
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ export function connectSocket(namespace: string, userId: number) {
   const client = new WebSocket(baseURL + namespace + userId);
 
   client.onopen = () => {
-    console.log("roomList Connected : ", client, userId);
+    console.log(`${namespace} Connected : `, client, userId);
   };
 
   return client;

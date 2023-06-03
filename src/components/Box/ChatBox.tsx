@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { connectSocket } from "@utils/socket";
+import { webpack } from "next/dist/compiled/webpack/webpack";
 
 interface IMsg {
   user: number;
@@ -9,39 +10,35 @@ interface IMsg {
 
 interface Props {
   userId: number;
+  client: WebSocket;
 }
 
-const ChatBox = ({ userId }: Props) => {
-  useEffect(() => {
-    const client = connectSocket("/chat/3/", userId);
-
-    return () => {
-      client.onclose = () => {
-        console.log("WebSocket Client Closed");
-      };
-    };
-  }, []);
-
+const ChatBox = ({ userId, client }: Props) => {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [allChatMsg, setAllChatMsg] = useState<IMsg[]>([]);
-
+  const [lastViewChatIdx, setLastViewChatIdx] = useState<number[]>([0, 0]);
   const Chat = useRef<HTMLDivElement>(null);
   const chatView = useRef<HTMLDivElement>(null);
+  const { register, handleSubmit, reset, getFieldState } = useForm();
+
+  // 채팅창 열기
   const toggleChatBot = () => {
+    // 채팅창 닫을 때 정보 저장
+    isChatOpen &&
+      setLastViewChatIdx((pre) => [
+        allChatMsg[allChatMsg.length - 1]?.idx,
+        chatView.current?.scrollHeight,
+      ]);
     setIsChatOpen(!isChatOpen);
     Chat.current?.classList.toggle("-translate-y-[150px]");
   };
 
-  const { register, handleSubmit, reset, getFieldState } = useForm();
-
+  // 메세지 보내기
   const onSubmit = (data: FieldValues) => {
     if (data.msg === "") {
       alert("메세지를 입력해주세요!");
       return;
     }
-
-    // 메세지 보내기
-
     client.send(
       JSON.stringify({
         // command: "sync",
@@ -52,26 +49,25 @@ const ChatBox = ({ userId }: Props) => {
     reset({ msg: "" });
   };
 
-  // 스크롤 맨 아래로 내리기
-  const scrollToBottom = () => {
+  // 스크롤 맨 아래로 내리기(열려있을때)
+  useEffect(() => {
     if (chatView.current)
       chatView.current.scrollTop = chatView.current?.scrollHeight;
-  };
-  useEffect(() => {
-    scrollToBottom();
   }, [allChatMsg]);
+
+  // 채팅창 열릴 때 스크롤 위치
+  useEffect(() => {
+    if (chatView.current) chatView.current.scrollTop = lastViewChatIdx[1];
+  }, [isChatOpen]);
 
   // 메세지 받기
   useEffect(() => {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected : ", namespace, userId);
-    };
-
     console.log("======================rerender======================");
     client.onmessage = (message) => {
-      const data = JSON.parse(message.data).data;
+      const data = JSON.parse(message.data);
       const newChat = {
-        user: data.user,
+        idx: data.index,
+        user: data.user_id,
         msg: data.message,
       };
       setAllChatMsg((pre) => {
@@ -89,44 +85,53 @@ const ChatBox = ({ userId }: Props) => {
   return (
     <div
       ref={Chat}
-      className="w-[340px] h-[26px] bg-demo2 cursor-pointer relative flex items-center
+      className="w-[340px] h-[30px] bg-demo2 cursor-pointer relative flex items-center
       transition duration-500 ease-in-out"
       onClick={!isChatOpen ? toggleChatBot : () => {}}
     >
       <div className="absolute left-2 w-[28px] h-[26px] bg-demo">Icon</div>
       <div className="absolute left-14">Chat</div>
       <div
-        className="absolute right-2 w-[16px] h-[16px] bg-demo flex justify-center items-center"
+        className="absolute right-2 w-[25px] h-[25px] bg-demo flex justify-center items-center"
         onClick={isChatOpen ? toggleChatBot : () => {}}
       >
-        {isChatOpen ? "X" : "O"}
+        <div className="relative w-full h-full flex justify-center items-center">
+          {!isChatOpen &&
+            allChatMsg[allChatMsg.length - 1]?.idx > lastViewChatIdx[0] && (
+              <div className="text-xs font-bold text-white bg-red-500 w-[20px] h-[20px] absolute -top-[10px] -right-[5px] rounded-full flex justify-center items-center">
+                {allChatMsg[allChatMsg.length - 1]?.idx - lastViewChatIdx[0]}
+              </div>
+            )}
+          <p>{isChatOpen ? "X" : "O"}</p>
+        </div>
       </div>
       {isChatOpen && (
-        <div className="absolute top-[24px] w-full h-[150px] pb-[20px]">
+        <div className="absolute top-[30px] w-full h-[150px] pb-[20px]">
           <div
             className="relative w-full h-full bg-demo overflow-y-scroll"
             ref={chatView}
           >
             {allChatMsg.map(({ user, msg }, idx) => (
-              <div key={idx} className="w-full h-[20px]">
+              <div key={idx} className="w-full h-[25px] mt-[5px] mb-[5px]">
                 {user === userId ? (
-                  <div className="w-full flex justify-end">
-                    <p>
-                      {msg}:{user}유저
+                  <div className="w-full flex justify-end ">
+                    <p className="bg-yellow-300 px-[15px] rounded-l-xl">
+                      {msg}
                     </p>
                   </div>
                 ) : (
-                  <div className="w-full flex justify-start">
-                    <p>
-                      {user}유저:{msg}
+                  <div className="w-full flex justify-start gap-[5px]">
+                    <p className="bg-gray-100 rounded-full w-[20px] h-[20px] flex justify-center items-center">
+                      {user}
                     </p>
+                    <p className="bg-gray-200 px-[15px] rounded-r-xl">{msg}</p>
                   </div>
                 )}
               </div>
             ))}
           </div>
           <form
-            onSubmit={() => false}
+            onSubmit={handleSubmit(onSubmit)}
             className="flex justify-between absolute bottom-0 w-full h-[20px] bg-amber-200 p-0 m-0"
           >
             <input
@@ -135,11 +140,10 @@ const ChatBox = ({ userId }: Props) => {
               className="bg-amber-200  w-[calc(100%-50px)] h-full pr-[50px]"
             />
             <button
-              type="button"
+              type="submit"
               className="w-[50px] h-full bg-blue-500 rounded-l-3xl absolute right-0 flex justify-center items-center"
-              onClick={handleSubmit(onSubmit)}
             >
-              <p>c</p>
+              <p className="text-yellow-200">전송</p>
             </button>
           </form>
         </div>
