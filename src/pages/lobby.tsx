@@ -10,7 +10,7 @@ import DetailRoom from "@components/Socket/DetailRoom";
 const Lobby: NextPage = () => {
   const [viewRoom, setViewRoom] = useState<number>(1);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(13);
+  const [userId, setUserId] = useState(3);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
   const { register, handleSubmit, reset } = useForm();
 
@@ -77,14 +77,6 @@ const Lobby: NextPage = () => {
       >
         {openCreateRoom ? "Detail Room" : "Create Room"}
       </div>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        <input
-          type="text"
-          className="w-20 h-5 bg-demo"
-          {...register("testId")}
-        />
-        <button type="submit">demo</button>
-      </form>
     </div>
   );
 };
