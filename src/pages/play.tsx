@@ -52,15 +52,6 @@ const Play: NextPage = () => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              {/*TODO test용도*/}
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                  type="text"
-                  {...register("testId")}
-                  className="bg-demo"
-                />
-                <button type="submit">dev</button>
-              </form>
               <ChatBox userId={userId} />
             </div>
           </div>

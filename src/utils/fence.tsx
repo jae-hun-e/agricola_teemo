@@ -31,12 +31,16 @@ export function fenceAddValidation(prevFenceList: number[][]) {
 }
 
 // 진짜 마음에 안든다...
-// 사이에 fence 세우기 || fence 취소하기
-export function doubleFenceValidation(prevFenceList: number[][], idx: number) {
+// fence 취소하기
+export function fenceDelValidation(
+  prevFenceList: number[][],
+  idx: number,
+  isChecked: boolean[]
+) {
   const fenceList = [...prevFenceList];
-
+  // console.log("del 전", fenceList);
   function checkingFence(idx: number, addFenceNum: number) {
-    if (fenceList[idx].length !== 0 && !fenceList[idx].includes(addFenceNum))
+    if (isChecked[idx] && !fenceList[idx].includes(addFenceNum))
       fenceList[idx].push(addFenceNum);
   }
 
@@ -61,5 +65,6 @@ export function doubleFenceValidation(prevFenceList: number[][], idx: number) {
     top();
     if (idx !== 12) right();
   }
+  // console.log("del 전", fenceList);
   return fenceList;
 }

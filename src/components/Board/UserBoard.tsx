@@ -2,7 +2,6 @@ import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
 import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
-import { fenceValidation } from "@utils/fence";
 
 interface Props {
   owner: object;
@@ -23,6 +22,7 @@ const UserBoard = ({ owner }: Props) => {
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
   );
+  const [isChecked, setChecked] = useState(Array(13).fill(false));
 
   // server 에서 보내는 데이터로 Fence 초기화
   useEffect(() => {
@@ -50,10 +50,11 @@ const UserBoard = ({ owner }: Props) => {
               <LandBox
                 setFenceList={setFenceList}
                 fenceList={fenceList}
-                // fenceList={fenceList[i - 1]}
                 idx={i - 1}
                 landInfo={landInfo[i - 1]}
                 setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
               />
             </div>
           </div>
@@ -68,10 +69,11 @@ const UserBoard = ({ owner }: Props) => {
               <LandBox
                 setFenceList={setFenceList}
                 fenceList={fenceList}
-                // fenceList={fenceList[i + 3]}
                 idx={i + 3}
                 landInfo={landInfo[i + 3]}
                 setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
               />
             </div>
           </div>
@@ -87,10 +89,11 @@ const UserBoard = ({ owner }: Props) => {
               <LandBox
                 setFenceList={setFenceList}
                 fenceList={fenceList}
-                // fenceList={fenceList[i + 7]}
                 idx={i + 7}
                 landInfo={landInfo[i + 7]}
                 setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
               />
             </div>
           </div>
