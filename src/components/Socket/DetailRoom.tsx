@@ -8,7 +8,6 @@ interface Props {
 }
 
 const DetailRoom = ({ userId, roomId }: Props) => {
-  // console.log("roomId", roomId);
   const [detailData, setDetailData] = useState();
   let room: WebSocket;
   useEffect(() => {
@@ -23,14 +22,11 @@ const DetailRoom = ({ userId, roomId }: Props) => {
       setDetailData(() => JSON.parse(msg.data));
     };
 
-    return () => {
-      room.onclose = () => {
-        console.log("WebSocket Client Closed");
-      };
-    };
+    return () => {};
   }, [roomId]);
 
   const onJoin = () => {
+    // join command 추가
     console.log("onJoin", userId);
   };
   return (

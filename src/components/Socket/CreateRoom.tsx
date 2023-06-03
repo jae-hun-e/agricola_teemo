@@ -34,6 +34,7 @@ const CreateRoom = ({
       title: data.title,
     };
     socket.send(JSON.stringify(createRoomInfo));
+    setOpenCreateRoom((pre) => !pre);
 
     alert(`'${getValues("title")}'방 생성완료`);
   };

@@ -15,7 +15,7 @@ interface Props {
 
 const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
   const detailRoom = (room_idx: number) => {
-    console.log("detailRoom", roomList[room_idx]);
+    // console.log("detailRoom", roomList[room_idx]);
     if (roomList[room_idx]?.options.mode === "private") {
       const inputValue = prompt("비밀번호를 입력해주세요:");
 

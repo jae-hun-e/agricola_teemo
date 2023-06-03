@@ -2,18 +2,16 @@ import { GetServerSideProps, NextPage } from "next";
 import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
 import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
-import { effect } from "zod";
 import { Simulate } from "react-dom/test-utils";
 import input = Simulate.input;
 import { FieldValues, useForm } from "react-hook-form";
 import DetailRoom from "@components/Socket/DetailRoom";
 
 const Lobby: NextPage = () => {
-  const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  // todo user_id로 바꿀 것
-  const [userId, setUserId] = useState(2);
-  const [roomList, setRoomList] = useState<IRoomList[]>([]);
   const [viewRoom, setViewRoom] = useState<number>(1);
+  const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
+  const [userId, setUserId] = useState(13);
+  const [roomList, setRoomList] = useState<IRoomList[]>([]);
   const { register, handleSubmit, reset } = useForm();
 
   const createRoom = () => {
@@ -30,21 +28,13 @@ const Lobby: NextPage = () => {
       console.log("roomList Connected : ", client, namespace, userId);
     };
     client.onmessage = (message) => {
+      // 내가 만든 방 상단으로 올리기
       setRoomList(() => {
         let list = JSON.parse(message.data);
-        const myCreateRoom = list.find(
-          (room: IRoomList) => room.host === userId
-        );
-
-        if (myCreateRoom) {
-          list = [
-            myCreateRoom,
-            ...list.filter((room: IRoomList) => room.host !== userId),
-          ];
-          return list;
-        } else {
-          return list;
-        }
+        const myCreateRoom = list.find((room) => room.host === userId);
+        return myCreateRoom
+          ? [myCreateRoom, ...list.filter((room) => room.host !== userId)]
+          : list;
       });
     };
 
@@ -54,8 +44,6 @@ const Lobby: NextPage = () => {
       };
     };
   }, []);
-
-  // console.log("list", list);
 
   const onsubmit = (data: FieldValues) => {
     if (data.testId === "") return;
