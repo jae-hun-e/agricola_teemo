@@ -121,15 +121,16 @@ const UserSubBoard = ({owner, direction, num}: Props) => {
             </p>
             <p
               className={cls(
-                "flex justify-center items-center",
+                "flex justify-center items-center bg-contain bg-center bg-no-repeat",
                 direction === "left" ? "w-[40px] h-[46px]" : "",
                 direction === "right" ? "w-[40px] h-[46px]" : "",
                 direction === "top" ? "h-[40px] w-[46px]" : "",
                 direction === "bottom" ? "h-[40px] w-[46px]" : ""
               )}
-            >
-              {Object.keys(material)}
-            </p>
+              style={{
+                backgroundImage: `url('/images/mainboard/item${idx + 1}.png')`,
+              }}
+            />
           </div>
         ))}
       </div>
