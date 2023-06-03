@@ -1,17 +1,15 @@
 import LoginButton from "@components/Button/LoginButton";
 import GameRuleButton from "@components/Button/GameRuleButton";
 import Link from "next/link";
-import { useRecoilValue } from "recoil";
-import { auth } from "@atom/auth";
+import {useRecoilValue} from "recoil";
+import {auth} from "@atom/auth";
 
 export default function Home() {
   const isAuth = useRecoilValue(auth);
   return (
     <div className="flex items-center flex-col">
-      <div className="w-[1040px] h-[310px] bg-demo">
-        아그리지콜라 메인 이미지
-      </div>
-      <div className="flex flex-col gap-[50px]">
+      <div className="w-[1040px] h-[310px] bg-demo bg-[url('/images/main/bg.jpeg')] bg-cover"></div>
+      <div className="flex flex-col gap-[50px] mt-[30px]">
         <LoginButton />
         <GameRuleButton />
         {isAuth ? (

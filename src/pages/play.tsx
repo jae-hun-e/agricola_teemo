@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import {NextPage} from "next";
 import MainMapBoard from "@components/Board/MainMapBoard";
 import UserSubBoard from "@components/Board/UserSubBoard";
 import JobCard from "@components/Card/JobCard";
@@ -6,21 +6,11 @@ import UserBoard from "@components/Board/UserBoard";
 import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
-import { playData } from "../constants/demoData";
-import { useState } from "react";
+import {playData} from "../constants/demoData";
+import {useState} from "react";
 
 const Play: NextPage = () => {
-  const {
-    first,
-    turn,
-    round,
-    phase,
-    players,
-    actions,
-    base_cards,
-    round_cards,
-    common_resources,
-  } = playData;
+  const {first, turn, round, phase, players, actions, base_cards, round_cards, common_resources} = playData;
 
   const [userId, setUserId] = useState(1);
 
