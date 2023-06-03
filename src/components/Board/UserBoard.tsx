@@ -2,10 +2,9 @@ import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
 import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
-import { fenceValidation } from "@utils/fence";
 
 interface Props {
-  owner?: object;
+  owner: object;
 }
 
 // 임시값
@@ -13,87 +12,98 @@ let limit = 6;
 let isHide = false;
 
 const UserBoard = ({ owner }: Props) => {
+  // todo socket으로 연결 후 landInfo,fenceList 안에 데이터 넣어주기
   const [landInfo, setLandInfo] = useState(
-    Array.from({ length: 13 }, (_, i) => ({
+    Array.from({ length: 14 }, (_, i) => ({
       idx: i + 1,
-      mode: null,
-      fence: [],
+      filed_type: null,
     }))
   );
-
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
   );
+  const [isChecked, setChecked] = useState(Array(13).fill(false));
 
-  // const sum = fenceList.reduce((acc, cur) => acc + cur.length, 0);
-
+  // server 에서 보내는 데이터로 Fence 초기화
   useEffect(() => {
-    setFenceList(() => fenceValidation(landInfo, limit));
-  }, [landInfo]);
-
-  useEffect(() => {
-    // fence합쳐주기
-    //
-    // console.log(sum);
-    // if (sum > limit) {
-    //   console.log("울타리 개수를 초과했습니다.");
-    // }
-  }, [fenceList]);
+    const fences = owner?.fences;
+    if (fences) {
+      setFenceList((pre) => {
+        const newFence = [...pre];
+        Object.keys(fences).forEach((idx: string) => {
+          newFence[Number(idx) - 1] = fences[idx];
+        });
+        // console.log("newFence", newFence);
+        return newFence;
+      });
+    }
+  }, []);
 
   return (
-    <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]">
-      {/*첫 줄*/}
-      {[1, 2, 3, 4, 5].map((i) => (
-        <div key={i} className="flex flex-col  justify-center items-center ">
-          <div className={cls("w-[100px]", "flex")}>
-            <LandBox
-              setFenceList={setFenceList}
-              // fenceList={fenceList}
-              fenceList={fenceList[i - 1]}
-              idx={i}
-              landInfo={landInfo[i]}
-              setLandInfo={setLandInfo}
-            />
+    <div className="relative">
+      <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]">
+        {/*첫 줄*/}
+
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="flex flex-col  justify-center items-center ">
+            <div className={cls("w-[100px]", "flex")}>
+              <LandBox
+                setFenceList={setFenceList}
+                fenceList={fenceList}
+                idx={i - 1}
+                landInfo={landInfo[i - 1]}
+                setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
 
-      {/* 둘째 줄*/}
+        {/* 둘째 줄*/}
 
-      <RoomBox idx={14} />
-      {[2, 3, 4, 5].map((i) => (
-        <div key={i + 4} className="flex flex-col ">
-          <div className={cls("w-[100px]", "flex")}>
-            <LandBox
-              setFenceList={setFenceList}
-              // fenceList={fenceList}
-              fenceList={fenceList[i + 3]}
-              idx={i + 4}
-              landInfo={landInfo[i + 4]}
-              setLandInfo={setLandInfo}
-            />
+        <RoomBox idx={14} />
+        {[2, 3, 4, 5].map((i) => (
+          <div key={i + 4} className="flex flex-col ">
+            <div className={cls("w-[100px]", "flex")}>
+              <LandBox
+                setFenceList={setFenceList}
+                fenceList={fenceList}
+                idx={i + 3}
+                landInfo={landInfo[i + 3]}
+                setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
 
-      {/*셋째 줄*/}
+        {/*셋째 줄*/}
 
-      <RoomBox idx={15} />
+        <RoomBox idx={15} />
 
-      {[2, 3, 4, 5].map((i) => (
-        <div key={i} className="flex flex-col">
-          <div className={cls("w-[100px]", "flex")}>
-            <LandBox
-              setFenceList={setFenceList}
-              // fenceList={fenceList}
-              fenceList={fenceList[i + 7]}
-              idx={i + 8}
-              landInfo={landInfo[i + 8]}
-              setLandInfo={setLandInfo}
-            />
+        {[2, 3, 4, 5].map((i) => (
+          <div key={i} className="flex flex-col">
+            <div className={cls("w-[100px]", "flex")}>
+              <LandBox
+                setFenceList={setFenceList}
+                fenceList={fenceList}
+                idx={i + 7}
+                landInfo={landInfo[i + 7]}
+                setLandInfo={setLandInfo}
+                isChecked={isChecked}
+                setChecked={setChecked}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+
+        {/*{console.log("fenceList", fenceList)}*/}
+      </div>
+      {owner?.name !== "1" && (
+        <div className="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0" />
+      )}
     </div>
   );
 };

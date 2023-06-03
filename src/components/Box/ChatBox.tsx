@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { connectSocket } from "../../hooks/useConnectSocket";
 
 interface IMsg {
   user: number;
@@ -10,15 +9,13 @@ interface IMsg {
 interface Props {
   userId: number;
 }
+
+const baseURL = "ws://127.0.0.1:8000/ws/v1";
+const namespace = "/chat/3/";
+
 const ChatBox = ({ userId }: Props) => {
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
-  const namespace = "/chat/3/";
   const client = new WebSocket(baseURL + namespace + userId);
   useEffect(() => {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected : ", namespace, userId);
-    };
-
     return () => {
       client.onclose = () => {
         console.log("WebSocket Client Closed");
@@ -28,23 +25,23 @@ const ChatBox = ({ userId }: Props) => {
 
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [allChatMsg, setAllChatMsg] = useState<IMsg[]>([]);
+
   const Chat = useRef<HTMLDivElement>(null);
+  const chatView = useRef<HTMLDivElement>(null);
   const toggleChatBot = () => {
     setIsChatOpen(!isChatOpen);
     Chat.current?.classList.toggle("-translate-y-[150px]");
   };
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, getFieldState } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     if (data.msg === "") {
       alert("메세지를 입력해주세요!");
       return;
     }
-    const newChat = {
-      user: userId,
-      msg: data.msg,
-    };
+
+    // 메세지 보내기
 
     client.send(
       JSON.stringify({
@@ -53,21 +50,42 @@ const ChatBox = ({ userId }: Props) => {
         message: data.msg,
       })
     );
+    reset({ msg: "" });
+  };
 
+  // 스크롤 맨 아래로 내리기
+  const scrollToBottom = () => {
+    if (chatView.current)
+      chatView.current.scrollTop = chatView.current?.scrollHeight;
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [allChatMsg]);
+
+  // 메세지 받기
+  useEffect(() => {
+    client.onopen = () => {
+      console.log("WebSocket Client Connected : ", namespace, userId);
+    };
+
+    console.log("======================rerender======================");
     client.onmessage = (message) => {
-      console.log(message);
-
       const data = JSON.parse(message.data).data;
       const newChat = {
         user: data.user,
         msg: data.message,
       };
-      console.log(data, newChat);
-      setAllChatMsg((allChatMsg) => [...allChatMsg, newChat]);
+      setAllChatMsg((pre) => {
+        return [...pre, newChat];
+      });
     };
 
-    reset({ msg: "" });
-  };
+    return () => {
+      client.onclose = () => {
+        console.log("WebSocket Client Closed");
+      };
+    };
+  }, []);
 
   return (
     <div
@@ -85,30 +103,46 @@ const ChatBox = ({ userId }: Props) => {
         {isChatOpen ? "X" : "O"}
       </div>
       {isChatOpen && (
-        <div className="absolute top-[24px] w-full h-[150px]">
-          <div className="relative w-full h-full bg-demo">
+        <div className="absolute top-[24px] w-full h-[150px] pb-[20px]">
+          <div
+            className="relative w-full h-full bg-demo overflow-y-scroll"
+            ref={chatView}
+          >
             {allChatMsg.map(({ user, msg }, idx) => (
-              <div key={idx}>
-                {user}: {msg}
+              <div key={idx} className="w-full h-[20px]">
+                {user === userId ? (
+                  <div className="w-full flex justify-end">
+                    <p>
+                      {msg}:{user}유저
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-full flex justify-start">
+                    <p>
+                      {user}유저:{msg}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex justify-between absolute bottom-0 w-full h-[20px] bg-amber-200 "
-            >
-              <input
-                type="text"
-                {...register("msg")}
-                className="bg-amber-200  w-[calc(100%-50px)] h-full pr-[50px]"
-              />
-              <button
-                type="submit"
-                className="w-[50px] h-full bg-blue-500 rounded-l-3xl absolute right-0 flex justify-center items-center"
-              >
-                <p>c</p>
-              </button>
-            </form>
           </div>
+          <form
+            onSubmit={() => false}
+            className="flex justify-between absolute bottom-0 w-full h-[20px] bg-amber-200 p-0 m-0"
+          >
+            <input
+              type="text"
+              {...register("msg")}
+              className="bg-amber-200  w-[calc(100%-50px)] h-full pr-[50px]"
+            />
+            <button
+              type="button"
+              className="w-[50px] h-full bg-blue-500 rounded-l-3xl absolute right-0 flex justify-center items-center"
+              onClick={handleSubmit(onSubmit)}
+            >
+              <p>c</p>
+            </button>
+          </form>
         </div>
       )}
     </div>
