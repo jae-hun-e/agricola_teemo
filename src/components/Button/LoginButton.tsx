@@ -3,14 +3,23 @@ import { useEffect, useState } from "react";
 
 import { Simulate } from "react-dom/test-utils";
 import Logout from "@components/Share/Logout";
-import { useRecoilState } from "recoil";
-import { auth } from "@atom/auth";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { auth, userInfo } from "@atom/auth";
 
 const LoginButton = () => {
   const [isAuth, setIsAuth] = useRecoilState(auth);
+  // const setInfo = useSetRecoilState(userInfo)
+  const [userinfo, setInfo] = useRecoilState(userInfo);
+  console.log("info2", userinfo);
+
   useEffect(() => {
-    if (localStorage.getItem("access_token")) {
+    const auth = localStorage.getItem("access_token");
+    if (auth) {
       setIsAuth(!isAuth);
+      console.log("JWT", auth);
+      const payload = Buffer.from(auth.split(".")[1], "base64");
+      const info = JSON.parse(payload.toString());
+      setInfo(info);
     } else {
       setIsAuth(false);
     }
