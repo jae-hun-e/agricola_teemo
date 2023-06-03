@@ -76,7 +76,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
           <div className="flex flex-col items-center pt-10 gap-3">
             <p> 상대 보드</p>
             <div className="flex gap-3">
-              <UserBoard />
+              <UserBoard owner={owner} />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
                   [설비 카드]

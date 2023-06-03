@@ -27,6 +27,8 @@ export const playData = {
         { filed_type: "room", position: 11, is_in: { familly: 1 } },
       ],
       cards: [],
+      // fences: { 1: [1, 2, 3, 4] },
+      fences: {},
     },
     {
       name: "2",
@@ -51,6 +53,7 @@ export const playData = {
         { filed_type: "room", position: 11, is_in: { familly: 1 } },
       ],
       cards: [],
+      fences: {},
     },
     {
       name: "3",
@@ -75,6 +78,7 @@ export const playData = {
         { filed_type: "room", position: 11, is_in: { familly: 1 } },
       ],
       cards: [],
+      fences: {},
     },
     {
       name: "4",
@@ -99,6 +103,7 @@ export const playData = {
         { filed_type: "room", position: 11, is_in: { familly: 1 } },
       ],
       cards: [],
+      fences: { 1: [1, 2, 3, 4] },
     },
   ],
   actions: [],

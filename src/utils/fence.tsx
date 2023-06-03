@@ -31,7 +31,8 @@ export function fenceAddValidation(prevFenceList: number[][]) {
 }
 
 // 진짜 마음에 안든다...
-export function fenceDelValidation(prevFenceList: number[][], idx: number) {
+// 사이에 fence 세우기 || fence 취소하기
+export function doubleFenceValidation(prevFenceList: number[][], idx: number) {
   const fenceList = [...prevFenceList];
 
   function checkingFence(idx: number, addFenceNum: number) {
@@ -48,31 +49,17 @@ export function fenceDelValidation(prevFenceList: number[][], idx: number) {
     right();
   } else if (idx < 4) {
     left();
-    right();
-    bottom();
-  } else if (idx === 4) {
-    left();
-    bottom();
-  } else if (idx === 5) {
-    top();
-    right();
-    bottom();
+    if (idx !== 4) right();
+    if (idx !== 5) bottom();
   } else if (idx < 8) {
-    left();
+    if (idx !== 5) left();
     top();
     right();
-    bottom();
-  } else if (idx === 8) {
-    left();
-    top();
-    bottom();
-  } else if (idx < 12) {
-    left();
-    top();
-    right();
+    if (idx !== 8) bottom();
   } else {
     left();
     top();
+    if (idx !== 12) right();
   }
   return fenceList;
 }

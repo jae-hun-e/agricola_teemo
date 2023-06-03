@@ -13,8 +13,17 @@ import { Simulate } from "react-dom/test-utils";
 import input = Simulate.input;
 
 const Play: NextPage = () => {
-  const { turn, round, phase, action_on_round, common_resources, players } =
-    playData;
+  const {
+    first,
+    turn,
+    round,
+    phase,
+    players,
+    actions,
+    base_cards,
+    round_cards,
+    common_resources,
+  } = playData;
 
   const { register, handleSubmit, reset } = useForm();
   const [userId, setUserId] = useState(1);
