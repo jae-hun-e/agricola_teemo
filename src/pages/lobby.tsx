@@ -31,9 +31,14 @@ const Lobby: NextPage = () => {
       // 내가 만든 방 상단으로 올리기
       setRoomList(() => {
         let list = JSON.parse(message.data);
-        const myCreateRoom = list.find((room) => room.host === userId);
+        const myCreateRoom = list.find(
+          (room: IRoomList) => room.host === userId
+        );
         return myCreateRoom
-          ? [myCreateRoom, ...list.filter((room) => room.host !== userId)]
+          ? [
+              myCreateRoom,
+              ...list.filter((room: IRoomList) => room.host !== userId),
+            ]
           : list;
       });
     };
