@@ -2,17 +2,14 @@ import { GetServerSideProps, NextPage } from "next";
 import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
 import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
-import { FieldValues, useForm } from "react-hook-form";
+
 import DetailRoom from "@components/Socket/DetailRoom";
 
 const Lobby: NextPage = () => {
   const [viewRoom, setViewRoom] = useState<number>(1);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(3);
+  const [userId, setUserId] = useState(5);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
-  const { register, handleSubmit, reset } = useForm();
 
   const createRoom = () => {
     setOpenCreateRoom(!openCreateRoom);
@@ -49,12 +46,6 @@ const Lobby: NextPage = () => {
       };
     };
   }, []);
-
-  const onsubmit = (data: FieldValues) => {
-    if (data.testId === "") return;
-    setUserId(data.testId);
-    reset({ testId: "" });
-  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">

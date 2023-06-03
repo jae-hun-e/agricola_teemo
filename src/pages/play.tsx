@@ -7,10 +7,7 @@ import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import { playData } from "../constants/demoData";
-import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
 
 const Play: NextPage = () => {
   const {
@@ -25,13 +22,7 @@ const Play: NextPage = () => {
     common_resources,
   } = playData;
 
-  const { register, handleSubmit, reset } = useForm();
   const [userId, setUserId] = useState(1);
-  const onSubmit = (data: FieldValues) => {
-    if (data.testId === "") return;
-    setUserId(data.testId);
-    reset({ testId: "" });
-  };
 
   return (
     <div className="relative">
