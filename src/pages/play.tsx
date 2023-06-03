@@ -52,9 +52,10 @@ const Play: NextPage = () => {
 
   return (
     <div className="relative">
-      <div className="flex gap-[20px]">
+      <div className="flex gap-[20px] bg-[#b3cd31]">
         <UserSubBoard direction={"left"} owner={players[1]} num={2} />
-        <div className="flex flex-col items-center bg-[#fafafa]">
+        <div className="flex flex-col items-center bg-[#b3cd31]">
+
           <UserSubBoard direction={"top"} owner={players[2]} num={3} />
 
           {/* Main Map*/}

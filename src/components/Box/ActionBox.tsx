@@ -1,18 +1,18 @@
-import { cls } from "@utils/util";
+import {cls} from "@utils/util";
 
 interface Props {
   layout?: string;
   name: string;
+  imgidx?: string;
 }
-const ActionBox = ({ layout, name }: Props) => {
+const ActionBox = ({layout, name, imgidx}: Props) => {
   return (
-    <div
-      className={cls(
-        "w-[100px]  bg-demo cursor-pointer",
-        layout ? layout : "h-[70px]"
-      )}
-    >
-      <p>Act : {name}</p>
+    <div>
+      <img
+        src={`/images/mainboard/${imgidx}.png`}
+        alt=""
+        className={cls("w-[100px] rounded-md cursor-pointer", layout ? layout : "h-[70px]")}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { cls } from "@utils/util";
+import {cls} from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import { useEffect, useState } from "react";
 import connect from "next/dist/client/dev/error-overlay/hot-dev-client";
@@ -40,7 +40,7 @@ const DetailRoom = ({ userId, roomId }: Props) => {
         {/*  참가인원들 */}
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
-            {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
+            {Array.from({length: 4}, (_, i) => i + 1).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
               // const user = user ? null : null;
               const user = null;
@@ -48,10 +48,8 @@ const DetailRoom = ({ userId, roomId }: Props) => {
               return (
                 <div
                   key={idx}
-                  className={cls(
-                    "w-[160px] h-[160px]  flex justify-center items-center ",
-                    user ? "bg-demo2" : "bg-gray-200"
-                  )}
+
+                  className="w-[160px] h-[160px]  flex justify-center items-center bg-[url('/images/lobby/place.png')] bg-cover"
                 >
                   {user ? (
                     <ModalButton
@@ -85,9 +83,7 @@ const DetailRoom = ({ userId, roomId }: Props) => {
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Chat :</p>
 
-            <div className="w-[80px] ">
-              {detailData?.options.is_chat ? "가능" : "불가능"}
-            </div>
+            <div className="w-[80px] ">{detailData?.options.is_chat ? "가능" : "불가능"}</div>
           </div>
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
