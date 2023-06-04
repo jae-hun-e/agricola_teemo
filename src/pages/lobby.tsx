@@ -1,7 +1,7 @@
-import {GetServerSideProps, NextPage} from "next";
-import WaitingRoomList, {IRoomList} from "@components/Socket/WaitingRoomList";
-import CreateRoom, {IRoom} from "@components/Socket/CreateRoom";
-import {useEffect, useState} from "react";
+import { GetServerSideProps, NextPage } from "next";
+import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
+import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
+import { useEffect, useState } from "react";
 
 import DetailRoom from "@components/Socket/DetailRoom";
 import { connectSocket } from "@utils/socket";
@@ -9,7 +9,7 @@ import { connectSocket } from "@utils/socket";
 const Lobby: NextPage = () => {
   const [viewRoom, setViewRoom] = useState<number>(1);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(5);
+  const [userId, setUserId] = useState(10);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
   const [client, setClient] = useState<WebSocket>();
   const createRoom = () => {
@@ -25,8 +25,15 @@ const Lobby: NextPage = () => {
       // 내가 만든 방 상단으로 올리기
       setRoomList(() => {
         let list = JSON.parse(message.data);
-        const myCreateRoom = list.find((room: IRoomList) => room.host === userId);
-        return myCreateRoom ? [myCreateRoom, ...list.filter((room: IRoomList) => room.host !== userId)] : list;
+        const myCreateRoom = list?.find(
+          (room: IRoomList) => room.host === userId
+        );
+        return myCreateRoom
+          ? [
+              myCreateRoom,
+              ...list.filter((room: IRoomList) => room.host !== userId),
+            ]
+          : list;
       });
     };
 
@@ -40,7 +47,11 @@ const Lobby: NextPage = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">
       <div className="flex gap-[10px]">
-        <WaitingRoomList roomList={roomList} userId={userId} changeViewRoom={setViewRoom} />
+        <WaitingRoomList
+          roomList={roomList}
+          userId={userId}
+          changeViewRoom={setViewRoom}
+        />
         {openCreateRoom ? (
           <CreateRoom
             socket={client}

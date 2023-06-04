@@ -26,12 +26,12 @@ const Play: NextPage = () => {
     round_cards,
     common_resources,
   } = playData;
-  const [userId, setUserId] = useState(3);
+  const [roomId, setUserId] = useState(3);
 
   useEffect(() => {
     // socket
-    const client = connectSocket("/play/", userId);
-    const chatting = connectSocket("/chat/3/", userId);
+    const client = connectSocket("/play/", roomId);
+    const chatting = connectSocket("/chat/3/", roomId);
     setChatSocket(chatting);
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
@@ -55,7 +55,6 @@ const Play: NextPage = () => {
       <div className="flex gap-[20px] bg-[#b3cd31]">
         <UserSubBoard direction={"left"} owner={players[1]} num={2} />
         <div className="flex flex-col items-center bg-[#b3cd31]">
-
           <UserSubBoard direction={"top"} owner={players[2]} num={3} />
 
           {/* Main Map*/}
@@ -70,7 +69,7 @@ const Play: NextPage = () => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              <ChatBox userId={userId} client={chatSocket} />
+              <ChatBox userId={roomId} client={chatSocket} />
             </div>
           </div>
         </div>

@@ -105,7 +105,7 @@ export const playDataInit = {
         { field_type: "room", position: 11, is_in: { familly: 1 } },
       ],
       room_type: "wood_room",
-      fences: {},
+      fences: { 1: [1, 2, 3, 4] },
       cards: [],
     },
   ],
