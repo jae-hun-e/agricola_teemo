@@ -27,7 +27,8 @@ module.exports = {
     // Handle module aliases
     "^@components/(.*)$": "<rootDir>/src/components/$1",
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "^@atoms/(.*)$": "<rootDir>/src/atoms/$1",
+    "^@atom/(.*)$": "<rootDir>/src/atoms/$1",
+    "^@public/(.*)$": "<rootDir>/public/$1",
   },
   moduleDirectories: ["node_modules", "src"],
   // Add more setup options before each test is run

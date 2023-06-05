@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { connectSocket } from "../../hooks/useConnectSocket";
+import { connectSocket } from "@utils/socket";
+import { webpack } from "next/dist/compiled/webpack/webpack";
 
 interface IMsg {
   user: number;
@@ -9,43 +10,35 @@ interface IMsg {
 
 interface Props {
   userId: number;
+  client: WebSocket;
 }
-const ChatBox = ({ userId }: Props) => {
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
-  const namespace = "/chat/3/";
-  const client = new WebSocket(baseURL + namespace + userId);
-  useEffect(() => {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected : ", namespace, userId);
-    };
 
-    return () => {
-      client.onclose = () => {
-        console.log("WebSocket Client Closed");
-      };
-    };
-  }, [userId]);
-
+const ChatBox = ({ userId, client }: Props) => {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [allChatMsg, setAllChatMsg] = useState<IMsg[]>([]);
+  const [lastViewChatIdx, setLastViewChatIdx] = useState<number[]>([0, 0]);
   const Chat = useRef<HTMLDivElement>(null);
+  const chatView = useRef<HTMLDivElement>(null);
+  const { register, handleSubmit, reset, getFieldState } = useForm();
+
+  // 채팅창 열기
   const toggleChatBot = () => {
+    // 채팅창 닫을 때 정보 저장
+    isChatOpen &&
+      setLastViewChatIdx((pre) => [
+        allChatMsg[allChatMsg.length - 1]?.idx,
+        chatView.current?.scrollHeight,
+      ]);
     setIsChatOpen(!isChatOpen);
     Chat.current?.classList.toggle("-translate-y-[150px]");
   };
 
-  const { register, handleSubmit, reset } = useForm();
-
+  // 메세지 보내기
   const onSubmit = (data: FieldValues) => {
     if (data.msg === "") {
       alert("메세지를 입력해주세요!");
       return;
     }
-    const newChat = {
-      user: userId,
-      msg: data.msg,
-    };
-
     client.send(
       JSON.stringify({
         // command: "sync",
@@ -53,62 +46,106 @@ const ChatBox = ({ userId }: Props) => {
         message: data.msg,
       })
     );
-
-    client.onmessage = (message) => {
-      console.log(message);
-
-      const data = JSON.parse(message.data).data;
-      const newChat = {
-        user: data.user,
-        msg: data.message,
-      };
-      console.log(data, newChat);
-      setAllChatMsg((allChatMsg) => [...allChatMsg, newChat]);
-    };
-
     reset({ msg: "" });
   };
+
+  // 스크롤 맨 아래로 내리기(열려있을때)
+  useEffect(() => {
+    if (chatView.current)
+      chatView.current.scrollTop = chatView.current?.scrollHeight;
+  }, [allChatMsg]);
+
+  // 채팅창 열릴 때 스크롤 위치
+  useEffect(() => {
+    if (chatView.current) chatView.current.scrollTop = lastViewChatIdx[1];
+  }, [isChatOpen]);
+
+  // 메세지 받기
+  useEffect(() => {
+    console.log("======================rerender======================");
+    client.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+      const newChat = {
+        idx: data.index,
+        user: data.user_id,
+        msg: data.message,
+      };
+      setAllChatMsg((pre) => {
+        return [...pre, newChat];
+      });
+    };
+
+    return () => {
+      client.onclose = () => {
+        console.log("WebSocket Client Closed");
+      };
+    };
+  }, []);
 
   return (
     <div
       ref={Chat}
-      className="w-[340px] h-[26px] bg-demo2 cursor-pointer relative flex items-center
+      className="w-[340px] h-[30px] bg-demo2 cursor-pointer relative flex items-center
       transition duration-500 ease-in-out"
       onClick={!isChatOpen ? toggleChatBot : () => {}}
     >
       <div className="absolute left-2 w-[28px] h-[26px] bg-demo">Icon</div>
       <div className="absolute left-14">Chat</div>
       <div
-        className="absolute right-2 w-[16px] h-[16px] bg-demo flex justify-center items-center"
+        className="absolute right-2 w-[25px] h-[25px] bg-demo flex justify-center items-center"
         onClick={isChatOpen ? toggleChatBot : () => {}}
       >
-        {isChatOpen ? "X" : "O"}
+        <div className="relative w-full h-full flex justify-center items-center">
+          {!isChatOpen &&
+            allChatMsg[allChatMsg.length - 1]?.idx > lastViewChatIdx[0] && (
+              <div className="text-xs font-bold text-white bg-red-500 w-[20px] h-[20px] absolute -top-[10px] -right-[5px] rounded-full flex justify-center items-center">
+                {allChatMsg[allChatMsg.length - 1]?.idx - lastViewChatIdx[0]}
+              </div>
+            )}
+          <p>{isChatOpen ? "X" : "O"}</p>
+        </div>
       </div>
       {isChatOpen && (
-        <div className="absolute top-[24px] w-full h-[150px]">
-          <div className="relative w-full h-full bg-demo">
+        <div className="absolute top-[30px] w-full h-[150px] pb-[20px]">
+          <div
+            className="relative w-full h-full bg-demo overflow-y-scroll"
+            ref={chatView}
+          >
             {allChatMsg.map(({ user, msg }, idx) => (
-              <div key={idx}>
-                {user}: {msg}
+              <div key={idx} className="w-full h-[25px] mt-[5px] mb-[5px]">
+                {user === userId ? (
+                  <div className="w-full flex justify-end ">
+                    <p className="bg-yellow-300 px-[15px] rounded-l-xl">
+                      {msg}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-full flex justify-start gap-[5px]">
+                    <p className="bg-gray-100 rounded-full w-[20px] h-[20px] flex justify-center items-center">
+                      {user}
+                    </p>
+                    <p className="bg-gray-200 px-[15px] rounded-r-xl">{msg}</p>
+                  </div>
+                )}
               </div>
             ))}
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex justify-between absolute bottom-0 w-full h-[20px] bg-amber-200 "
-            >
-              <input
-                type="text"
-                {...register("msg")}
-                className="bg-amber-200  w-[calc(100%-50px)] h-full pr-[50px]"
-              />
-              <button
-                type="submit"
-                className="w-[50px] h-full bg-blue-500 rounded-l-3xl absolute right-0 flex justify-center items-center"
-              >
-                <p>c</p>
-              </button>
-            </form>
           </div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex justify-between absolute bottom-0 w-full h-[20px] bg-amber-200 p-0 m-0"
+          >
+            <input
+              type="text"
+              {...register("msg")}
+              className="bg-amber-200  w-[calc(100%-50px)] h-full pr-[50px]"
+            />
+            <button
+              type="submit"
+              className="w-[50px] h-full bg-blue-500 rounded-l-3xl absolute right-0 flex justify-center items-center"
+            >
+              <p className="text-yellow-200">전송</p>
+            </button>
+          </form>
         </div>
       )}
     </div>

@@ -6,35 +6,61 @@ import UserBoard from "@components/Board/UserBoard";
 import ChatBox from "@components/Box/ChatBox";
 import ScoreBoard from "@components/Board/ScoreBoard";
 import FacilityCard from "@components/Card/FacilityCard";
-import { playData } from "../constants/demoData";
-import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
+import { playDataInit } from "../constants/demoData";
+import { useEffect, useState } from "react";
+import { IPlayData } from "@ITypes/play";
+import { connectSocket } from "@utils/socket";
 
 const Play: NextPage = () => {
-  const { turn, round, phase, action_on_round, common_resources, players } =
-    playData;
+  const [playData, setPlayData] = useState<IPlayData>(playDataInit);
+  const [chatSocket, setChatSocket] = useState<WebSocket>();
+  // console.log("play data", playData);
+  const {
+    first,
+    turn,
+    round,
+    phase,
+    players,
+    actions,
+    base_cards,
+    round_cards,
+    common_resources,
+  } = playData;
+  const [roomId, setUserId] = useState(3);
 
-  const { register, handleSubmit, reset } = useForm();
-  const [userId, setUserId] = useState(0);
-  const onSubmit = (data: FieldValues) => {
-    if (data.testId === "") return;
-    setUserId(data.testId);
-    reset({ testId: "" });
-  };
+  useEffect(() => {
+    // socket
+    const client = connectSocket("/play/", roomId);
+    const chatting = connectSocket("/chat/3/", roomId);
+    setChatSocket(chatting);
+    client.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+      setPlayData(data);
+    };
+
+    return () => {
+      client.onclose = () => {
+        console.log("play WebSocket Client Closed");
+      };
+      chatting.onclose = () => {
+        console.log("chatting WebSocket Client Closed");
+      };
+    };
+  }, []);
+
+  if (chatSocket === undefined) return <div>loading...</div>;
 
   return (
     <div className="relative">
-      <div className="flex gap-[20px]">
+      <div className="flex gap-[20px] bg-[#b3cd31]">
         <UserSubBoard direction={"left"} owner={players[1]} num={2} />
-        <div className="flex flex-col items-center bg-[#fafafa]">
+        <div className="flex flex-col items-center bg-[#b3cd31]">
           <UserSubBoard direction={"top"} owner={players[2]} num={3} />
 
           {/* Main Map*/}
           <MainMapBoard />
 
-          {/* User Board*/}
+          {/* User sub Board*/}
           <div className="flex flex-row justify-between w-full relative">
             <ScoreBoard />
             <UserSubBoard direction={"bottom"} owner={players[0]} num={1} />
@@ -43,21 +69,14 @@ const Play: NextPage = () => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              {/*TODO test용도*/}
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                  type="text"
-                  {...register("testId")}
-                  className="bg-demo"
-                />
-                <button type="submit">dev</button>
-              </form>
-              <ChatBox userId={userId} />
+              <ChatBox userId={roomId} client={chatSocket} />
             </div>
           </div>
         </div>
         <UserSubBoard direction={"right"} owner={players[3]} num={4} />
       </div>
+
+      {/* User main Board*/}
       <div className="absolute left-[338.5px]">
         <UserBoard owner={players[0]} />
       </div>

@@ -1,49 +1,80 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, renderHook, screen } from "@testing-library/react";
 import Home from "../../src/pages";
+import GameRuleButton from "@components/Button/GameRuleButton";
+import LoginButton from "@components/Button/LoginButton";
+import LinkButton from "@components/Button/LinkButton";
 import "@testing-library/jest-dom/extend-expect";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import React from "react";
+import {
+  atom,
+  RecoilRoot,
+  RecoilState,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+import { auth } from "@atom/auth";
 
 describe("main page 렌더링 확인", () => {
-  it("should render Home", () => {
-    const home = render(<Home />);
-
-    expect(home.container).toBeInTheDocument();
-  });
-  it("login button should be in the document", () => {
-    render(<Home />);
-    const loginButton = screen.getByRole("button", {
-      name: /Login/i,
-    });
+  it("LoginButton 렌더링 확인", () => {
+    render(
+      <RecoilRoot>
+        <LoginButton />
+      </RecoilRoot>
+    );
+    const loginButton = screen.getByRole("button");
     expect(loginButton).toBeInTheDocument();
   });
-  it("game rule button should be in the document", () => {
-    render(<Home />);
-    const gameRuleButton = screen.getByRole("button", {
-      name: /Game Rule/i,
-    });
-    expect(gameRuleButton).toBeInTheDocument();
+
+  it("GameRuleButton 렌더링 확인", () => {
+    render(<GameRuleButton />);
+    const gameRuleDetail = screen.getByTestId("GameRuleDetail");
+    expect(gameRuleDetail).toBeInTheDocument();
   });
-  it("start button should be in the document", () => {
-    render(<Home />);
-    const startPelement = screen.getByText(/Start/i);
 
-    expect(startPelement).toBeInTheDocument();
+  it("로그인 안됐을 때 ", () => {
+    render(
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    );
+    const isNotAuth = screen.getByTestId("isNotAuth", { exact: false });
+    expect(isNotAuth).toBeInTheDocument();
   });
-});
 
-describe("links", () => {
-  jest.mock(
-    "next/link",
-    () =>
-      ({ children, ...rest }: { children: ReactElement }) =>
-        children
-  );
-  it("rounting test", () => {
-    render(<Home />);
+  it("로그인 됐을 때", () => {
+    // const onChange = jest.fn();
+    // useRecoilState(auth)[1](true),
+    //   {
+    //     wrapper: RecoilRoot,
+    //   };
 
-    const lobbyLink = screen.getByText(/Start/i);
+    // const RecoilObserver = ({
+    //   node,
+    //   onChange,
+    // }: {
+    //   node: RecoilState<boolean>;
+    //   onChange: jest.Mock;
+    // }) => {
+    //   const value = useRecoilValue(node);
+    //   useEffect(() => onChange(!value), [onChange, value]);
+    //   return null;
+    // };
+    // const numberState = atom({ key: "isAuth", default: true });
+
+    render(<LinkButton className="" text="start" />);
+
+    jest.mock(
+      "next/link",
+      () =>
+        ({ children, ...rest }: { children: ReactElement }) =>
+          children
+    );
+
+    const lobbyLink = screen.getByTestId("lobby_link");
     fireEvent.click(lobbyLink);
-    expect(lobbyLink.closest("link")).toHaveAttribute("href", "/lobby");
+
+    expect(lobbyLink).toHaveAttribute("href", "/lobby");
   });
 });

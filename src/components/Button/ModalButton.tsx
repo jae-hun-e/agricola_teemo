@@ -17,7 +17,7 @@ const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
   };
 
   return (
-    <div className={layoutCSS}>
+    <div className={layoutCSS} data-testid={"ModalButton"}>
       <button
         type="button"
         onClick={toggleModal}

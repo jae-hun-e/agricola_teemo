@@ -14,23 +14,8 @@ interface Props {
 }
 
 const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
-  const myCreateRoom = roomList.find((room) => room.host === Number(userId));
-
-  let list;
-  if (myCreateRoom) {
-    list = [
-      myCreateRoom,
-      ...roomList.filter((room) => room.host !== Number(userId)),
-    ];
-    changeViewRoom(myCreateRoom.room_id);
-  } else {
-    list = roomList;
-  }
-  // console.log("list", list);
-
   const detailRoom = (room_idx: number) => {
-    console.log("room_id", room_idx);
-    console.log("detailRoom", roomList[room_idx]);
+    // console.log("detailRoom", roomList[room_idx]);
     if (roomList[room_idx]?.options.mode === "private") {
       const inputValue = prompt("비밀번호를 입력해주세요:");
 
@@ -57,7 +42,7 @@ const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
         </div>
       </div>
       <div className="flex flex-col justify-start w-[612px] h-[455px] overflow-auto pt-[1px] px-[1px] bg-white gap-[8px] ">
-        {list.map((room, idx) => {
+        {roomList.map((room, idx) => {
           return (
             <div
               key={room.room_id}

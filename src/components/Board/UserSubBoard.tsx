@@ -1,5 +1,5 @@
 import OtherPlayerButton from "@components/Button/OtherPlayerButton";
-import { cls } from "@utils/util";
+import {cls} from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
@@ -10,7 +10,7 @@ interface Props {
   num: number;
 }
 
-const UserSubBoard = ({ owner, direction, num }: Props) => {
+const UserSubBoard = ({owner, direction, num}: Props) => {
   // console.log("owner", owner);
 
   const {
@@ -21,29 +21,29 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
     grain,
     vegetable,
     sheep,
-    pig,
-    cow,
+    boar,
+    cattle,
     food,
     fence,
     barn,
     family,
     // @ts-ignore
-  } = owner.resources;
+  } = owner.resource;
 
   const materials = [
-    { 나무: wood },
-    { 흙: clay },
-    { 돌: stone },
-    { 갈대: reed },
-    { 곡식종자: grain },
-    { 채소종자: vegetable },
-    { 양: sheep },
-    { 돼지: pig },
-    { 소: cow },
-    { 음식: food },
-    { 울타리: fence },
-    { 외양간: barn },
-    { 가족: family },
+    {나무: wood},
+    {흙: clay},
+    {돌: stone},
+    {갈대: reed},
+    {곡식종자: grain},
+    {채소종자: vegetable},
+    {양: sheep},
+    {돼지: boar},
+    {소: cattle},
+    {음식: food},
+    {울타리: fence},
+    {외양간: family},
+    {가족: family},
   ];
   return (
     <div
@@ -56,34 +56,25 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
     >
       {/*// @ts-ignore*/}
       <OtherPlayerButton direction={direction} name={owner.name} />
-      <div
-        className={cls(
-          "absolute ",
-          direction === "left" || direction === "right"
-            ? "top-[90px]"
-            : "left-[90px]"
-        )}
-      >
+      <div className={cls("absolute ", direction === "left" || direction === "right" ? "top-[90px]" : "left-[90px]")}>
         {/* other players info detail*/}
         <ModalButton
           layoutCSS={cls(
-            direction === "left" || direction === "right"
-              ? "w-[90px] h-[598px]"
-              : "w-[598px] h-[90px] flex "
+            direction === "left" || direction === "right" ? "w-[90px] h-[598px]" : "w-[598px] h-[90px] flex "
           )}
           childrenCSS="w-[800px] h-[600px] bg-demo"
         >
           <div className="flex flex-col items-center pt-10 gap-3">
             <p> 상대 보드</p>
             <div className="flex gap-3">
-              <UserBoard />
+              <UserBoard owner={owner} />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
-                  [설비 카드]
+                  {"[설비 카드]"}
                   <FacilityCard owner={num} />
                 </div>
                 <div className="text-center">
-                  [직업 카드]
+                  {"[직업 카드]"}
                   <JobCard />
                 </div>
               </div>
@@ -94,9 +85,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
       <div
         className={cls(
           "bg-demo text-xs",
-          direction === "left" || direction === "right"
-            ? "w-[90px] h-[598px]"
-            : "w-[598px] h-[90px] flex"
+          direction === "left" || direction === "right" ? "w-[90px] h-[598px]" : "w-[598px] h-[90px] flex"
         )}
       >
         {materials.map((material, idx) => (
@@ -132,15 +121,16 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
             </p>
             <p
               className={cls(
-                "flex justify-center items-center",
+                "flex justify-center items-center bg-contain bg-center bg-no-repeat",
                 direction === "left" ? "w-[40px] h-[46px]" : "",
                 direction === "right" ? "w-[40px] h-[46px]" : "",
                 direction === "top" ? "h-[40px] w-[46px]" : "",
                 direction === "bottom" ? "h-[40px] w-[46px]" : ""
               )}
-            >
-              {Object.keys(material)}
-            </p>
+              style={{
+                backgroundImage: `url('/images/mainboard/item${idx + 1}.png')`,
+              }}
+            />
           </div>
         ))}
       </div>

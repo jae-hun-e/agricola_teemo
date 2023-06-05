@@ -22,7 +22,6 @@ declare global {
     Kakao: any;
   }
 }
-
 export default function App({ Component, pageProps }: AppProps) {
   function kakaoInit() {
     // 페이지가 로드되면 실행

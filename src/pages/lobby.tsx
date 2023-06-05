@@ -2,36 +2,39 @@ import { GetServerSideProps, NextPage } from "next";
 import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
 import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
-import { effect } from "zod";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
-import { FieldValues, useForm } from "react-hook-form";
+
 import DetailRoom from "@components/Socket/DetailRoom";
+import { connectSocket } from "@utils/socket";
 
 const Lobby: NextPage = () => {
   const [viewRoom, setViewRoom] = useState<number>(1);
-  console.log("viewRoom", viewRoom);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(10);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
-  // console.log("roomList", roomList);
-  const { register, handleSubmit, reset } = useForm();
-
+  const [client, setClient] = useState<WebSocket>();
   const createRoom = () => {
     setOpenCreateRoom(!openCreateRoom);
   };
 
-  //socket
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
-  const namespace = "/lobby/";
-  const client = new WebSocket(baseURL + namespace + userId);
-
   useEffect(() => {
-    client.onopen = () => {
-      console.log("roomList Connected : ", client, namespace, userId);
-    };
+    //socket
+    const client = connectSocket("/lobby/", userId);
+    setClient(client);
+
     client.onmessage = (message) => {
-      setRoomList(() => JSON.parse(message.data));
+      // 내가 만든 방 상단으로 올리기
+      setRoomList(() => {
+        let list = JSON.parse(message.data);
+        const myCreateRoom = list?.find(
+          (room: IRoomList) => room.host === userId
+        );
+        return myCreateRoom
+          ? [
+              myCreateRoom,
+              ...list.filter((room: IRoomList) => room.host !== userId),
+            ]
+          : list;
+      });
     };
 
     return () => {
@@ -41,12 +44,6 @@ const Lobby: NextPage = () => {
     };
   }, []);
 
-  const onsubmit = (data: FieldValues) => {
-    if (data.testId === "") return;
-    setUserId(data.testId);
-    reset({ testId: "" });
-  };
-
   return (
     <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">
       <div className="flex gap-[10px]">
@@ -55,9 +52,14 @@ const Lobby: NextPage = () => {
           userId={userId}
           changeViewRoom={setViewRoom}
         />
-
         {openCreateRoom ? (
-          <CreateRoom socket={client} setOpenCreateRoom={setOpenCreateRoom} />
+          <CreateRoom
+            socket={client}
+            setOpenCreateRoom={setOpenCreateRoom}
+            userId={userId}
+            roomList={roomList}
+            changeViewRoom={setViewRoom}
+          />
         ) : (
           <DetailRoom userId={userId} roomId={viewRoom} />
         )}
@@ -68,14 +70,6 @@ const Lobby: NextPage = () => {
       >
         {openCreateRoom ? "Detail Room" : "Create Room"}
       </div>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        <input
-          type="text"
-          className="w-20 h-5 bg-demo"
-          {...register("testId")}
-        />
-        <button type="submit">demo</button>
-      </form>
     </div>
   );
 };
