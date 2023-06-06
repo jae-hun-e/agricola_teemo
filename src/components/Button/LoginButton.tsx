@@ -16,7 +16,7 @@ const LoginButton = () => {
       console.log("JWT", auth);
       const payload = Buffer.from(auth.split(".")[1], "base64");
       const info = JSON.parse(payload.toString());
-      setInfo(info);
+      setInfo((pre) => ({ ...pre, userId: info.user_id }));
     } else {
       setIsAuth(false);
     }

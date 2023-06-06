@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { cls } from "@utils/util";
-import {
-  betweenFenceValidation,
-  doubleFenceValidation,
-  fenceAddValidation,
-  fenceDelValidation,
-} from "@utils/fence";
+import { fenceAddValidation, fenceDelValidation } from "@utils/fence";
 
 // test
 const limit = 12;
@@ -41,7 +36,7 @@ const LandBox = ({
 
   // fence 취소하기
   const delFence = () => {
-    console.log("isChecked", isChecked);
+    // console.log("isChecked", isChecked);
     let newFence = [...fenceList];
     newFence[idx] = [];
     newFence = fenceDelValidation(newFence, idx, isChecked);
@@ -65,7 +60,9 @@ const LandBox = ({
     let newFence = [...fenceList];
     newFence[idx] = [1, 2, 3, 4];
     newFence = fenceAddValidation(newFence);
+
     const sum = newFence.reduce((acc, cur) => acc + cur.length, 0);
+
     if (sum > limit) {
       alert(`${limit}개 이상 선택할 수 없습니다.`);
       return;
@@ -102,7 +99,7 @@ const LandBox = ({
       )}
       onClick={isChecked[idx] ? doubleOnClick : addFence}
     >
-      농장{idx}
+      농장{idx + 1}
     </div>
   );
 };

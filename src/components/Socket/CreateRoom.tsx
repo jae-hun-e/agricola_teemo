@@ -1,7 +1,7 @@
-import {Dispatch, KeyboardEvent, SetStateAction} from "react";
-import {FieldValues, useForm} from "react-hook-form";
-import {cls} from "@utils/util";
-import {IRoomList} from "@components/Socket/WaitingRoomList";
+import { Dispatch, KeyboardEvent, SetStateAction } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import { cls } from "@utils/util";
+import { IRoomList } from "@components/Socket/WaitingRoomList";
 
 export interface IRoom {
   command: string;
@@ -16,16 +16,28 @@ interface Props {
   roomList: IRoomList[];
   changeViewRoom: (room_id: number) => void;
 }
-const CreateRoom = ({socket, setOpenCreateRoom, userId, roomList, changeViewRoom}: Props) => {
-  const {register, handleSubmit, getValues, reset} = useForm();
+const CreateRoom = ({
+  socket,
+  setOpenCreateRoom,
+  userId,
+  roomList,
+  changeViewRoom,
+}: Props) => {
+  const { register, handleSubmit, getValues, reset } = useForm();
 
   // socket
 
   const onSubmit = (data: FieldValues) => {
     const createRoomInfo = {
       command: "create",
-      mode: "public",
-      title: data.title,
+      user_id: userId,
+      options: {
+        title: data.title,
+        mode: data.isPassword ? "public" : "private",
+        password: data.isPassword,
+        is_chat: data?.isChat,
+        time_limit: data?.time,
+      },
     };
     socket?.send(JSON.stringify(createRoomInfo));
     setOpenCreateRoom((pre) => !pre);
@@ -48,13 +60,13 @@ const CreateRoom = ({socket, setOpenCreateRoom, userId, roomList, changeViewRoom
           className="w-[200px] h-[40px] bg-demo2 rounded-xl pl-4 text-white my-[10px]"
           defaultValue="방이름을 지어주세요."
           {...register("title")}
-          onClick={() => reset({title: ""})}
+          onClick={() => reset({ title: "" })}
         />
 
         {/*  참가인원들 */}
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
-            {Array.from({length: 4}, (_, i) => i + 1).map((num, idx) => {
+            {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
               return (
                 <div
                   key={idx}
@@ -82,19 +94,30 @@ const CreateRoom = ({socket, setOpenCreateRoom, userId, roomList, changeViewRoom
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Mode:</p>
-            <input type="text" {...register("isPassword")} className="w-[100px] bg-demo" />
+            <input
+              type="text"
+              {...register("isPassword")}
+              className="w-[100px] bg-demo"
+            />
           </div>
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Time : </p>
             <div className="flex gap-1">
-              <input type="text" {...register("time")} className="w-[50px] bg-demo" />
+              <input
+                type="text"
+                {...register("time")}
+                className="w-[50px] bg-demo"
+              />
               <p>min</p>
             </div>
           </div>
         </div>
 
-        <button type="submit" className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2">
+        <button
+          type="submit"
+          className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
+        >
           create
         </button>
       </form>

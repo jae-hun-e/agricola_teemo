@@ -1,0 +1,2443 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면에 알맞게 렌더링 되는지 테스트 1`] = `
+<div>
+  <div
+    class=" flex flex-col w-[90px] h-[688px] "
+  >
+    <div
+      class="w-[90px] h-[90px] flex justify-center items-center"
+    >
+      <div
+        class="w-[70px] h-[70px] bg-demo rounded-full flex justify-center items-center cursor-pointer"
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        >
+          2
+        </button>
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 프로필
+                </p>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="absolute  top-[90px]"
+    >
+      <div
+        class="w-[90px] h-[598px]"
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        />
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[800px] h-[600px] bg-demo"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 보드
+                </p>
+                <div
+                  class="flex gap-3"
+                >
+                  <div
+                    class="relative"
+                  >
+                    <div
+                      class="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]"
+                    >
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            0
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            4
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            11
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            12
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0"
+                    />
+                  </div>
+                  <div
+                    class="flex flex-col justify-center items-center gap-[30px] w-[100px]"
+                  >
+                    <div
+                      class="text-center"
+                    >
+                      [설비 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          Player2 설비
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div
+                                class="flex flex-col justify-center items-center gap-3"
+                              >
+                                Player2 설비
+                                <div
+                                  class="flex gap-3"
+                                >
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      주요 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player2 주요설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      보조 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player2 보조설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="text-center"
+                    >
+                      [직업 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          직업카드
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div>
+                                직업들
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-demo text-xs w-[90px] h-[598px]"
+    >
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item1.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item2.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item3.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item4.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item5.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item6.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item7.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item8.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item9.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item10.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0/15
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item11.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0/4
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item12.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center flex-row   "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center w-[50px] h-[46px]   "
+        >
+          0/5
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat w-[40px] h-[46px]   "
+          style="background-image: url(/images/mainboard/item13.png);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면에 알맞게 렌더링 되는지 테스트 2`] = `
+<div>
+  <div
+    class=" flex flex-col w-[90px] h-[688px] "
+  >
+    <div
+      class="w-[90px] h-[90px] flex justify-center items-center"
+    >
+      <div
+        class="w-[70px] h-[70px] bg-demo rounded-full flex justify-center items-center cursor-pointer"
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        >
+          4
+        </button>
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 프로필
+                </p>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="absolute  top-[90px]"
+    >
+      <div
+        class="w-[90px] h-[598px]"
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        />
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[800px] h-[600px] bg-demo"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 보드
+                </p>
+                <div
+                  class="flex gap-3"
+                >
+                  <div
+                    class="relative"
+                  >
+                    <div
+                      class="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]"
+                    >
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 border-l-[5px] border-t-[5px] border-r-[5px] border-b-[5px]"
+                          >
+                            농장
+                            0
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            4
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            11
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            12
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0"
+                    />
+                  </div>
+                  <div
+                    class="flex flex-col justify-center items-center gap-[30px] w-[100px]"
+                  >
+                    <div
+                      class="text-center"
+                    >
+                      [설비 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          Player4 설비
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div
+                                class="flex flex-col justify-center items-center gap-3"
+                              >
+                                Player4 설비
+                                <div
+                                  class="flex gap-3"
+                                >
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      주요 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player4 주요설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      보조 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player4 보조설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="text-center"
+                    >
+                      [직업 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          직업카드
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div>
+                                직업들
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-demo text-xs w-[90px] h-[598px]"
+    >
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item1.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item2.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item3.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item4.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item5.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item6.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item7.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item8.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item9.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item10.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0/15
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item11.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0/4
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item12.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center  flex-row-reverse  "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center  w-[50px] h-[46px]  "
+        >
+          0/5
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat  w-[40px] h-[46px]  "
+          style="background-image: url(/images/mainboard/item13.png);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면에 알맞게 렌더링 되는지 테스트 3`] = `
+<div>
+  <div
+    class=" flex flex-row h-[90px] w-[688px] relative"
+  >
+    <div
+      class="w-[90px] h-[90px] flex justify-center items-center"
+    >
+      <div
+        class="w-[70px] h-[70px] bg-demo rounded-full flex justify-center items-center cursor-pointer"
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        >
+          3
+        </button>
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 프로필
+                </p>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="absolute  left-[90px]"
+    >
+      <div
+        class="w-[598px] h-[90px] flex "
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        />
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[800px] h-[600px] bg-demo"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 보드
+                </p>
+                <div
+                  class="flex gap-3"
+                >
+                  <div
+                    class="relative"
+                  >
+                    <div
+                      class="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]"
+                    >
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            0
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            4
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            11
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            12
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0"
+                    />
+                  </div>
+                  <div
+                    class="flex flex-col justify-center items-center gap-[30px] w-[100px]"
+                  >
+                    <div
+                      class="text-center"
+                    >
+                      [설비 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          Player3 설비
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div
+                                class="flex flex-col justify-center items-center gap-3"
+                              >
+                                Player3 설비
+                                <div
+                                  class="flex gap-3"
+                                >
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      주요 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player3 주요설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      보조 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            Player3 보조설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="text-center"
+                    >
+                      [직업 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          직업카드
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div>
+                                직업들
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-demo text-xs w-[598px] h-[90px] flex"
+    >
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item1.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item2.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item3.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item4.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item5.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item6.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item7.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item8.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item9.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item10.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0/15
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item11.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0/4
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item12.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center   flex-col "
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center   h-[50px] w-[46px] "
+        >
+          0/5
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat   h-[40px] w-[46px] "
+          style="background-image: url(/images/mainboard/item13.png);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면에 알맞게 렌더링 되는지 테스트 4`] = `
+<div>
+  <div
+    class=" flex flex-row h-[90px] w-[688px] relative"
+  >
+    <div
+      class="w-[90px] h-[90px] flex justify-center items-center"
+    >
+      <p
+        class="w-[70px] h-[70px] bg-demo rounded-full flex justify-center items-center"
+      >
+        User
+      </p>
+    </div>
+    <div
+      class="absolute  left-[90px]"
+    >
+      <div
+        class="w-[598px] h-[90px] flex "
+        data-testid="ModalButton"
+      >
+        <button
+          class="flex justify-center items-center w-full h-full"
+          type="button"
+        />
+        <div
+          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+        >
+          <div
+            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[800px] h-[600px] bg-demo"
+          >
+            <div
+              class="w-full h-full flex justify-center items-start"
+            >
+              <div
+                class="flex flex-col items-center pt-10 gap-3"
+              >
+                <p>
+                   상대 보드
+                </p>
+                <div
+                  class="flex gap-3"
+                >
+                  <div
+                    class="relative"
+                  >
+                    <div
+                      class="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]"
+                    >
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            0
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col  justify-center items-center "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            4
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col "
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            11
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            12
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col justify-center items-center gap-[30px] w-[100px]"
+                  >
+                    <div
+                      class="text-center"
+                    >
+                      [설비 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          내 설비
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div
+                                class="flex flex-col justify-center items-center gap-3"
+                              >
+                                내 설비
+                                <div
+                                  class="flex gap-3"
+                                >
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      주요 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            내 주요설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+                                    data-testid="ModalButton"
+                                  >
+                                    <button
+                                      class="flex justify-center items-center w-full h-full"
+                                      type="button"
+                                    >
+                                      보조 설비
+                                    </button>
+                                    <div
+                                      class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                                    >
+                                      <div
+                                        class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                                      >
+                                        <div
+                                          class="w-full h-full flex justify-center items-start"
+                                        >
+                                          <div
+                                            class="flex justify-center items-center"
+                                          >
+                                            내 보조설비
+                                          </div>
+                                        </div>
+                                        <button
+                                          class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                                          type="button"
+                                        >
+                                          close
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="text-center"
+                    >
+                      [직업 카드]
+                      <div
+                        class="bg-demo h-[80px] w-[80px] flex justify-center"
+                        data-testid="ModalButton"
+                      >
+                        <button
+                          class="flex justify-center items-center w-full h-full"
+                          type="button"
+                        >
+                          직업카드
+                        </button>
+                        <div
+                          class="hidden z-30 bg-black bg-opacity-40 flex justify-center items-center fixed top-0 left-0 w-full h-full"
+                        >
+                          <div
+                            class="bg-gray-300 flex flex-col justify-center items-center  overflow-auto relative shadow-inner w-[400px] h-[600px]"
+                          >
+                            <div
+                              class="w-full h-full flex justify-center items-start"
+                            >
+                              <div>
+                                직업들
+                              </div>
+                            </div>
+                            <button
+                              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+                              type="button"
+                            >
+                              close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-[150px] h-[50px] text-11xl hover:bg-amber-100 hover:opacity-80 cursor-pointer absolute bottom-10 bg-amber-200 rounded-xl"
+              type="button"
+            >
+              close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-demo text-xs w-[598px] h-[90px] flex"
+    >
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item1.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item2.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item3.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item4.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item5.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item6.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item7.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item8.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item9.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item10.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0/15
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item11.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0/4
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item12.png);"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center    flex-col-reverse"
+      >
+        <p
+          class="bg-demo2 flex justify-center items-center    h-[50px] w-[46px]"
+        >
+          0/5
+        </p>
+        <p
+          class="flex justify-center items-center bg-contain bg-center bg-no-repeat    h-[40px] w-[46px]"
+          style="background-image: url(/images/mainboard/item13.png);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

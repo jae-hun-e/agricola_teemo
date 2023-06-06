@@ -1,11 +1,5 @@
 import { cls } from "@utils/util";
-
-export interface IRoomList {
-  host: number;
-  room_id: number;
-  participant: number;
-  options: { title: string; mode: string; password: string };
-}
+import { IRoomList } from "@ITypes/lobby";
 
 interface Props {
   userId: number;
