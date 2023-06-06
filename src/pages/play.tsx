@@ -10,6 +10,8 @@ import { playDataInit } from "../constants/demoData";
 import { useEffect, useState } from "react";
 import { IPlayData } from "@ITypes/play";
 import { connectSocket } from "@utils/socket";
+import { playData } from "@atom/playData";
+import { useRecoilState } from "recoil";
 
 const Play: NextPage = () => {
   const [playData, setPlayData] = useState<IPlayData>(playDataInit);
@@ -31,10 +33,11 @@ const Play: NextPage = () => {
   useEffect(() => {
     // socket
     const client = connectSocket("/play/", roomId);
-    const chatting = connectSocket("/chat/3/", roomId);
+    const chatting = connectSocket("/chat/", roomId);
     setChatSocket(chatting);
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
+      console.log("data", data);
       setPlayData(data);
     };
 

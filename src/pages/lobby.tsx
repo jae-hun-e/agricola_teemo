@@ -1,15 +1,16 @@
-import { GetServerSideProps, NextPage } from "next";
-import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
-import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
+import { NextPage } from "next";
+import WaitingRoomList from "@components/Socket/WaitingRoomList";
+import CreateRoom from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
 
 import DetailRoom from "@components/Socket/DetailRoom";
 import { connectSocket } from "@utils/socket";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "@atom/auth";
+import { IDetailRoom, IRoomList } from "@ITypes/lobby";
 
 const Lobby: NextPage = () => {
-  const [detailData, setDetailData] = useState<object>();
+  const [detailData, setDetailData] = useState<IDetailRoom>();
   console.log("detailData", detailData);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
   const { userId } = useRecoilValue(userInfo);

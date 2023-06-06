@@ -4,6 +4,7 @@ import { connectSocket } from "@utils/socket";
 import { webpack } from "next/dist/compiled/webpack/webpack";
 
 interface IMsg {
+  idx: number;
   user: number;
   msg: string;
 }
@@ -24,11 +25,20 @@ const ChatBox = ({ userId, client }: Props) => {
   // 채팅창 열기
   const toggleChatBot = () => {
     // 채팅창 닫을 때 정보 저장
-    isChatOpen &&
-      setLastViewChatIdx((pre) => [
+    if (isChatOpen) {
+      setLastViewChatIdx([
         allChatMsg[allChatMsg.length - 1]?.idx,
-        chatView.current?.scrollHeight,
+        chatView.current ? chatView.current.scrollHeight : 0,
       ]);
+
+      setAllChatMsg((pre: IMsg[]) => {
+        return [
+          ...[...pre].filter((chat) => chat.user !== 0),
+          { idx: 0, user: 0, msg: "====여기까지 읽었습니다.====" },
+        ];
+      });
+    } else {
+    }
     setIsChatOpen(!isChatOpen);
     Chat.current?.classList.toggle("-translate-y-[150px]");
   };
@@ -43,6 +53,7 @@ const ChatBox = ({ userId, client }: Props) => {
       JSON.stringify({
         // command: "sync",
         command: "message",
+        user_id: userId,
         message: data.msg,
       })
     );
@@ -65,12 +76,12 @@ const ChatBox = ({ userId, client }: Props) => {
     console.log("======================rerender======================");
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
-      const newChat = {
+      const newChat: IMsg = {
         idx: data.index,
         user: data.user_id,
         msg: data.message,
       };
-      setAllChatMsg((pre) => {
+      setAllChatMsg((pre: IMsg[]) => {
         return [...pre, newChat];
       });
     };
@@ -113,7 +124,11 @@ const ChatBox = ({ userId, client }: Props) => {
           >
             {allChatMsg.map(({ user, msg }, idx) => (
               <div key={idx} className="w-full h-[25px] mt-[5px] mb-[5px]">
-                {user === userId ? (
+                {user === 0 ? (
+                  <div className="w-full flex justify-center ">
+                    <p className="bg-yellow-300 px-[15px] rounded-xl">{msg}</p>
+                  </div>
+                ) : user === userId ? (
                   <div className="w-full flex justify-end ">
                     <p className="bg-yellow-300 px-[15px] rounded-l-xl">
                       {msg}

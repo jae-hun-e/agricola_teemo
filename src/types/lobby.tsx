@@ -11,4 +11,15 @@ export interface IRoomList {
   };
 }
 
-export interface DetailRoom {}
+export interface IDetailRoom {
+  room_id: number;
+  host: number;
+  options: {
+    title: string;
+    is_chat: boolean;
+    mode: string;
+    password: string;
+    time_limit: number;
+  };
+  participants: number[];
+}

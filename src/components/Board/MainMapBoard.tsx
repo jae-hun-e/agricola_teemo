@@ -3,7 +3,7 @@ import AccumlatedBox from "@components/Box/AccumlatedBox";
 import MainFacilityCard from "@components/Card/MainFacilityCard";
 
 import ActionBox from "@components/Box/ActionBox";
-import {action_on_round} from "@ITypes/play";
+import { action_on_round } from "@ITypes/play";
 
 interface Props {
   turn: number;

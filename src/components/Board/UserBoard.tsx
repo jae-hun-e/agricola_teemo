@@ -12,7 +12,7 @@ let limit = 6;
 let isHide = false;
 
 const UserBoard = ({ owner }: Props) => {
-  // todo socket으로 연결 후 landInfo,fenceList 안에 데이터 넣어주기
+  // TODO socket 으로 연결 후 landInfo,fenceList 안에 데이터 넣어주기
   const [landInfo, setLandInfo] = useState(
     Array.from({ length: 14 }, (_, i) => ({
       idx: i + 1,

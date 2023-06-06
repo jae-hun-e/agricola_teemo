@@ -6,15 +6,7 @@ import LinkButton from "@components/Button/LinkButton";
 import "@testing-library/jest-dom/extend-expect";
 import { ReactElement, useEffect } from "react";
 import React from "react";
-import {
-  atom,
-  RecoilRoot,
-  RecoilState,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-import { auth } from "@atom/auth";
+import { RecoilRoot } from "recoil";
 
 describe("main page 렌더링 확인", () => {
   it("LoginButton 렌더링 확인", () => {
@@ -44,25 +36,6 @@ describe("main page 렌더링 확인", () => {
   });
 
   it("로그인 됐을 때", () => {
-    // const onChange = jest.fn();
-    // useRecoilState(auth)[1](true),
-    //   {
-    //     wrapper: RecoilRoot,
-    //   };
-
-    // const RecoilObserver = ({
-    //   node,
-    //   onChange,
-    // }: {
-    //   node: RecoilState<boolean>;
-    //   onChange: jest.Mock;
-    // }) => {
-    //   const value = useRecoilValue(node);
-    //   useEffect(() => onChange(!value), [onChange, value]);
-    //   return null;
-    // };
-    // const numberState = atom({ key: "isAuth", default: true });
-
     render(<LinkButton className="" text="start" />);
 
     jest.mock(

@@ -1,18 +1,6 @@
-import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
+import { IDetailRoom } from "@ITypes/lobby";
 
-interface IDetailRoom {
-  room_id: number;
-  host: number;
-  options: {
-    title: string;
-    is_chat: boolean;
-    mode: string;
-    password: string;
-    time_limit: number;
-  };
-  participants: number[];
-}
 interface Props {
   socket: WebSocket | undefined;
   userId: number;
@@ -54,8 +42,6 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
             {Array.from({ length: 4 }, (_, i) => i).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
-              // const user = user ? null : null;
-
               const user = detailData?.participants[idx];
 
               return (
@@ -108,7 +94,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Time : </p>
-            <div className="w-[80px]">{detailData?.options.time}min</div>
+            <div className="w-[80px]">{detailData?.options.time_limit} min</div>
           </div>
         </div>
 
