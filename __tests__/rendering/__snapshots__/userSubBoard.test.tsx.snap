@@ -90,20 +90,6 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
                           >
                             농장
-                            0
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col  justify-center items-center "
-                      >
-                        <div
-                          class="w-[100px] flex"
-                        >
-                          <div
-                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
-                          >
-                            농장
                             1
                           </div>
                         </div>
@@ -151,12 +137,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col "
+                        class="flex flex-col  justify-center items-center "
                       >
                         <div
                           class="w-[100px] flex"
@@ -168,6 +149,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             5
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col "
@@ -212,12 +198,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col"
+                        class="flex flex-col "
                       >
                         <div
                           class="w-[100px] flex"
@@ -229,6 +210,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             9
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col"
@@ -269,6 +255,20 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                           >
                             농장
                             12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            13
                           </div>
                         </div>
                       </div>
@@ -709,20 +709,6 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 border-l-[5px] border-t-[5px] border-r-[5px] border-b-[5px]"
                           >
                             농장
-                            0
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col  justify-center items-center "
-                      >
-                        <div
-                          class="w-[100px] flex"
-                        >
-                          <div
-                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
-                          >
-                            농장
                             1
                           </div>
                         </div>
@@ -770,12 +756,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col "
+                        class="flex flex-col  justify-center items-center "
                       >
                         <div
                           class="w-[100px] flex"
@@ -787,6 +768,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             5
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col "
@@ -831,12 +817,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col"
+                        class="flex flex-col "
                       >
                         <div
                           class="w-[100px] flex"
@@ -848,6 +829,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             9
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col"
@@ -888,6 +874,20 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                           >
                             농장
                             12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            13
                           </div>
                         </div>
                       </div>
@@ -1328,20 +1328,6 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
                           >
                             농장
-                            0
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col  justify-center items-center "
-                      >
-                        <div
-                          class="w-[100px] flex"
-                        >
-                          <div
-                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
-                          >
-                            농장
                             1
                           </div>
                         </div>
@@ -1389,12 +1375,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col "
+                        class="flex flex-col  justify-center items-center "
                       >
                         <div
                           class="w-[100px] flex"
@@ -1406,6 +1387,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             5
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col "
@@ -1450,12 +1436,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col"
+                        class="flex flex-col "
                       >
                         <div
                           class="w-[100px] flex"
@@ -1467,6 +1448,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             9
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col"
@@ -1507,6 +1493,20 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                           >
                             농장
                             12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            13
                           </div>
                         </div>
                       </div>
@@ -1916,20 +1916,6 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
                           >
                             농장
-                            0
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col  justify-center items-center "
-                      >
-                        <div
-                          class="w-[100px] flex"
-                        >
-                          <div
-                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
-                          >
-                            농장
                             1
                           </div>
                         </div>
@@ -1977,12 +1963,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col "
+                        class="flex flex-col  justify-center items-center "
                       >
                         <div
                           class="w-[100px] flex"
@@ -1994,6 +1975,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             5
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col "
@@ -2038,12 +2024,7 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                         </div>
                       </div>
                       <div
-                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
-                      >
-                        방
-                      </div>
-                      <div
-                        class="flex flex-col"
+                        class="flex flex-col "
                       >
                         <div
                           class="w-[100px] flex"
@@ -2055,6 +2036,11 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                             9
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="bg-demo w-[100px] h-[100px] flex justify-center items-center"
+                      >
+                        방
                       </div>
                       <div
                         class="flex flex-col"
@@ -2095,6 +2081,20 @@ exports[`UserSubBoard rendering test UserSubBoard 가 안에 데이터와 화면
                           >
                             농장
                             12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <div
+                          class="w-[100px] flex"
+                        >
+                          <div
+                            class="w-[100px] h-[100px]  flex justify-center items-center bg-demo border-solid border-red-500 false false false false"
+                          >
+                            농장
+                            13
                           </div>
                         </div>
                       </div>

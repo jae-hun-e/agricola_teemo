@@ -17,6 +17,7 @@ export default function Home() {
           <LinkButton
             className="w-[500px] h-[80px] bg-yellow-200 flex justify-center items-center cursor-pointer hover:bg-hover"
             text="Start"
+            href="lobby"
           />
         ) : (
           <div
