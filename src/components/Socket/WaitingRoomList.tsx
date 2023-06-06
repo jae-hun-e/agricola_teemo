@@ -2,12 +2,13 @@ import { cls } from "@utils/util";
 import { IRoomList } from "@ITypes/lobby";
 
 interface Props {
+  socket: WebSocket | undefined;
   userId: number;
   roomList: IRoomList[];
-  changeViewRoom: (room_id: number) => void;
+  changeDeTailRoom: Function;
 }
 
-const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
+const WaitingRoomList = ({ socket, userId, roomList }: Props) => {
   const detailRoom = (room_idx: number) => {
     // console.log("detailRoom", roomList[room_idx]);
     if (roomList[room_idx]?.options.mode === "private") {
@@ -18,11 +19,16 @@ const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
         return;
       } else {
         alert("방에 입장했습니다.");
-        changeViewRoom(roomList[room_idx].room_id);
+        // changeViewRoom(roomList[room_idx].room_id);
       }
       return;
     }
-    changeViewRoom(roomList[room_idx].room_id);
+    const watch = {
+      command: "watch",
+      user_id: userId,
+      room_id: roomList[room_idx].room_id,
+    };
+    socket?.send(JSON.stringify(watch));
   };
 
   return (

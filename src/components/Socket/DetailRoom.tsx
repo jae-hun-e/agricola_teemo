@@ -1,34 +1,46 @@
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
-import { useEffect, useState } from "react";
-import connect from "next/dist/client/dev/error-overlay/hot-dev-client";
-import { connectSocket } from "@utils/socket";
 
+interface IDetailRoom {
+  room_id: number;
+  host: number;
+  options: {
+    title: string;
+    is_chat: boolean;
+    mode: string;
+    password: string;
+    time_limit: number;
+  };
+  participants: number[];
+}
 interface Props {
+  socket: WebSocket | undefined;
   userId: number;
-  roomId: number;
+  detailData: IDetailRoom | undefined;
 }
 
-const DetailRoom = ({ userId, roomId }: Props) => {
-  const [detailData, setDetailData] = useState();
-  let room: WebSocket;
-  // useEffect(() => {
-  //   // room = connectSocket(`/lobby/$/`);
-  //
-  //   room.onmessage = (msg: MessageEvent) => {
-  //     setDetailData(() => JSON.parse(msg.data));
-  //   };
-  //
-  //   return () => {
-  //     room.onclose = () => {
-  //       console.log("WebSocket Client Closed");
-  //     };
-  //   };
-  // }, [roomId]);
+const DetailRoom = ({ socket, userId, detailData }: Props) => {
+  // room exit
+  const onExit = () => {
+    const exitRoom = {
+      command: "exit",
+      user_id: userId,
+      room_id: detailData?.room_id,
+    };
 
+    socket?.send(JSON.stringify(exitRoom));
+  };
+
+  // room join
   const onJoin = () => {
-    // join command 추가
     console.log("onJoin", userId);
+
+    const joinRoom = {
+      command: "enter",
+      user_id: userId,
+      room_id: detailData?.room_id,
+    };
+    socket?.send(JSON.stringify(joinRoom));
   };
   return (
     <div className="w-[400px] h-[520px] bg-demo ">
@@ -40,10 +52,11 @@ const DetailRoom = ({ userId, roomId }: Props) => {
         {/*  참가인원들 */}
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
-            {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
+            {Array.from({ length: 4 }, (_, i) => i).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
               // const user = user ? null : null;
-              const user = null;
+
+              const user = detailData?.participants[idx];
 
               return (
                 <div
@@ -56,6 +69,7 @@ const DetailRoom = ({ userId, roomId }: Props) => {
                       name={user.name}
                     >
                       <div className="flex flex-col ">
+                        <div>{user}</div>
                         <div>{user.name}</div>
                         <div>{user.img}</div>
                         <div>{user.user_detail}</div>
@@ -101,9 +115,9 @@ const DetailRoom = ({ userId, roomId }: Props) => {
         <button
           type="submit"
           className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
-          onClick={onJoin}
+          onClick={detailData?.participants.includes(userId) ? onExit : onJoin}
         >
-          join
+          {detailData?.participants.includes(userId) ? "exit" : "join"}
         </button>
       </div>
     </div>

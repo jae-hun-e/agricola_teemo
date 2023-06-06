@@ -1,7 +1,7 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { cls } from "@utils/util";
-import { IRoomList } from "@components/Socket/WaitingRoomList";
+import { IRoomList } from "@ITypes/lobby";
 
 export interface IRoom {
   command: string;
@@ -14,32 +14,33 @@ interface Props {
   setOpenCreateRoom: Dispatch<SetStateAction<boolean>>;
   userId: number;
   roomList: IRoomList[];
-  changeViewRoom: (room_id: number) => void;
 }
-const CreateRoom = ({
-  socket,
-  setOpenCreateRoom,
-  userId,
-  roomList,
-  changeViewRoom,
-}: Props) => {
+const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
 
   // socket
 
   const onSubmit = (data: FieldValues) => {
+    console.log("create room data", data);
     const createRoomInfo = {
       command: "create",
       user_id: userId,
       options: {
         title: data.title,
-        mode: data.isPassword ? "public" : "private",
-        password: data.isPassword,
+        mode: data.isPassword.length === 0 ? "public" : "private",
+        password: data.isPassword === 0 ? "" : data.isPassword,
         is_chat: data?.isChat,
         time_limit: data?.time,
       },
     };
     socket?.send(JSON.stringify(createRoomInfo));
+
+    const watch = {
+      command: "watch",
+      user_id: userId,
+      room_id: roomList[roomList.length - 1].room_id + 1,
+    };
+    socket?.send(JSON.stringify(watch));
     setOpenCreateRoom((pre) => !pre);
 
     alert(`'${getValues("title")}'방 생성완료`);

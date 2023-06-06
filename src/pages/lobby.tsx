@@ -9,7 +9,8 @@ import { useRecoilValue } from "recoil";
 import { userInfo } from "@atom/auth";
 
 const Lobby: NextPage = () => {
-  const [viewRoom, setViewRoom] = useState<number>(1);
+  const [detailData, setDetailData] = useState<object>();
+  console.log("detailData", detailData);
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
   const { userId } = useRecoilValue(userInfo);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
@@ -26,19 +27,49 @@ const Lobby: NextPage = () => {
     client.onmessage = (message) => {
       // console.log("data", message);
       console.log("data", JSON.parse(message.data));
-      // 내가 만든 방 상단으로 올리기
-      setRoomList(() => {
-        let list = JSON.parse(message.data);
-        const myCreateRoom = list?.find(
-          (room: IRoomList) => room.host === userId
-        );
-        return myCreateRoom
-          ? [
-              myCreateRoom,
-              ...list.filter((room: IRoomList) => room.host !== userId),
-            ]
-          : list;
-      });
+
+      let serverMsg = JSON.parse(message.data);
+
+      // msg Type - 0:lobby, 1:watch, 2:join, 3:exit
+      let msgType = 0;
+      !serverMsg?.is_success
+        ? (msgType = 0)
+        : serverMsg?.data.type === "lobby"
+        ? (msgType = 1)
+        : (msgType = 2);
+
+      switch (msgType) {
+        // error
+        case 0:
+          alert("error");
+          break;
+
+        // lobby data
+        case 1:
+          const { result: roomList } = serverMsg.data;
+          roomList.length !== 0 &&
+            // 내가 만든 방 상단으로 올리기
+            setRoomList(() => {
+              const myCreateRoom = roomList.find(
+                (room: IRoomList) => room.host === userId
+              );
+              return myCreateRoom
+                ? [
+                    myCreateRoom,
+                    ...roomList.filter(
+                      (room: IRoomList) => room.host !== userId
+                    ),
+                  ]
+                : roomList;
+            });
+          break;
+
+        // room data
+        case 2:
+          const { result: room } = serverMsg.data;
+          setDetailData(room);
+          break;
+      }
     };
 
     return () => {
@@ -52,9 +83,11 @@ const Lobby: NextPage = () => {
     <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">
       <div className="flex gap-[10px]">
         <WaitingRoomList
+          socket={client}
           roomList={roomList}
           userId={userId}
-          changeViewRoom={setViewRoom}
+          // changeViewRoom={setViewRoom}
+          changeDeTailRoom={setDetailData}
         />
         {openCreateRoom ? (
           <CreateRoom
@@ -62,10 +95,9 @@ const Lobby: NextPage = () => {
             setOpenCreateRoom={setOpenCreateRoom}
             userId={userId}
             roomList={roomList}
-            changeViewRoom={setViewRoom}
           />
         ) : (
-          <DetailRoom userId={userId} roomId={viewRoom} />
+          <DetailRoom userId={userId} socket={client} detailData={detailData} />
         )}
       </div>
       <div
