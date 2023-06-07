@@ -49,7 +49,7 @@ const ChatBox = ({ userId, client }: Props) => {
       alert("메세지를 입력해주세요!");
       return;
     }
-    client.send(
+    client?.send(
       JSON.stringify({
         // command: "sync",
         command: "message",

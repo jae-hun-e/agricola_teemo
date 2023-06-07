@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
 
 interface Props {
-  owner: object;
+  owner: number;
 }
 
 // 임시값
@@ -101,7 +101,7 @@ const UserBoard = ({ owner }: Props) => {
 
         {/*{console.log("fenceList", fenceList)}*/}
       </div>
-      {owner?.name !== "1" && (
+      {owner !== 0 && (
         <div className="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0" />
       )}
     </div>

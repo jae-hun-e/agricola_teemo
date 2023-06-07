@@ -38,7 +38,9 @@ const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
     const watch = {
       command: "watch",
       user_id: userId,
-      room_id: roomList[roomList.length - 1].room_id + 1,
+      room_id: roomList[roomList.length - 1]
+        ? roomList[roomList.length - 1].room_id + 1
+        : 1,
     };
     socket?.send(JSON.stringify(watch));
     setOpenCreateRoom((pre) => !pre);

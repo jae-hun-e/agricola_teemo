@@ -1,18 +1,25 @@
 import OtherPlayerButton from "@components/Button/OtherPlayerButton";
-import {cls} from "@utils/util";
+import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import JobCard from "@components/Card/JobCard";
+import { useRecoilState } from "recoil";
+import { IPlayData, IPlayers } from "@ITypes/play";
+import { gamePlayData } from "@atom/gamePlayData";
+import { useEffect } from "react";
+import { Simulate } from "react-dom/test-utils";
+import input = Simulate.input;
 interface Props {
-  owner: object;
+  owner: number;
   direction: string;
   num: number;
 }
 
-const UserSubBoard = ({owner, direction, num}: Props) => {
+const UserSubBoard = ({ owner, direction, num }: Props) => {
   // console.log("owner", owner);
 
+  const [{ players }, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
   const {
     wood,
     clay,
@@ -28,22 +35,24 @@ const UserSubBoard = ({owner, direction, num}: Props) => {
     barn,
     family,
     // @ts-ignore
-  } = owner.resource;
+  } = players[owner].resource;
+
+  useEffect(() => {}, [players]);
 
   const materials = [
-    {나무: wood},
-    {흙: clay},
-    {돌: stone},
-    {갈대: reed},
-    {곡식종자: grain},
-    {채소종자: vegetable},
-    {양: sheep},
-    {돼지: boar},
-    {소: cattle},
-    {음식: food},
-    {울타리: fence},
-    {외양간: family},
-    {가족: family},
+    { 나무: wood },
+    { 흙: clay },
+    { 돌: stone },
+    { 갈대: reed },
+    { 곡식종자: grain },
+    { 채소종자: vegetable },
+    { 양: sheep },
+    { 돼지: boar },
+    { 소: cattle },
+    { 음식: food },
+    { 울타리: fence },
+    { 외양간: family },
+    { 가족: family },
   ];
   return (
     <div
@@ -56,11 +65,20 @@ const UserSubBoard = ({owner, direction, num}: Props) => {
     >
       {/*// @ts-ignore*/}
       <OtherPlayerButton direction={direction} name={owner.name} />
-      <div className={cls("absolute ", direction === "left" || direction === "right" ? "top-[90px]" : "left-[90px]")}>
+      <div
+        className={cls(
+          "absolute ",
+          direction === "left" || direction === "right"
+            ? "top-[90px]"
+            : "left-[90px]"
+        )}
+      >
         {/* other players info detail*/}
         <ModalButton
           layoutCSS={cls(
-            direction === "left" || direction === "right" ? "w-[90px] h-[598px]" : "w-[598px] h-[90px] flex "
+            direction === "left" || direction === "right"
+              ? "w-[90px] h-[598px]"
+              : "w-[598px] h-[90px] flex "
           )}
           childrenCSS="w-[800px] h-[600px] bg-demo"
         >
@@ -85,7 +103,9 @@ const UserSubBoard = ({owner, direction, num}: Props) => {
       <div
         className={cls(
           "bg-demo text-xs",
-          direction === "left" || direction === "right" ? "w-[90px] h-[598px]" : "w-[598px] h-[90px] flex"
+          direction === "left" || direction === "right"
+            ? "w-[90px] h-[598px]"
+            : "w-[598px] h-[90px] flex"
         )}
       >
         {materials.map((material, idx) => (

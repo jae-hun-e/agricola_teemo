@@ -1,12 +1,19 @@
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
+import { IRoundCards } from "@ITypes/play";
+import { sendActionSocket } from "@utils/socket";
 
 interface Props {
+  client: WebSocket | null;
   layoutCSS?: string;
+  round_cards: IRoundCards;
   idx: number;
 }
-const RoundCard = ({ layoutCSS, idx }: Props) => {
+const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
   const handleAction = () => {
+    console.log("round_cards", round_cards);
+    console.log(round_cards.card_number.split("_")[1]);
+    sendActionSocket(client, round_cards, 0);
     console.log("user action_", idx);
   };
   return (
@@ -16,7 +23,9 @@ const RoundCard = ({ layoutCSS, idx }: Props) => {
         layoutCSS ? layoutCSS : ""
       )}
       style={{
-        backgroundImage: `url('/images/mainboard/round_${idx}.png')`,
+        backgroundImage: `url('/images/mainboard/round_${
+          round_cards.card_number.split("_")[1]
+        }.png')`,
       }}
     >
       <ModalButton
@@ -28,6 +37,7 @@ const RoundCard = ({ layoutCSS, idx }: Props) => {
         <div className="relative flex justify-center">
           <div className="w-[800px] h-[600px] flex flex-col justify-center items-center">
             round_{idx} 설명
+            <p>round_cards.card_number :{round_cards.card_number}</p>
           </div>
         </div>
       </ModalButton>

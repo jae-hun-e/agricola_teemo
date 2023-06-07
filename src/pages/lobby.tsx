@@ -32,7 +32,7 @@ const Lobby: NextPage = () => {
       let serverMsg = JSON.parse(message.data);
 
       // msg Type - 0:lobby, 1:watch, 2:join, 3:exit
-      let msgType = 0;
+      let msgType: number;
       !serverMsg?.is_success
         ? (msgType = 0)
         : serverMsg?.data.type === "lobby"
