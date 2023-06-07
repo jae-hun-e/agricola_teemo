@@ -1,5 +1,5 @@
 import ModalButton from "@components/Button/ModalButton";
-import { IDetailRoom } from "@ITypes/lobby";
+import {IDetailRoom} from "@ITypes/lobby";
 
 interface Props {
   socket: WebSocket | undefined;
@@ -7,7 +7,7 @@ interface Props {
   detailData: IDetailRoom | undefined;
 }
 
-const DetailRoom = ({ socket, userId, detailData }: Props) => {
+const DetailRoom = ({socket, userId, detailData}: Props) => {
   // room exit
   const onExit = () => {
     const exitRoom = {
@@ -31,7 +31,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
     socket?.send(JSON.stringify(joinRoom));
   };
   return (
-    <div className="w-[400px] h-[520px] bg-demo ">
+    <div className="w-[400px] h-[520px]  bg-lobby1 border-2 border-solid border-[#bba027]">
       <div className="flex flex-col justify-start items-center">
         <div className="w-[200px] h-[40px] bg-demo2 rounded-xl  text-white my-[10px] flex justify-center items-center">
           {detailData?.options.title}
@@ -40,7 +40,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
         {/*  참가인원들 */}
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
-            {Array.from({ length: 4 }, (_, i) => i).map((num, idx) => {
+            {Array.from({length: 4}, (_, i) => i).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
               const user = detailData?.participants[idx];
 
@@ -82,9 +82,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Chat :</p>
 
-            <div className="w-[80px] ">
-              {detailData?.options.is_chat ? "가능" : "불가능"}
-            </div>
+            <div className="w-[80px] ">{detailData?.options.is_chat ? "가능" : "불가능"}</div>
           </div>
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">

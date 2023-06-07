@@ -52,7 +52,7 @@ const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
     if (e.key === "Enter") e.preventDefault();
   };
   return (
-    <div className="w-[400px] h-[520px] bg-demo ">
+    <div className="w-[400px] h-[520px]  bg-lobby1 border-2 border-solid border-[#bba027]">
       <form
         className="flex flex-col justify-start items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -117,10 +117,7 @@ const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
-        >
+        <button type="submit" className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2">
           create
         </button>
       </form>
