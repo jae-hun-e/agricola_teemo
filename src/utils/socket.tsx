@@ -25,3 +25,18 @@ export function sendActionSocket(
   };
   socket?.send(JSON.stringify(actionSend));
 }
+
+export function sendAdditionalSocket(
+  socket: WebSocket | null,
+  card: IBaseCards,
+  userId: number,
+  additionalCard: string
+) {
+  const actionSend = {
+    command: "action",
+    card_number: card.card_number,
+    player: userId,
+    additional: additionalCard,
+  };
+  socket?.send(JSON.stringify(actionSend));
+}
