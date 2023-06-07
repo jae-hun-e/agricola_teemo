@@ -12,13 +12,16 @@ interface Props {
 // 쌓이는 개수 표시해야함
 const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
   const handleAction = () => {
-    sendActionSocket(client, base_cards, 0);
+    base_cards.player !== null
+      ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
+      : sendActionSocket(client, base_cards, 0);
+
     console.log("user action_", imgidx);
   };
   return (
     <div className="w-[100px] h-[70px]">
       {direction === "right" ? (
-        <div className="flex justify-around h-full">
+        <div className="flex justify-around h-full relative">
           <img
             src={`/images/mainboard/${imgidx}1.png`}
             alt=""
@@ -29,6 +32,16 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
             alt=""
             className="w-1/2 flex justify-center items-center rounded-r"
           />
+          {base_cards.player !== null && (
+            <div
+              className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[5px] top-[15px]"
+              style={{
+                backgroundImage: `url('/images/mainboard/item${
+                  13 + base_cards.player
+                }.png')`,
+              }}
+            />
+          )}
           <ModalButton
             layoutCSS="w-[100px] h-[70px] cursor-pointer absolute"
             childrenCSS="w-[800px] h-[600px]"
@@ -44,7 +57,7 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
           </ModalButton>
         </div>
       ) : (
-        <div className="flex justify-around h-full">
+        <div className="flex justify-around h-full relative">
           <img
             src={`/images/mainboard/${imgidx}.png`}
             alt=""
@@ -55,6 +68,16 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
             alt=""
             className="w-1/2 flex justify-center items-center rounded-r"
           />
+          {base_cards.player !== null && (
+            <div
+              className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px]"
+              style={{
+                backgroundImage: `url('/images/mainboard/item${
+                  13 + base_cards.player
+                }.png')`,
+              }}
+            />
+          )}
           <ModalButton
             layoutCSS="w-[100px] h-[70px] cursor-pointer absolute"
             childrenCSS="w-[800px] h-[600px]"

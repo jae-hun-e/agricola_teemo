@@ -92,13 +92,13 @@ const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
       <div className="w-[820px] flex flex-col gap-[20px]">
         {/*  첫째 줄 */}
         <div className="flex gap-[20px]">
-          <RoundCard idx={1} round_cards={round_cards[0]}></RoundCard>
-          <RoundCard idx={2} round_cards={round_cards[1]}></RoundCard>
-          <RoundCard idx={5} round_cards={round_cards[4]}></RoundCard>
-          <RoundCard idx={8} round_cards={round_cards[7]}></RoundCard>
-          <RoundCard idx={10} round_cards={round_cards[9]}></RoundCard>
-          <RoundCard idx={12} round_cards={round_cards[11]}></RoundCard>
-          <RoundCard idx={14} round_cards={round_cards[13]}></RoundCard>
+          <RoundCard client={client} idx={1} round_cards={round_cards[0]} />
+          <RoundCard client={client} idx={2} round_cards={round_cards[1]} />
+          <RoundCard client={client} idx={5} round_cards={round_cards[4]} />
+          <RoundCard client={client} idx={8} round_cards={round_cards[7]} />
+          <RoundCard client={client} idx={10} round_cards={round_cards[9]} />
+          <RoundCard client={client} idx={12} round_cards={round_cards[11]} />
+          <RoundCard client={client} idx={14} round_cards={round_cards[13]} />
         </div>
 
         {/*  둘째 줄 */}
@@ -118,11 +118,11 @@ const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
             />
           </div>
 
-          <RoundCard idx={3} round_cards={round_cards[2]}></RoundCard>
-          <RoundCard idx={6} round_cards={round_cards[5]}></RoundCard>
-          <RoundCard idx={9} round_cards={round_cards[8]}></RoundCard>
-          <RoundCard idx={11} round_cards={round_cards[10]}></RoundCard>
-          <RoundCard idx={13} round_cards={round_cards[12]}></RoundCard>
+          <RoundCard client={client} idx={3} round_cards={round_cards[2]} />
+          <RoundCard client={client} idx={6} round_cards={round_cards[5]} />
+          <RoundCard client={client} idx={9} round_cards={round_cards[8]} />
+          <RoundCard client={client} idx={11} round_cards={round_cards[10]} />
+          <RoundCard client={client} idx={13} round_cards={round_cards[12]} />
         </div>
 
         {/*  셋째 줄 */}
@@ -142,11 +142,11 @@ const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
             />
           </div>
 
-          <RoundCard idx={4} round_cards={round_cards[3]}></RoundCard>
-          <RoundCard idx={7} round_cards={round_cards[6]}></RoundCard>
+          <RoundCard client={client} idx={4} round_cards={round_cards[3]} />
+          <RoundCard client={client} idx={7} round_cards={round_cards[6]} />
 
           <div className="w-[100px] h-[150px] flex justify-center items-center">
-            <MainFacilityCard owner={0} />
+            <MainFacilityCard owner={-1} />
           </div>
         </div>
       </div>

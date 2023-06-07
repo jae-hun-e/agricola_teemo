@@ -13,10 +13,9 @@ import input = Simulate.input;
 interface Props {
   owner: number;
   direction: string;
-  num: number;
 }
 
-const UserSubBoard = ({ owner, direction, num }: Props) => {
+const UserSubBoard = ({ owner, direction }: Props) => {
   // console.log("owner", owner);
 
   const [{ players }, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
@@ -64,7 +63,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
       )}
     >
       {/*// @ts-ignore*/}
-      <OtherPlayerButton direction={direction} name={owner.name} />
+      <OtherPlayerButton direction={direction} name={players[owner].name} />
       <div
         className={cls(
           "absolute ",
@@ -89,7 +88,7 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
                   {"[설비 카드]"}
-                  <FacilityCard owner={num} />
+                  <FacilityCard owner={owner} />
                 </div>
                 <div className="text-center">
                   {"[직업 카드]"}
@@ -129,8 +128,6 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
                 direction === "bottom" ? "h-[50px] w-[46px]" : ""
               )}
             >
-              {/* TODO 실제 데이터 넣기*/}
-
               {Object.keys(material)[0] === "울타리"
                 ? `${Object.values(material)[0]}/15`
                 : Object.keys(material)[0] === "외양간"
@@ -148,7 +145,10 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
                 direction === "bottom" ? "h-[40px] w-[46px]" : ""
               )}
               style={{
-                backgroundImage: `url('/images/mainboard/item${idx + 1}.png')`,
+                backgroundImage:
+                  idx === 12
+                    ? `url('/images/mainboard/item${idx + 1 + owner}.png')`
+                    : `url('/images/mainboard/item${idx + 1}.png')`,
               }}
             />
           </div>

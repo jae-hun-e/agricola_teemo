@@ -59,6 +59,7 @@ const Play = ({ roomId }: { roomId: number }) => {
         case 2:
           const changesData = serverMsg.data.result;
 
+          console.log("changesData", changesData);
           (async () => {
             await setPlayData((pre: IPlayData) => {
               return changeValue(pre, changesData) as IPlayData;
@@ -87,9 +88,9 @@ const Play = ({ roomId }: { roomId: number }) => {
   return (
     <div className="relative">
       <div className="flex gap-[20px] bg-[#b3cd31]">
-        <UserSubBoard direction={"left"} owner={1} num={2} />
+        <UserSubBoard direction={"left"} owner={1} />
         <div className="flex flex-col items-center bg-[#b3cd31]">
-          <UserSubBoard direction={"top"} owner={2} num={3} />
+          <UserSubBoard direction={"top"} owner={2} />
 
           {/* Main Map*/}
           <MainMapBoard client={playSocket} />
@@ -97,9 +98,9 @@ const Play = ({ roomId }: { roomId: number }) => {
           {/* User sub Board*/}
           <div className="flex flex-row justify-between w-full relative">
             <ScoreBoard />
-            <UserSubBoard direction={"bottom"} owner={0} num={1} />
+            <UserSubBoard direction={"bottom"} owner={0} />
             <div className="flex gap-[15px]">
-              <FacilityCard owner={1} />
+              <FacilityCard owner={0} />
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
@@ -107,12 +108,12 @@ const Play = ({ roomId }: { roomId: number }) => {
             </div>
           </div>
         </div>
-        <UserSubBoard direction={"right"} owner={3} num={4} />
+        <UserSubBoard direction={"right"} owner={3} />
       </div>
 
       {/* User main Board*/}
       <div className="absolute left-[338.5px]">
-        <UserBoard owner={players[0]} />
+        <UserBoard owner={0} />
       </div>
     </div>
   );

@@ -1,6 +1,3 @@
-// const _ = require("lodash");
-import tmp from "lodash";
-
 export function cls(...className: string[]) {
   return className.join(" ");
 }
@@ -10,6 +7,7 @@ interface IChangeValue {
   value: number;
 }
 
+// @ts-ignore
 const setProperty = (obj: any, path: string, value: number) => {
   const [head, ...rest] = path.split(".");
 

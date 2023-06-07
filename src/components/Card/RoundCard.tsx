@@ -11,21 +11,30 @@ interface Props {
 }
 const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
   const handleAction = () => {
-    console.log("round_cards", round_cards);
-    console.log(round_cards.card_number.split("_")[1]);
-    sendActionSocket(client, round_cards, 0);
-    console.log("user action_", idx);
+    round_cards.player !== null
+      ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
+      : sendActionSocket(client, round_cards, 0);
   };
   return (
     <div
       className={cls(
-        "w-[100px] h-[150px] bg-cover rounded-md",
+        "w-[100px] h-[150px] bg-cover rounded-md relative",
         layoutCSS ? layoutCSS : ""
       )}
       style={{
         backgroundImage: `url('/images/mainboard/round_${idx}.png')`,
       }}
     >
+      {round_cards.player !== null && (
+        <div
+          className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[10px] top-[15px]"
+          style={{
+            backgroundImage: `url('/images/mainboard/item${
+              13 + round_cards.player
+            }.png')`,
+          }}
+        />
+      )}
       <ModalButton
         layoutCSS="w-[100px] h-[150px] cursor-pointer"
         childrenCSS="w-[800px] h-[600px]"
