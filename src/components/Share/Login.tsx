@@ -22,10 +22,10 @@ const SocialLogin = () => {
         onSuccess={kakaoSuccess}
         onFail={console.error}
         onLogout={console.info}
-        render={({ onClick }) => {
+        render={({onClick}) => {
           return (
             <div
-              className="flex items-center justify-center px-4  w-[500px] h-[80px]  rounded-xl bg-yellow-200"
+              className="flex items-center justify-center px-4  w-[500px] h-[80px] border-4 border-solid border-yellow-500 rounded-xl bg-yellow-200 hover:bg-yellow-400"
               onClick={(e) => {
                 e.preventDefault();
                 onClick();

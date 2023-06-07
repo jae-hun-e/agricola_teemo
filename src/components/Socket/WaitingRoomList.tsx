@@ -1,5 +1,5 @@
-import { cls } from "@utils/util";
-import { IRoomList } from "@ITypes/lobby";
+import {cls} from "@utils/util";
+import {IRoomList} from "@ITypes/lobby";
 
 interface Props {
   socket: WebSocket | undefined;
@@ -8,7 +8,7 @@ interface Props {
   changeDeTailRoom: Function;
 }
 
-const WaitingRoomList = ({ socket, userId, roomList }: Props) => {
+const WaitingRoomList = ({socket, userId, roomList}: Props) => {
   const detailRoom = (room_idx: number) => {
     // console.log("detailRoom", roomList[room_idx]);
     if (roomList[room_idx]?.options.mode === "private") {
@@ -32,9 +32,9 @@ const WaitingRoomList = ({ socket, userId, roomList }: Props) => {
   };
 
   return (
-    <div className="w-[630px] h-[520px] bg-demo flex flex-col items-center">
+    <div className="w-[630px] h-[520px] bg-lobby1 border-2 border-solid border-[#bba027] flex flex-col items-center">
       <div className="flex w-[610px] h-[50px]  items-center">
-        <div className="w-[40px]">logo</div>
+        <div className="w-[40px] ml-[20px]">logo</div>
         <div className="w-[calc(100%-40px)] flex justify-between  text-center">
           <div className="w-[120px]">Player</div>
           <div className="w-[120px]">Game Name</div>
@@ -47,12 +47,12 @@ const WaitingRoomList = ({ socket, userId, roomList }: Props) => {
             <div
               key={room.room_id}
               className={cls(
-                room.host === Number(userId) ? "bg-yellow-200" : "bg-demo",
+                room.host === Number(userId) ? "bg-yellow-200" : "bg-[#dddacd]",
                 "flex w-[610px] min-h-[60px] items-center justify-center hover:bg-demo2 cursor-pointer"
               )}
               onClick={() => detailRoom(idx)}
             >
-              <div className="w-[40px]">logo</div>
+              <div className="w-[40px] ml-[20px]">logo</div>
               <div className="w-[calc(100%-40px)] flex justify-between  text-center">
                 <div className="w-[120px]">{room.participant}/4</div>
                 <div className="max-w-[200px]">{room.options.title}</div>
