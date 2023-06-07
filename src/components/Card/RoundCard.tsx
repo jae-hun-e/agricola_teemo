@@ -2,6 +2,8 @@ import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import { IRoundCards } from "@ITypes/play";
 import { sendActionSocket } from "@utils/socket";
+import { useRecoilValue } from "recoil";
+import { gamePlayData } from "@atom/gamePlayData";
 
 interface Props {
   client: WebSocket | null;
@@ -10,12 +12,25 @@ interface Props {
   idx: number;
 }
 const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
+  const { round } = useRecoilValue(gamePlayData);
   const handleAction = () => {
     console.log("round card", round_cards);
     round_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
       : sendActionSocket(client, round_cards, 0);
   };
+
+  if (idx > round + 1)
+    return (
+      <div
+        className="w-[100px] h-[150px] bg-cover rounded-md relative"
+        style={{
+          backgroundImage: `url('/assets/ACTION_${
+            idx < 10 ? `0${idx}` : idx
+          }_FLIPPED.png')`,
+        }}
+      />
+    );
   return (
     <div
       className={cls(

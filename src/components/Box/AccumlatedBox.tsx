@@ -32,7 +32,7 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
             alt=""
             className="w-1/2 flex justify-center items-center rounded-r"
           />
-          {base_cards.player !== null && (
+          {base_cards.player !== null ? (
             <div
               className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[5px] top-[15px]"
               style={{
@@ -41,6 +41,20 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
                 }.png')`,
               }}
             />
+          ) : (
+            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[5px] top-[15px] text-white  font-bold flex justify-center items-center flex">
+              <div
+                className="w-[25px] h-[30px] bg-cover"
+                style={{
+                  backgroundImage: `url('/images/mainboard/${
+                    Object.keys(base_cards.resource)[0]
+                  }.png')`,
+                }}
+              />
+              <p className="text-sm w-[20px]">
+                X{base_cards.resource[Object.keys(base_cards.resource)[0]]}
+              </p>
+            </div>
           )}
           <ModalButton
             layoutCSS="w-[100px] h-[70px] cursor-pointer absolute"
@@ -68,15 +82,30 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
             alt=""
             className="w-1/2 flex justify-center items-center rounded-r"
           />
-          {base_cards.player !== null && (
+          {base_cards.player !== null ? (
             <div
-              className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px]"
+              className="absolute  w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px] "
               style={{
                 backgroundImage: `url('/images/mainboard/item${
                   13 + base_cards.player
                 }.png')`,
               }}
             />
+          ) : (
+            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px] text-white  font-bold flex justify-center items-center flex">
+              <p className="text-sm w-[20px]">
+                {base_cards.resource[Object.keys(base_cards.resource)[0]]}X
+              </p>
+
+              <div
+                className="w-[25px] h-[30px] bg-cover"
+                style={{
+                  backgroundImage: `url('/images/mainboard/${
+                    Object.keys(base_cards.resource)[0]
+                  }.png')`,
+                }}
+              />
+            </div>
           )}
           <ModalButton
             layoutCSS="w-[100px] h-[70px] cursor-pointer absolute"
