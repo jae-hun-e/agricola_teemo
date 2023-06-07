@@ -23,9 +23,7 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
         layoutCSS ? layoutCSS : ""
       )}
       style={{
-        backgroundImage: `url('/images/mainboard/round_${
-          round_cards.card_number.split("_")[1]
-        }.png')`,
+        backgroundImage: `url('/images/mainboard/round_${idx}.png')`,
       }}
     >
       <ModalButton

@@ -10,8 +10,27 @@ interface IChangeValue {
   value: number;
 }
 
+const setProperty = (obj: any, path: string, value: number) => {
+  const [head, ...rest] = path.split(".");
+
+  if (Array.isArray(obj)) {
+    const tmp = [...obj];
+    tmp[Number(head)] = rest.length
+      ? setProperty(obj[Number(head)], rest.join("."), value)
+      : value;
+    return [...tmp];
+  } else {
+    return {
+      ...obj,
+      [head]: rest.length
+        ? setProperty(obj[head], rest.join("."), value)
+        : value,
+    };
+  }
+};
+
 export function changeValue(prevObj: object, changesData: IChangeValue[]) {
-  const newObj = { ...prevObj };
+  let newObj = { ...prevObj };
   changesData.forEach(({ key, value }) => {
     const splitKey = key
       .split("[")
@@ -19,23 +38,11 @@ export function changeValue(prevObj: object, changesData: IChangeValue[]) {
       .split("]")
       .join("")
       .split("'")
-      .filter((i) => i !== "");
+      .filter((i) => i !== "")
+      .join(".");
 
-    console.log("splitKey", splitKey, value);
-    tmp.set(newObj, splitKey, value);
+    newObj = setProperty(newObj, splitKey, value);
   });
 
   return newObj;
-}
-
-export function changeObj() {
-  function setDeep(obj, path, value, setrecursively = false) {
-    path.reduce((a, b, level) => {
-      if (level === path.length) {
-        a[b] = value;
-        return value;
-      }
-      return a[b];
-    }, obj);
-  }
 }

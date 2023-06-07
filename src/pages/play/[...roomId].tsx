@@ -61,19 +61,8 @@ const Play = ({ roomId }: { roomId: number }) => {
 
           (async () => {
             await setPlayData((pre: IPlayData) => {
-              const newData = { ...pre };
-              changesData.forEach(({ key, value }) => {
-                console.log(`newData${key}=${value};`);
-                eval(`newData${key}=${value}`);
-              });
-              return newData;
+              return changeValue(pre, changesData) as IPlayData;
             });
-
-            // await setPlayData((pre: IPlayData) => {
-            //   let newData = { ...pre };
-            //   console.log("changesData", changesData);
-            //   return changeValue(newData, changesData);
-            // });
           })();
 
           console.log("changeData", playData);
