@@ -14,7 +14,7 @@ interface Props {
   imgidx?: string;
 }
 const ActionBox = ({ client, layout, base_cards, imgidx }: Props) => {
-  const [additionallCard, setAdditionalCard] = useState<string>("");
+  const [additionalCard, setAdditionalCard] = useState<string>("");
   const { players } = useRecoilValue(gamePlayData);
   const myJobCard = players[0].cards.slice(0, 7);
   const mySubFacilityCard = players[0].cards.slice(7);
@@ -27,7 +27,7 @@ const ActionBox = ({ client, layout, base_cards, imgidx }: Props) => {
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
       : base_cards.card_number === "BASE_05" ||
         base_cards.card_number === "BASE_08"
-      ? sendAdditionalSocket(client, base_cards, 0, additionallCard)
+      ? sendAdditionalSocket(client, base_cards, 0, additionalCard)
       : sendActionSocket(client, base_cards, 0);
     console.log("user action_", imgidx);
   };
