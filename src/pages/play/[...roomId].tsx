@@ -10,8 +10,6 @@ import { playDataInit } from "../../constants/demoData";
 import { useEffect, useState } from "react";
 import { IPlayData } from "@ITypes/play";
 import { connectSocket } from "@utils/socket";
-import { playData } from "@atom/playData";
-import { useRecoilState } from "recoil";
 
 const Play: NextPage = ({ roomId }: { roomId: number }) => {
   const [playData, setPlayData] = useState<IPlayData>(playDataInit);

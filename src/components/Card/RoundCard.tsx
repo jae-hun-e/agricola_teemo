@@ -1,6 +1,5 @@
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
-import { handleAction } from "next/dist/server/app-render/action-handler";
 
 interface Props {
   layoutCSS?: string;
