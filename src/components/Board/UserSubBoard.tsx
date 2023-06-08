@@ -1,10 +1,10 @@
-import OtherPlayerButton from "@components/Button/OtherPlayerButton";
+import PlayerButton from "@components/Button/PlayerButton";
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import JobCard from "@components/Card/JobCard";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { IPlayData, IPlayers } from "@ITypes/play";
 import { gamePlayData } from "@atom/gamePlayData";
 import { useEffect } from "react";
@@ -16,9 +16,7 @@ interface Props {
 }
 
 const UserSubBoard = ({ owner, direction }: Props) => {
-  // console.log("owner", owner);
-
-  const [{ players }, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
+  const { players, first, turn } = useRecoilValue<IPlayData>(gamePlayData);
   const {
     wood,
     clay,
@@ -62,8 +60,19 @@ const UserSubBoard = ({ owner, direction }: Props) => {
           : "flex flex-row h-[90px] w-[688px] relative"
       )}
     >
-      {/*// @ts-ignore*/}
-      <OtherPlayerButton direction={direction} name={players[owner].name} />
+      <div className="relative">
+        {first === owner && (
+          <div
+            className="w-[30px] h-[30px] absolute bg-center bg-no-repeat bg-cover z-10 -top-[5px] right-[10px]"
+            style={{ backgroundImage: `url('/images/mainboard/item1.png')` }}
+          />
+        )}
+        <PlayerButton
+          direction={direction}
+          name={players[owner].name}
+          myTurn={turn === owner}
+        />
+      </div>
       <div
         className={cls(
           "absolute ",
@@ -84,7 +93,7 @@ const UserSubBoard = ({ owner, direction }: Props) => {
           <div className="flex flex-col items-center pt-10 gap-3">
             <p> 상대 보드</p>
             <div className="flex gap-3">
-              <UserBoard owner={owner} />
+              <UserBoard owner={owner} type="view" />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
                   {"[설비 카드]"}

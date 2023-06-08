@@ -24,7 +24,7 @@ const Play = ({ roomId }: { roomId: number }) => {
   const { first, turn, round, phase, players, actions, common_resources } =
     playData;
 
-  useEffect(() => {
+  useEffect((message?: any) => {
     // socket
     const client = connectSocket("/play/", roomId);
     setPlaySocket(() => client);
@@ -46,7 +46,7 @@ const Play = ({ roomId }: { roomId: number }) => {
       switch (msgType) {
         // error
         case 0:
-          alert("error msg", serverMsg?.error);
+          alert(`error msg : \n${serverMsg?.error}`);
           break;
 
         // sync data
@@ -113,7 +113,7 @@ const Play = ({ roomId }: { roomId: number }) => {
 
       {/* User main Board*/}
       <div className="absolute left-[338.5px]">
-        <UserBoard owner={0} type="view" />
+        <UserBoard owner={0} type="my" />
       </div>
     </div>
   );

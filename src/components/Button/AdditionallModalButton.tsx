@@ -1,11 +1,12 @@
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { sendActionSocket, sendAdditionalSocket } from "@utils/socket";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IBaseCards } from "@ITypes/play";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import UserBoard from "@components/Board/UserBoard";
+import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 
 interface Props {
   client: WebSocket | null;
@@ -13,23 +14,29 @@ interface Props {
   layout?: string;
 }
 const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
-  const [additionalCard, setAdditionalCard] = useState<string>("");
+  const [additionalCard, setAdditionalCard] = useState<string | Object>("");
+  const additionalBoard = useRecoilValue(sendDataUserBoard);
   const { players } = useRecoilValue(gamePlayData);
   const myJobCard = players[0].cards.slice(0, 7);
   const mySubFacilityCard = players[0].cards.slice(7);
 
-  // Addtitional info 선택
+  // Additional info 선택
   const openJobAdditional = {
     BASE_05: "교습1 : 직업선택",
     BASE_11: "교습2 : 직업선택",
   };
   const openSubFacilityAdditional = { BASE_08: "화합장소 : 보조설비" };
-  const openMainFacilityAdditional = {};
   const openUserBoardAdditional = {
     BASE_07: "농지확장 ",
     BASE_10: "밭 : 농지확장",
   };
 
+  /*TODO test용 피니시 버튼*/
+  const [finish, setFinish] = useState<boolean>(false);
+  const onFinish = () => {
+    console.log("additionalBoard", additionalBoard);
+    setFinish(!finish);
+  };
   const onClick = (data) => {
     setAdditionalCard((pre) => {
       return pre === "" ? data.card_number : "";
@@ -39,8 +46,13 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
+      : !finish
+      ? alert("finish 버튼을 눌러주세요.")
+      : base_cards.card_number in openUserBoardAdditional
+      ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
       : sendAdditionalSocket(client, base_cards, 0, additionalCard);
   };
+
   return (
     <ModalButton
       layoutCSS={cls(
@@ -78,7 +90,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
             </div>
           </div>
         </div>
-      ) : //{/* 주요 설비 카드*/}
+      ) : //{/* 보조 설비 카드*/}
       base_cards.card_number in openSubFacilityAdditional ? (
         <div className="flex flex-col justify-center items-center">
           <p className="mt-[10px]">
@@ -105,16 +117,25 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
             </div>
           </div>
         </div>
-      ) : //{/* user board 카드*/}
-      base_cards.card_number in openUserBoardAdditional ? (
+      ) : (
+        //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">
           <p className="mt-[10px]">
             {openUserBoardAdditional[base_cards.card_number]}
           </p>
           <UserBoard owner={0} type={base_cards.card_number} />
+          {/*TODO test용 피니시 버튼*/}
+          <button
+            type="button"
+            className={cls(
+              "w-[100px] h-[40px]  mt-[20px]",
+              finish ? "bg-yellow-300" : "bg-demo2"
+            )}
+            onClick={onFinish}
+          >
+            finish
+          </button>
         </div>
-      ) : (
-        <div>주요직업카드{base_cards.card_number}</div>
       )}
     </ModalButton>
   );

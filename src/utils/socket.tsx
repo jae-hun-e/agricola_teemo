@@ -30,10 +30,10 @@ export function sendAdditionalSocket(
   socket: WebSocket | null,
   card: IBaseCards,
   userId: number,
-  additionalCard: string
+  additionalCard: string | object
 ) {
   const actionSend = {
-    command: "action",
+    command: "additional",
     card_number: card.card_number,
     player: userId,
     additional: additionalCard,

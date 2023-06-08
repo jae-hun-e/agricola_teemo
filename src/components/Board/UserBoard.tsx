@@ -1,30 +1,31 @@
 import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { cls } from "@utils/util";
 import { gamePlayData } from "@atom/gamePlayData";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { IFields } from "@ITypes/play";
+import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 
 interface Props {
   owner: number;
   type: string;
-  action?: () => void;
 }
 
+// TODO type : "my" :내꺼 밑에, "view" 남에꺼, 나머지는 카드넘버
 const UserBoard = ({ owner, type }: Props) => {
-  const [{ players }, setPlayData] = useRecoilState(gamePlayData);
+  const setAdditional = useSetRecoilState(sendDataUserBoard);
+  const { players } = useRecoilValue(gamePlayData);
   const { fields, fences } = players[owner];
-  // TODO socket 으로 연결 후 landInfo,fenceList 안에 데이터 넣어주기
+
   const [landInfo, setLandInfo] = useState<IFields[]>(fields);
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
   );
-  console.log("fenceList", fenceList);
   const [isChecked, setChecked] = useState(Array(13).fill(false));
 
-  // server 에서 보내는 데이터로 Fence 초기화
   useEffect(() => {
+    // server 에서 보내는 데이터로 Fence 초기화
     if (fences) {
       setFenceList((pre) => {
         const newFence = [...pre];
@@ -37,6 +38,20 @@ const UserBoard = ({ owner, type }: Props) => {
     }
   }, []);
 
+  // type에 따라 다르게 처리하기
+  useEffect(() => {
+    // SocketSendData
+    setAdditional(() => {
+      const sendFence = {};
+      fenceList.forEach((fence, i) => {
+        if (fence.length > 0) {
+          sendFence[i] = fence;
+        }
+      });
+      return { fences: sendFence };
+    });
+  }, [fenceList]);
+
   return (
     <div className="relative">
       <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]">
@@ -46,6 +61,7 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i} className="flex flex-col  justify-center items-center ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i - 1}
@@ -65,6 +81,7 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i + 4} className="flex flex-col ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i + 3}
@@ -85,6 +102,7 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i} className="flex flex-col">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i + 7}
@@ -96,8 +114,6 @@ const UserBoard = ({ owner, type }: Props) => {
             </div>
           </div>
         ))}
-
-        {/*{console.log("fenceList", fenceList)}*/}
       </div>
       {owner !== 0 && (
         <div className="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0" />

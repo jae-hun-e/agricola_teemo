@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { cls } from "@utils/util";
 import { fenceAddValidation, fenceDelValidation } from "@utils/fence";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import { gamePlayData } from "@atom/gamePlayData";
 
 interface Prop {
+  type: string;
   fenceList: number[][];
   setFenceList: Function;
   idx: number;
@@ -11,7 +15,9 @@ interface Prop {
   isChecked: boolean[];
   setChecked: Function;
 }
+
 const LandBox = ({
+  type,
   fenceList,
   setFenceList,
   idx,
@@ -20,11 +26,14 @@ const LandBox = ({
   isChecked,
   setChecked,
 }: Prop) => {
+  const { players } = useRecoilValue(gamePlayData);
+  // const limit = players[0].resource.wood;
+  const limit = 10;
   // 사이에 fence 세우기
   const fillFence = () => {
     let newFence = [...fenceList];
     newFence[idx] = [1, 2, 3, 4];
-    setFenceList(newFence);
+    setFenceList(() => newFence);
   };
 
   // fence 취소하기
@@ -32,14 +41,34 @@ const LandBox = ({
     let newFence = [...fenceList];
     newFence[idx] = [];
     newFence = fenceDelValidation(newFence, idx, isChecked);
-    setFenceList(newFence);
+    setFenceList(() => newFence);
     changeChecked();
+
     // todo 선택한 방 filed_type 변경하기
-    setLandInfo((pre) => {
-      const newLandInfo = [...pre];
-      newLandInfo[idx] = { ...newLandInfo[idx], field_type: "" };
-      return newLandInfo;
-    });
+  };
+
+  // fence 추가하기
+  const addFence = () => {
+    console.log(idx, fenceList[idx], landInfo);
+    // fenceValidation isChecked
+    let newFence = [...fenceList];
+    newFence[idx] = [1, 2, 3, 4];
+    newFence = fenceAddValidation(newFence);
+    // console.log("newFence", newFence);
+
+    const sum = newFence.reduce((acc, cur) => acc + cur.length, 0);
+
+    if (sum > limit) {
+      alert(`${limit}개 이상 선택할 수 없습니다.`);
+      return;
+    } else {
+      // 빈방일 때
+      changeChecked();
+      if (landInfo?.field_type === "empty") {
+        setFenceList(() => newFence);
+      }
+      // todo 선택한 방 filed_type 변경하기
+    }
   };
 
   // 두번 클릭 시 fence 추가하기 or 취소하기
@@ -51,27 +80,21 @@ const LandBox = ({
     if (input === "2") delFence();
   };
 
-  // fence 추가하기
-  const addFence = () => {
-    // fenceValidation isChecked
-    let newFence = [...fenceList];
-    newFence[idx] = [1, 2, 3, 4];
-    newFence = fenceAddValidation(newFence);
-    console.log("newFence", newFence);
-
-    const sum = newFence.reduce((acc, cur) => acc + cur.length, 0);
-
-    if (sum > limit) {
-      alert(`${limit}개 이상 선택할 수 없습니다.`);
-      return;
-    } else {
-      // 빈방일 때
-      changeChecked();
-      if (landInfo?.field_type === "empty") {
-        setFenceList(newFence);
-      }
-      // todo 선택한 방 filed_type 변경하기
+  // TODO 어떤 액션할 건지 선택 (카드 넘버 가져오기)
+  const handleOnAction = () => {
+    // 밭
+    if (type === "BASE_07") {
     }
+
+    // 울타리 치기
+    else if (type === "BASE_10") {
+      isChecked[idx] ? doubleOnClick() : addFence();
+    }
+    // 동물 옮기기
+    else if (type === "my") {
+    }
+    //
+    // else
   };
 
   const changeChecked = () => {
@@ -93,7 +116,7 @@ const LandBox = ({
         fenceList[idx]?.includes(3) && "border-r-[5px]",
         fenceList[idx]?.includes(4) && "border-b-[5px]"
       )}
-      onClick={isChecked[idx] ? doubleOnClick : addFence}
+      onClick={handleOnAction}
     >
       농장{idx + 1}
     </div>
