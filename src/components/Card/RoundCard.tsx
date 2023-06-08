@@ -17,11 +17,15 @@ const RoundCard = ({ client, layoutCSS, round_cards }: Props) => {
   const { round } = useRecoilValue(gamePlayData);
 
   const additionalCardOpen = [
-    "BASE_05",
-    "BASE_07",
-    "BASE_08",
-    "BASE_10",
-    "BASE_11",
+    "ACTION_01",
+    "ACTION_02",
+    "ACTION_03",
+    "ACTION_04",
+    "ACTION_06",
+    "ACTION_07",
+    "ACTION_08",
+    "ACTION_11",
+    "ACTION_12",
   ];
 
   const handleAction = () => {

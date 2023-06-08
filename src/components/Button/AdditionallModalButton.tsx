@@ -16,19 +16,45 @@ interface Props {
 const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const [additionalCard, setAdditionalCard] = useState<string | Object>("");
   const additionalBoard = useRecoilValue(sendDataUserBoard);
-  const { players } = useRecoilValue(gamePlayData);
+  const { players, primary_cards } = useRecoilValue(gamePlayData);
   const myJobCard = players[0].cards.slice(0, 7);
   const mySubFacilityCard = players[0].cards.slice(7);
 
+  // TODO 예외경우 : 그리고/또는, 둘 중하나 선택
   // Additional info 선택
   const openJobAdditional = {
     BASE_05: "교습1 : 직업선택",
     BASE_11: "교습2 : 직업선택",
   };
-  const openSubFacilityAdditional = { BASE_08: "화합장소 : 보조설비" };
+  const openSubFacilityAdditional = {
+    BASE_08: "화합장소 : 보조설비",
+    ACTION_03: "주요설비",
+    ACTION_06: "집 개조",
+    ACTION_07: "기본 가족 늘리기",
+  };
+  const openMainFacilityAdditional = {
+    // ACTION_03: "주요설비",
+    ACTION_06: "집 개조",
+  };
   const openUserBoardAdditional = {
-    BASE_07: "농지확장 ",
-    BASE_10: "밭 : 농지확장",
+    // 울타리
+    ACTION_02: "울타리",
+    ACTION_14: "농장 개조",
+
+    // 밭
+    BASE_10: "농지",
+
+    // 방짓기
+    BASE_07: "농장 확장",
+
+    // 동물놓기
+    ACTION_04: "양 시장",
+    ACTION_08: "돼지 시장",
+    ACTION_11: "소 시장",
+
+    // 씨뿌리기
+    ACTION_01: "곡식 활용",
+    ACTION_12: "밭 농사",
   };
 
   /*TODO test용 피니시 버튼*/
@@ -78,6 +104,33 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
                     "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
                     "border-solid border-red-500",
                     data.card_number === additionalCard || data.is_use
+                      ? "border-[5px]"
+                      : ""
+                  )}
+                  style={{
+                    backgroundImage: `url('/assets/${data.card_number}.png')`,
+                  }}
+                  onClick={() => onClick(data)}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : // 주요설비
+      base_cards.card_number in openMainFacilityAdditional ? (
+        <div className="flex flex-col justify-center items-center">
+          <p className="mt-[10px]">
+            {openMainFacilityAdditional[base_cards.card_number]}
+          </p>
+          <div className="relative flex justify-center">
+            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
+              {primary_cards.map((data, i) => (
+                <div
+                  key={i}
+                  className={cls(
+                    "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
+                    "border-solid border-red-500",
+                    data.card_number === additionalCard || data.owner
                       ? "border-[5px]"
                       : ""
                   )}

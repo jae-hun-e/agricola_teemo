@@ -35,7 +35,8 @@ export interface ICards {
   card_number: string;
   name: string;
   score: number;
-  is_use: boolean;
+  is_used: boolean;
+  used_round: number;
 }
 
 export interface IPlayers {
@@ -56,6 +57,11 @@ export interface IBaseCards {
   player: number | null;
 }
 
+interface IPrimaryCards {
+  card_number: string;
+  owner: number;
+}
+
 export interface IRoundCards extends IBaseCards {}
 export interface IPlayData {
   first: number;
@@ -66,5 +72,6 @@ export interface IPlayData {
   actions: any[];
   base_cards: IBaseCards[];
   round_cards: IRoundCards[];
+  primary_cards: IPrimaryCards[];
   common_resources: IResources;
 }

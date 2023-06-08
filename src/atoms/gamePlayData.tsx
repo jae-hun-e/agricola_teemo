@@ -4,7 +4,7 @@ import { playDataInit } from "../constants/demoData";
 
 export const gamePlayData: RecoilState<IPlayData> = atom({
   key: "playInitData",
-  default: playDataInit as IPlayData,
+  default: playDataInit,
 });
 
 export const newData = selector({
