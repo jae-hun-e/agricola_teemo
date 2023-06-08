@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import UserSubBoard from "@components/Board/UserSubBoard";
 import "@testing-library/jest-dom/extend-expect";
-import { playDataInit } from "../../src/constants/demoData";
+import { playDataInit } from "@constants/demoData";
 
 describe("UserSubBoard rendering test", () => {
   const { players } = playDataInit;

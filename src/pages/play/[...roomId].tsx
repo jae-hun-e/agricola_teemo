@@ -11,18 +11,14 @@ import { IPlayData } from "@ITypes/play";
 import { connectSocket } from "@utils/socket";
 import { useRecoilState } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
-import { playDataInit } from "../../constants/demoData";
+import { playDataInit } from "@constants/demoData";
 import { changeValue } from "@utils/util";
 
 const Play = ({ roomId }: { roomId: number }) => {
-  // const [playData, setPlayData] = useState<IPlayData>(playDataInit);
   const [playData, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
   console.log("play data", playData);
   const [playSocket, setPlaySocket] = useState<WebSocket>();
   const [chatSocket, setChatSocket] = useState<WebSocket>();
-  // console.log("play data", playData);
-  const { first, turn, round, phase, players, actions, common_resources } =
-    playData;
 
   useEffect((message?: any) => {
     // socket
@@ -35,6 +31,7 @@ const Play = ({ roomId }: { roomId: number }) => {
       const serverMsg = JSON.parse(message.data);
       console.log("data", serverMsg);
 
+      /* server msg handling */
       // msgType - 0: error, 1: sync, 2: change
       let msgType: number;
       !serverMsg?.is_success

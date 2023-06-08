@@ -7,16 +7,16 @@ export const playDataInit = {
     {
       name: "1",
       resource: {
-        wood: 0,
-        clay: 0,
-        reed: 0,
-        stone: 0,
-        grain: 0,
-        vegetable: 0,
-        sheep: 0,
-        boar: 0,
-        cattle: 0,
-        food: 3,
+        wood: 30,
+        clay: 24,
+        reed: 14,
+        stone: 16,
+        grain: 24,
+        vegetable: 16,
+        sheep: 18,
+        boar: 15,
+        cattle: 13,
+        food: 76,
         family: 2,
         room: 2,
         fence: 0,
@@ -24,7 +24,7 @@ export const playDataInit = {
       },
       fields: [
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 1,
           is_in: {
             family: 0,
@@ -34,9 +34,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 2,
           is_in: {
             family: 0,
@@ -46,9 +47,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 3,
           is_in: {
             family: 0,
@@ -58,9 +60,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 4,
           is_in: {
             family: 0,
@@ -70,9 +73,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 5,
           is_in: {
             family: 0,
@@ -82,9 +86,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 6,
           is_in: {
             family: 0,
@@ -94,9 +99,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 7,
           is_in: {
             family: 0,
@@ -106,9 +112,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 8,
           is_in: {
             family: 0,
@@ -118,9 +125,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 9,
           is_in: {
             family: 0,
@@ -130,9 +138,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 10,
           is_in: {
             family: 0,
@@ -142,9 +151,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 11,
           is_in: {
             family: 0,
@@ -154,9 +164,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 12,
           is_in: {
             family: 0,
@@ -166,9 +177,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 13,
           is_in: {
             family: 0,
@@ -178,6 +190,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -190,6 +203,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -202,105 +216,106 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
       ],
       house_type: "wood",
-      fences: {},
+      fences: null,
       cards: [
         {
-          card_number: "JOB_25",
-          name: "창고 관리인",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_28",
-          name: "돌 자르는 사람",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_35",
-          name: "버섯 따는 사람",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_24",
-          name: "작살꾼",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_02",
-          name: "목사",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_12",
-          name: "상담가",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_36",
-          name: "초벽질공",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_38",
+          name: "\uc0bc\ud3ec\uc2dd \ub18d\ubc95",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
           card_number: "SUB_FAC_11",
-          name: "올가미 밧줄",
+          name: "\uc62c\uac00\ubbf8 \ubc27\uc904",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_02",
-          name: "대형온실",
+          card_number: "SUB_FAC_27",
+          name: "\uc1e0\uc2a4\ub791",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_33",
-          name: "우시장",
+          card_number: "SUB_FAC_36",
+          name: "\uac70\ub300 \ub18d\uc7a5",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_30",
-          name: "흙판",
+          card_number: "SUB_FAC_39",
+          name: "\ubb3c\ud1b5",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_18",
-          name: "양토 채굴장",
-          score: 1,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_21",
-          name: "곡식용 삽",
+          card_number: "SUB_FAC_28",
+          name: "\uacbd\uc9c8 \uc790\uae30",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_31",
-          name: "노점",
+          card_number: "SUB_FAC_07",
+          name: "\uc6b8\ucc3d\ud55c \uc232",
           score: 0,
           is_used: false,
           used_round: null,
@@ -310,16 +325,16 @@ export const playDataInit = {
     {
       name: "2",
       resource: {
-        wood: 0,
-        clay: 0,
-        reed: 0,
-        stone: 0,
-        grain: 0,
-        vegetable: 0,
-        sheep: 0,
-        boar: 0,
-        cattle: 0,
-        food: 3,
+        wood: 30,
+        clay: 24,
+        reed: 14,
+        stone: 16,
+        grain: 24,
+        vegetable: 16,
+        sheep: 18,
+        boar: 15,
+        cattle: 13,
+        food: 76,
         family: 2,
         room: 2,
         fence: 0,
@@ -327,7 +342,7 @@ export const playDataInit = {
       },
       fields: [
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 1,
           is_in: {
             family: 0,
@@ -337,9 +352,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 2,
           is_in: {
             family: 0,
@@ -349,9 +365,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 3,
           is_in: {
             family: 0,
@@ -361,9 +378,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 4,
           is_in: {
             family: 0,
@@ -373,9 +391,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 5,
           is_in: {
             family: 0,
@@ -385,9 +404,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 6,
           is_in: {
             family: 0,
@@ -397,9 +417,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 7,
           is_in: {
             family: 0,
@@ -409,9 +430,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 8,
           is_in: {
             family: 0,
@@ -421,9 +443,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 9,
           is_in: {
             family: 0,
@@ -433,9 +456,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 10,
           is_in: {
             family: 0,
@@ -445,9 +469,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 11,
           is_in: {
             family: 0,
@@ -457,9 +482,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 12,
           is_in: {
             family: 0,
@@ -469,9 +495,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 13,
           is_in: {
             family: 0,
@@ -481,6 +508,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -493,6 +521,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -505,106 +534,107 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
       ],
       house_type: "wood",
-      fences: {},
+      fences: null,
       cards: [
         {
-          card_number: "JOB_26",
-          name: "산울타리지기",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_06",
-          name: "쟁기 몰이꾼",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_16",
-          name: "재산관리인",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_34",
-          name: "나무꾼",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_04",
-          name: "마부",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_23",
-          name: "오두막집살이",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_33",
-          name: "보조 경작자",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_20",
-          name: "개울",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_35",
-          name: "병",
-          score: 4,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_32",
-          name: "작은 우리",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_14",
-          name: "통나무배",
+          card_number: "SUB_FAC_12",
+          name: "\ud0c0\uc791\ud310",
           score: 1,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_24",
-          name: "네덜란드식 풍차",
+          card_number: "SUB_FAC_02",
+          name: "\ub300\ud615\uc628\uc2e4",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_06",
+          name: "\uc190\uc7c1\uae30",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_19",
+          name: "\ubaa9\uc7ac\uc18c",
           score: 2,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_10",
-          name: "청어 냄비",
+          card_number: "SUB_FAC_33",
+          name: "\uc6b0\uc2dc\uc7a5",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_03",
-          name: "연못 오두막",
-          score: 1,
+          card_number: "SUB_FAC_26",
+          name: "\uc774\uc911\ub0a0 \uc7c1\uae30",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_10",
+          name: "\uccad\uc5b4 \ub0c4\ube44",
+          score: 0,
           is_used: false,
           used_round: null,
         },
@@ -613,16 +643,16 @@ export const playDataInit = {
     {
       name: "3",
       resource: {
-        wood: 0,
-        clay: 0,
-        reed: 0,
-        stone: 0,
-        grain: 0,
-        vegetable: 0,
-        sheep: 0,
-        boar: 0,
-        cattle: 0,
-        food: 3,
+        wood: 30,
+        clay: 24,
+        reed: 14,
+        stone: 16,
+        grain: 24,
+        vegetable: 16,
+        sheep: 18,
+        boar: 15,
+        cattle: 13,
+        food: 76,
         family: 2,
         room: 2,
         fence: 0,
@@ -630,7 +660,7 @@ export const playDataInit = {
       },
       fields: [
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 1,
           is_in: {
             family: 0,
@@ -640,9 +670,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 2,
           is_in: {
             family: 0,
@@ -652,9 +683,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 3,
           is_in: {
             family: 0,
@@ -664,9 +696,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 4,
           is_in: {
             family: 0,
@@ -676,9 +709,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 5,
           is_in: {
             family: 0,
@@ -688,9 +722,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 6,
           is_in: {
             family: 0,
@@ -700,9 +735,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 7,
           is_in: {
             family: 0,
@@ -712,9 +748,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 8,
           is_in: {
             family: 0,
@@ -724,9 +761,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 9,
           is_in: {
             family: 0,
@@ -736,9 +774,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 10,
           is_in: {
             family: 0,
@@ -748,9 +787,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 11,
           is_in: {
             family: 0,
@@ -760,9 +800,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 12,
           is_in: {
             family: 0,
@@ -772,9 +813,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 13,
           is_in: {
             family: 0,
@@ -784,6 +826,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -796,6 +839,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -808,106 +852,107 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
       ],
       house_type: "wood",
-      fences: {},
+      fences: null,
       cards: [
         {
-          card_number: "JOB_18",
-          name: "채소 장수",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "JOB_32",
-          name: "목수",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "JOB_19",
-          name: "류트 연주자",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "JOB_31",
-          name: "나뭇가지 모으는 사람",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "JOB_09",
-          name: "무자식",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "JOB_22",
-          name: "농번기 일꾼",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
           card_number: "JOB_03",
-          name: "벽 건축가",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_12",
-          name: "타작판",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_03",
+          name: "\uc5f0\ubabb \uc624\ub450\ub9c9",
           score: 1,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_07",
-          name: "울창한 숲",
+          card_number: "SUB_FAC_35",
+          name: "\ubcd1",
+          score: 4,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_31",
+          name: "\ub178\uc810",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_13",
-          name: "다진 흙",
+          card_number: "SUB_FAC_34",
+          name: "\uc774\ub3d9 \uacbd\uc791",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_08",
-          name: "도토리 바구니",
+          card_number: "SUB_FAC_23",
+          name: "\ube75\uc0bd",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_37",
-          name: "버터 제조기",
-          score: 1,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_01",
-          name: "부엌방",
+          card_number: "SUB_FAC_22",
+          name: "\ud3d0\ud488 \ucc3d\uace0",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_28",
-          name: "경질 자기",
-          score: 0,
+          card_number: "SUB_FAC_05",
+          name: "\ub538\uae30\ud3ec",
+          score: 2,
           is_used: false,
           used_round: null,
         },
@@ -916,16 +961,16 @@ export const playDataInit = {
     {
       name: "4",
       resource: {
-        wood: 0,
-        clay: 0,
-        reed: 0,
-        stone: 0,
-        grain: 0,
-        vegetable: 0,
-        sheep: 0,
-        boar: 0,
-        cattle: 0,
-        food: 3,
+        wood: 30,
+        clay: 24,
+        reed: 14,
+        stone: 16,
+        grain: 24,
+        vegetable: 16,
+        sheep: 18,
+        boar: 15,
+        cattle: 13,
+        food: 76,
         family: 2,
         room: 2,
         fence: 0,
@@ -933,7 +978,7 @@ export const playDataInit = {
       },
       fields: [
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 1,
           is_in: {
             family: 0,
@@ -943,9 +988,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 2,
           is_in: {
             family: 0,
@@ -955,9 +1001,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 3,
           is_in: {
             family: 0,
@@ -967,9 +1014,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 4,
           is_in: {
             family: 0,
@@ -979,9 +1027,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 5,
           is_in: {
             family: 0,
@@ -991,9 +1040,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 6,
           is_in: {
             family: 0,
@@ -1003,9 +1053,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 7,
           is_in: {
             family: 0,
@@ -1015,9 +1066,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 8,
           is_in: {
             family: 0,
@@ -1027,9 +1079,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 9,
           is_in: {
             family: 0,
@@ -1039,9 +1092,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 10,
           is_in: {
             family: 0,
@@ -1051,9 +1105,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 11,
           is_in: {
             family: 0,
@@ -1063,9 +1118,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 12,
           is_in: {
             family: 0,
@@ -1075,9 +1131,10 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
-          field_type: "empty",
+          field_type: "cage",
           position: 13,
           is_in: {
             family: 0,
@@ -1087,6 +1144,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -1099,6 +1157,7 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
         {
           field_type: "room",
@@ -1111,105 +1170,106 @@ export const playDataInit = {
             grain: 0,
             vegetable: 0,
           },
+          is_barn: false,
         },
       ],
       house_type: "wood",
-      fences: {},
+      fences: null,
       cards: [
         {
-          card_number: "JOB_05",
-          name: "소규모 농부",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_39",
-          name: "양 보행자",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_30",
-          name: "지질학자",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_07",
-          name: "학자",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_21",
-          name: "장작 채집자",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_37",
-          name: "마술사",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "JOB_15",
-          name: "양부모",
+          card_number: "JOB_03",
+          name: "\ubcbd \uac74\ucd95\uac00",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
-          card_number: "SUB_FAC_38",
-          name: "삼포식 농법",
+          card_number: "SUB_FAC_04",
+          name: "\uc190\uc218\ub808",
           score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_34",
-          name: "이동 경작",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_17",
-          name: "목수의 객실",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_23",
-          name: "빵삽",
-          score: 0,
-          is_used: false,
-          used_round: null,
-        },
-        {
-          card_number: "SUB_FAC_19",
-          name: "목재소",
-          score: 2,
           is_used: false,
           used_round: null,
         },
         {
           card_number: "SUB_FAC_15",
-          name: "채굴 망치",
+          name: "\ucc44\uad74 \ub9dd\uce58",
           score: 0,
           is_used: false,
           used_round: null,
         },
         {
+          card_number: "SUB_FAC_01",
+          name: "\ubd80\uc5cc\ubc29",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_24",
+          name: "\ub124\ub35c\ub780\ub4dc\uc2dd \ud48d\ucc28",
+          score: 2,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_18",
+          name: "\uc591\ud1a0 \ucc44\uad74\uc7a5",
+          score: 1,
+          is_used: false,
+          used_round: null,
+        },
+        {
           card_number: "SUB_FAC_25",
-          name: "돌 집게",
+          name: "\ub3cc \uc9d1\uac8c",
+          score: 0,
+          is_used: false,
+          used_round: null,
+        },
+        {
+          card_number: "SUB_FAC_16",
+          name: "\ubc14\uad6c\ub2c8",
           score: 0,
           is_used: false,
           used_round: null,
@@ -1223,11 +1283,9 @@ export const playDataInit = {
       card_number: "BASE_01",
       is_stacked: true,
       count: 1,
-      resource: {
-        wood: 1,
-      },
+      resource: { wood: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1239,7 +1297,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1251,7 +1309,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1263,7 +1321,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1282,11 +1340,9 @@ export const playDataInit = {
       card_number: "BASE_02",
       is_stacked: true,
       count: 2,
-      resource: {
-        wood: 2,
-      },
+      resource: { wood: 2 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1298,7 +1354,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1310,7 +1366,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1322,7 +1378,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1341,13 +1397,9 @@ export const playDataInit = {
       card_number: "BASE_03",
       is_stacked: false,
       count: 0,
-      resource: {
-        reed: 1,
-        food: 1,
-        stone: 1,
-      },
+      resource: { reed: 1, food: 1, stone: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1359,7 +1411,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1371,7 +1423,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1383,7 +1435,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1402,11 +1454,9 @@ export const playDataInit = {
       card_number: "BASE_04",
       is_stacked: true,
       count: 2,
-      resource: {
-        clay: 2,
-      },
+      resource: { clay: 2 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1418,7 +1468,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1430,7 +1480,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1442,7 +1492,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1463,7 +1513,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1475,7 +1525,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1487,7 +1537,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1499,7 +1549,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1518,11 +1568,9 @@ export const playDataInit = {
       card_number: "BASE_06",
       is_stacked: true,
       count: 1,
-      resource: {
-        food: 1,
-      },
+      resource: { food: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1534,7 +1582,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1546,7 +1594,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1558,7 +1606,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1579,7 +1627,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1591,7 +1639,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1603,7 +1651,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1615,7 +1663,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1636,7 +1684,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1648,7 +1696,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1660,7 +1708,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1672,7 +1720,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1691,11 +1739,9 @@ export const playDataInit = {
       card_number: "BASE_09",
       is_stacked: false,
       count: 0,
-      resource: {
-        grain: 1,
-      },
+      resource: { grain: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1707,7 +1753,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1719,7 +1765,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1731,7 +1777,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1752,7 +1798,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1764,7 +1810,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1776,7 +1822,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1788,7 +1834,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1809,7 +1855,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1821,7 +1867,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1833,7 +1879,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1845,7 +1891,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1864,11 +1910,9 @@ export const playDataInit = {
       card_number: "BASE_12",
       is_stacked: false,
       count: 0,
-      resource: {
-        food: 2,
-      },
+      resource: { food: 2 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1880,7 +1924,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1892,7 +1936,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1904,7 +1948,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1923,11 +1967,9 @@ export const playDataInit = {
       card_number: "BASE_13",
       is_stacked: true,
       count: 3,
-      resource: {
-        wood: 3,
-      },
+      resource: { wood: 3 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1939,7 +1981,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1951,7 +1993,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1963,7 +2005,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1982,11 +2024,9 @@ export const playDataInit = {
       card_number: "BASE_14",
       is_stacked: true,
       count: 1,
-      resource: {
-        clay: 1,
-      },
+      resource: { clay: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -1998,7 +2038,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2010,7 +2050,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2022,7 +2062,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2041,11 +2081,9 @@ export const playDataInit = {
       card_number: "BASE_15",
       is_stacked: true,
       count: 1,
-      resource: {
-        reed: 1,
-      },
+      resource: { reed: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2057,7 +2095,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2069,7 +2107,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2081,7 +2119,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2100,11 +2138,9 @@ export const playDataInit = {
       card_number: "BASE_16",
       is_stacked: true,
       count: 1,
-      resource: {
-        food: 1,
-      },
+      resource: { food: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2116,7 +2152,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2128,7 +2164,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2140,7 +2176,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2158,71 +2194,12 @@ export const playDataInit = {
   ],
   round_cards: [
     {
-      card_number: "ACTION_04",
-      is_stacked: true,
-      count: 1,
-      resource: {
-        sheep: 1,
-      },
-      additional_action: {
-        0: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        1: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        2: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        3: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-      },
-      player: null,
-    },
-    {
-      card_number: "ACTION_02",
+      card_number: "ACTION_03",
       is_stacked: false,
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2234,7 +2211,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2246,7 +2223,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2258,7 +2235,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2279,7 +2256,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2291,7 +2268,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2303,7 +2280,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2315,7 +2292,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2331,12 +2308,69 @@ export const playDataInit = {
       player: null,
     },
     {
-      card_number: "ACTION_03",
+      card_number: "ACTION_04",
+      is_stacked: true,
+      count: 1,
+      resource: { sheep: 1 },
+      additional_action: {
+        "0": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "1": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "2": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "3": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+      },
+      player: null,
+    },
+    {
+      card_number: "ACTION_02",
       is_stacked: false,
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2348,7 +2382,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2360,7 +2394,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2372,7 +2406,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2391,11 +2425,9 @@ export const playDataInit = {
       card_number: "ACTION_05",
       is_stacked: true,
       count: 1,
-      resource: {
-        stone: 0,
-      },
+      resource: { stone: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2407,7 +2439,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2419,7 +2451,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2431,7 +2463,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2452,7 +2484,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2464,7 +2496,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2476,7 +2508,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2488,7 +2520,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2509,7 +2541,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2521,7 +2553,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2533,7 +2565,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2545,66 +2577,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-      },
-      player: null,
-    },
-    {
-      card_number: "ACTION_08",
-      is_stacked: true,
-      count: 1,
-      resource: {
-        boar: 0,
-      },
-      additional_action: {
-        0: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        1: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        2: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2623,11 +2596,9 @@ export const playDataInit = {
       card_number: "ACTION_09",
       is_stacked: false,
       count: 0,
-      resource: {
-        vegetable: 1,
-      },
+      resource: { vegetable: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2639,7 +2610,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2651,7 +2622,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2663,7 +2634,64 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+      },
+      player: null,
+    },
+    {
+      card_number: "ACTION_08",
+      is_stacked: true,
+      count: 1,
+      resource: { boar: 1 },
+      additional_action: {
+        "0": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "1": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "2": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2682,11 +2710,9 @@ export const playDataInit = {
       card_number: "ACTION_10",
       is_stacked: true,
       count: 1,
-      resource: {
-        stone: 0,
-      },
+      resource: { stone: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2698,7 +2724,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2710,7 +2736,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2722,7 +2748,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2741,11 +2767,9 @@ export const playDataInit = {
       card_number: "ACTION_11",
       is_stacked: true,
       count: 1,
-      resource: {
-        cattle: 0,
-      },
+      resource: { cattle: 1 },
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2757,7 +2781,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2769,7 +2793,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2781,64 +2805,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-      },
-      player: null,
-    },
-    {
-      card_number: "ACTION_12",
-      is_stacked: false,
-      count: 0,
-      resource: null,
-      additional_action: {
-        0: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        1: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        2: {
-          wood: 0,
-          clay: 0,
-          reed: 0,
-          stone: 0,
-          grain: 0,
-          vegetable: 0,
-          sheep: 0,
-          boar: 0,
-          cattle: 0,
-          food: 0,
-        },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2859,7 +2826,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2871,7 +2838,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2883,7 +2850,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2895,7 +2862,64 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+      },
+      player: null,
+    },
+    {
+      card_number: "ACTION_12",
+      is_stacked: false,
+      count: 0,
+      resource: null,
+      additional_action: {
+        "0": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "1": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "2": {
+          wood: 0,
+          clay: 0,
+          reed: 0,
+          stone: 0,
+          grain: 0,
+          vegetable: 0,
+          sheep: 0,
+          boar: 0,
+          cattle: 0,
+          food: 0,
+        },
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2916,7 +2940,7 @@ export const playDataInit = {
       count: 0,
       resource: null,
       additional_action: {
-        0: {
+        "0": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2928,7 +2952,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        1: {
+        "1": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2940,7 +2964,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        2: {
+        "2": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2952,7 +2976,7 @@ export const playDataInit = {
           cattle: 0,
           food: 0,
         },
-        3: {
+        "3": {
           wood: 0,
           clay: 0,
           reed: 0,
@@ -2969,49 +2993,25 @@ export const playDataInit = {
     },
   ],
   primary_cards: [
-    {
-      card_number: "PRI_FAC_01",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_02",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_03",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_04",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_05",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_06",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_07",
-      owner: null,
-    },
-    {
-      card_number: "PRI_FAC_08",
-      owner: null,
-    },
+    { card_number: "PRI_FAC_01", owner: null },
+    { card_number: "PRI_FAC_02", owner: null },
+    { card_number: "PRI_FAC_03", owner: null },
+    { card_number: "PRI_FAC_04", owner: null },
+    { card_number: "PRI_FAC_05", owner: null },
+    { card_number: "PRI_FAC_06", owner: null },
+    { card_number: "PRI_FAC_07", owner: null },
+    { card_number: "PRI_FAC_08", owner: null },
   ],
   common_resources: {
     wood: 24,
     clay: 21,
     reed: 13,
-    stone: 16,
+    stone: 14,
     grain: 24,
     vegetable: 16,
     sheep: 17,
-    boar: 15,
-    cattle: 13,
+    boar: 14,
+    cattle: 12,
     food: 74,
     family: 0,
     room: 0,
@@ -3019,6 +3019,7 @@ export const playDataInit = {
     barn: 0,
   },
 };
+
 export const createRoom = {
   room_id: 0,
   host: "User",

@@ -1,12 +1,18 @@
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
-import { sendActionSocket, sendAdditionalSocket } from "@utils/socket";
-import { useEffect, useState } from "react";
+import { sendAdditionalSocket } from "@utils/socket";
+import { useState } from "react";
 import { IBaseCards } from "@ITypes/play";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import UserBoard from "@components/Board/UserBoard";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import {
+  openJobAdditional,
+  openMainFacilityAdditional,
+  openSubFacilityAdditional,
+  openUserBoardAdditional,
+} from "@constants/cardCase";
 
 interface Props {
   client: WebSocket | null;
@@ -20,43 +26,6 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const myJobCard = players[0].cards.slice(0, 7);
   const mySubFacilityCard = players[0].cards.slice(7);
 
-  // TODO 예외경우 : 그리고/또는, 둘 중하나 선택
-  // Additional info 선택
-  const openJobAdditional = {
-    BASE_05: "교습1 : 직업선택",
-    BASE_11: "교습2 : 직업선택",
-  };
-  const openSubFacilityAdditional = {
-    BASE_08: "화합장소 : 보조설비",
-    ACTION_03: "주요설비",
-    ACTION_06: "집 개조",
-    ACTION_07: "기본 가족 늘리기",
-  };
-  const openMainFacilityAdditional = {
-    // ACTION_03: "주요설비",
-    ACTION_06: "집 개조",
-  };
-  const openUserBoardAdditional = {
-    // 울타리
-    ACTION_02: "울타리",
-    ACTION_14: "농장 개조",
-
-    // 밭
-    BASE_10: "농지",
-
-    // 방짓기
-    BASE_07: "농장 확장",
-
-    // 동물놓기
-    ACTION_04: "양 시장",
-    ACTION_08: "돼지 시장",
-    ACTION_11: "소 시장",
-
-    // 씨뿌리기
-    ACTION_01: "곡식 활용",
-    ACTION_12: "밭 농사",
-  };
-
   /*TODO test용 피니시 버튼*/
   const [finish, setFinish] = useState<boolean>(false);
   const onFinish = () => {
@@ -64,6 +33,8 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     setFinish(!finish);
   };
   const onClick = (data) => {
+    console.log("myJobCard", myJobCard);
+    console.log("myJobCard", myJobCard);
     setAdditionalCard((pre) => {
       return pre === "" ? data.card_number : "";
     });
@@ -72,8 +43,6 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : !finish
-      ? alert("finish 버튼을 눌러주세요.")
       : base_cards.card_number in openUserBoardAdditional
       ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
       : sendAdditionalSocket(client, base_cards, 0, additionalCard);
@@ -103,7 +72,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
                   className={cls(
                     "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
                     "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_use
+                    data.card_number === additionalCard || data.is_used
                       ? "border-[5px]"
                       : ""
                   )}
@@ -157,7 +126,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
                   className={cls(
                     "w-[136px] h-[212px] rounded-md bg-cover bg-center bg-no-repeat",
                     "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_use
+                    data.card_number === additionalCard || data.is_used
                       ? "border-[5px]"
                       : ""
                   )}

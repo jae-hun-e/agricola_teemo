@@ -6,6 +6,7 @@ import { gamePlayData } from "@atom/gamePlayData";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { IFields } from "@ITypes/play";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import { fenceType } from "@constants/cardCase";
 
 interface Props {
   owner: number;
@@ -30,26 +31,28 @@ const UserBoard = ({ owner, type }: Props) => {
       setFenceList((pre) => {
         const newFence = [...pre];
         Object.keys(fences).forEach((idx: string) => {
-          newFence[Number(idx) - 1] = fences[idx];
+          newFence[Number(idx)] = fences[idx];
         });
-        // console.log("newFence", newFence);
         return newFence;
       });
     }
-  }, []);
+  }, [fences]);
 
-  // type에 따라 다르게 처리하기
+  // TODO type에 따라 다르게 처리하기
+
+  // 울타리 치기
   useEffect(() => {
     // SocketSendData
-    setAdditional(() => {
-      const sendFence = {};
-      fenceList.forEach((fence, i) => {
-        if (fence.length > 0) {
-          sendFence[i] = fence;
-        }
+    if (fenceType.includes(type))
+      setAdditional(() => {
+        const sendFence = {};
+        fenceList.forEach((fence, i) => {
+          if (fence.length > 0) {
+            sendFence[i] = fence;
+          }
+        });
+        return { fences: sendFence };
       });
-      return { fences: sendFence };
-    });
   }, [fenceList]);
 
   return (
@@ -66,7 +69,6 @@ const UserBoard = ({ owner, type }: Props) => {
                 fenceList={fenceList}
                 idx={i - 1}
                 landInfo={landInfo[i]}
-                setLandInfo={setLandInfo}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />
@@ -86,7 +88,6 @@ const UserBoard = ({ owner, type }: Props) => {
                 fenceList={fenceList}
                 idx={i + 3}
                 landInfo={landInfo[i + 3]}
-                setLandInfo={setLandInfo}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />

@@ -25,6 +25,7 @@ export interface IFields {
     grain: number;
     vegetable: number;
   };
+  is_barn: boolean;
 }
 
 export interface IFences {

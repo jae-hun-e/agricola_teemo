@@ -1,14 +1,9 @@
 import { cls } from "@utils/util";
 import { IBaseCards } from "@ITypes/play";
-import ModalButton from "@components/Button/ModalButton";
-import { sendActionSocket, sendAdditionalSocket } from "@utils/socket";
-import JobCard from "@components/Card/JobCard";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { gamePlayData } from "@atom/gamePlayData";
 
 import AdditionalModalButton from "@components/Button/AdditionallModalButton";
 import ActionModalButton from "@components/Button/ActionModalButton";
+import { baseAdditionalCardOpen } from "@constants/cardCase";
 
 interface Props {
   client: WebSocket | null;
@@ -17,14 +12,6 @@ interface Props {
   imgidx?: string;
 }
 const ActionBox = ({ client, layout, base_cards, imgidx }: Props) => {
-  const additionalCardOpen = [
-    "BASE_05",
-    "BASE_07",
-    "BASE_08",
-    "BASE_10",
-    "BASE_11",
-  ];
-
   return (
     <div className="relative">
       <img
@@ -45,7 +32,7 @@ const ActionBox = ({ client, layout, base_cards, imgidx }: Props) => {
           }}
         />
       )}
-      {additionalCardOpen.includes(base_cards.card_number) ? (
+      {baseAdditionalCardOpen.includes(base_cards.card_number) ? (
         <AdditionalModalButton
           client={client}
           base_cards={base_cards}
