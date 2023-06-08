@@ -9,7 +9,7 @@ import { IFields } from "@ITypes/play";
 interface Props {
   owner: number;
   type: string;
-  action: () => void;
+  action?: () => void;
 }
 
 const UserBoard = ({ owner, type }: Props) => {

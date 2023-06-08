@@ -4,6 +4,8 @@ import { IRoundCards } from "@ITypes/play";
 import { sendActionSocket } from "@utils/socket";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
+import AdditionalModalButton from "@components/Button/AdditionallModalButton";
+import ActionModalButton from "@components/Button/ActionModalButton";
 
 interface Props {
   client: WebSocket | null;
@@ -11,8 +13,17 @@ interface Props {
   round_cards: IRoundCards;
   idx: number;
 }
-const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
+const RoundCard = ({ client, layoutCSS, round_cards }: Props) => {
   const { round } = useRecoilValue(gamePlayData);
+
+  const additionalCardOpen = [
+    "BASE_05",
+    "BASE_07",
+    "BASE_08",
+    "BASE_10",
+    "BASE_11",
+  ];
+
   const handleAction = () => {
     console.log("round card", round_cards);
     round_cards.player !== null
@@ -20,17 +31,19 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
       : sendActionSocket(client, round_cards, 0);
   };
 
-  if (idx > round + 1)
-    return (
-      <div
-        className="w-[100px] h-[150px] bg-cover rounded-md relative"
-        style={{
-          backgroundImage: `url('/assets/ACTION_${
-            idx < 10 ? `0${idx}` : idx
-          }_FLIPPED.png')`,
-        }}
-      />
-    );
+  // 비활성화
+  // if (idx > round + 1)
+  //   return (
+  //     <div
+  //       className="w-[100px] h-[150px] bg-cover rounded-md relative"
+  //       style={{
+  //         backgroundImage: `url('/assets/ACTION_${
+  //           idx < 10 ? `0${idx}` : idx
+  //         }_FLIPPED.png')`,
+  //       }}
+  //     />
+  //   );
+
   return (
     <div
       className={cls(
@@ -51,19 +64,20 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
           }}
         />
       )}
-      <ModalButton
-        layoutCSS="w-[100px] h-[150px] cursor-pointer"
-        childrenCSS="w-[800px] h-[600px]"
-        type="action"
-        handleAction={handleAction}
-      >
-        <div className="relative flex justify-center">
-          <div className="w-[800px] h-[600px] flex flex-col justify-center items-center">
-            round_{idx} 설명
-            <p>round_cards.card_number :{round_cards.card_number}</p>
-          </div>
-        </div>
-      </ModalButton>
+      {additionalCardOpen.includes(round_cards.card_number) ? (
+        <AdditionalModalButton
+          client={client}
+          base_cards={round_cards}
+          layout={"h-[150px]"}
+        />
+      ) : (
+        <ActionModalButton
+          client={client}
+          base_cards={round_cards}
+          layout={"h-[150px]"}
+          imgidx={round_cards.card_number}
+        />
+      )}
     </div>
   );
 };

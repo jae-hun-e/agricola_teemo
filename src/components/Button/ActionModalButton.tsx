@@ -10,7 +10,7 @@ interface Props {
   client: WebSocket | null;
   base_cards: IBaseCards;
   layout?: string;
-  imgidx: string;
+  imgidx?: string;
 }
 
 const ActionModalButton = ({ client, base_cards, layout, imgidx }: Props) => {
@@ -35,7 +35,7 @@ const ActionModalButton = ({ client, base_cards, layout, imgidx }: Props) => {
           <img
             src={`/images/mainboard/${imgidx}.png`}
             alt=""
-            className="w-1//3 flex justify-center items-center rounded-l"
+            className="w-1/3 flex justify-center items-center rounded-l"
           />
         </div>
       </div>

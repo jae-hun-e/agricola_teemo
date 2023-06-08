@@ -113,7 +113,7 @@ const Play = ({ roomId }: { roomId: number }) => {
 
       {/* User main Board*/}
       <div className="absolute left-[338.5px]">
-        <UserBoard owner={0} />
+        <UserBoard owner={0} type="view" />
       </div>
     </div>
   );
