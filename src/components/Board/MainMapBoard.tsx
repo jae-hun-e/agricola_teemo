@@ -88,6 +88,7 @@ const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
           />
         </div>
       </div>
+
       {/* 라운드카드 이후*/}
       <div className="w-[820px] flex flex-col gap-[20px]">
         {/*  첫째 줄 */}

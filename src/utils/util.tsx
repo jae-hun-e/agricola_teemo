@@ -7,6 +7,7 @@ interface IChangeValue {
   value: number;
 }
 
+// 장하다 재훈아ㅠㅠ
 // @ts-ignore
 const setProperty = (obj: any, path: string, value: number) => {
   const [head, ...rest] = path.split(".");

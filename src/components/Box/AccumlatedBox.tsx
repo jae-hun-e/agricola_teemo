@@ -64,8 +64,12 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
           >
             <div className="relative flex justify-center">
               <div className="w-[800px] h-[600px] flex flex-col justify-center items-center">
-                base_{imgidx} 설명
-                <p>base_cards.card_number :{base_cards.card_number}</p>
+                <p className="text-xl">{base_cards.card_number} 설명</p>
+                <img
+                  src={`/images/mainboard/${imgidx}.png`}
+                  alt=""
+                  className="w-1//3 flex justify-center items-center rounded-l"
+                />
               </div>
             </div>
           </ModalButton>
@@ -115,8 +119,12 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
           >
             <div className="relative flex justify-center">
               <div className="w-[800px] h-[600px] flex flex-col justify-center items-center">
-                base_{imgidx} 설명
-                <p>base_cards.card_number :{base_cards.card_number}</p>
+                <p className="text-xl">{base_cards.card_number} 설명</p>
+                <img
+                  src={`/images/mainboard/${imgidx}.png`}
+                  alt=""
+                  className="w-1//3 flex justify-center items-center rounded-l"
+                />
               </div>
             </div>
           </ModalButton>

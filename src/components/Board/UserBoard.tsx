@@ -2,31 +2,29 @@ import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
 import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
+import { gamePlayData } from "@atom/gamePlayData";
+import { useRecoilState } from "recoil";
+import { IFields } from "@ITypes/play";
 
 interface Props {
   owner: number;
+  type: string;
+  action: () => void;
 }
 
-// 임시값
-let limit = 6;
-let isHide = false;
-
-const UserBoard = ({ owner }: Props) => {
+const UserBoard = ({ owner, type }: Props) => {
+  const [{ players }, setPlayData] = useRecoilState(gamePlayData);
+  const { fields, fences } = players[owner];
   // TODO socket 으로 연결 후 landInfo,fenceList 안에 데이터 넣어주기
-  const [landInfo, setLandInfo] = useState(
-    Array.from({ length: 14 }, (_, i) => ({
-      idx: i + 1,
-      filed_type: null,
-    }))
-  );
+  const [landInfo, setLandInfo] = useState<IFields[]>(fields);
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
   );
+  console.log("fenceList", fenceList);
   const [isChecked, setChecked] = useState(Array(13).fill(false));
 
   // server 에서 보내는 데이터로 Fence 초기화
   useEffect(() => {
-    const fences = owner?.fences;
     if (fences) {
       setFenceList((pre) => {
         const newFence = [...pre];
@@ -51,7 +49,7 @@ const UserBoard = ({ owner }: Props) => {
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i - 1}
-                landInfo={landInfo[i - 1]}
+                landInfo={landInfo[i]}
                 setLandInfo={setLandInfo}
                 isChecked={isChecked}
                 setChecked={setChecked}

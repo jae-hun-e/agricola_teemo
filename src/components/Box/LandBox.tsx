@@ -2,9 +2,6 @@ import { useState } from "react";
 import { cls } from "@utils/util";
 import { fenceAddValidation, fenceDelValidation } from "@utils/fence";
 
-// test
-const limit = 12;
-
 interface Prop {
   fenceList: number[][];
   setFenceList: Function;
@@ -23,26 +20,26 @@ const LandBox = ({
   isChecked,
   setChecked,
 }: Prop) => {
-  // const [isChecked, setChecked] = useState(Array(13).fill(false));
-
   // 사이에 fence 세우기
   const fillFence = () => {
     let newFence = [...fenceList];
     newFence[idx] = [1, 2, 3, 4];
     setFenceList(newFence);
-
-    // todo 선택한 방 filed_type 변경하기
   };
 
   // fence 취소하기
   const delFence = () => {
-    // console.log("isChecked", isChecked);
     let newFence = [...fenceList];
     newFence[idx] = [];
     newFence = fenceDelValidation(newFence, idx, isChecked);
     setFenceList(newFence);
     changeChecked();
     // todo 선택한 방 filed_type 변경하기
+    setLandInfo((pre) => {
+      const newLandInfo = [...pre];
+      newLandInfo[idx] = { ...newLandInfo[idx], field_type: "" };
+      return newLandInfo;
+    });
   };
 
   // 두번 클릭 시 fence 추가하기 or 취소하기
@@ -60,6 +57,7 @@ const LandBox = ({
     let newFence = [...fenceList];
     newFence[idx] = [1, 2, 3, 4];
     newFence = fenceAddValidation(newFence);
+    console.log("newFence", newFence);
 
     const sum = newFence.reduce((acc, cur) => acc + cur.length, 0);
 
@@ -69,10 +67,9 @@ const LandBox = ({
     } else {
       // 빈방일 때
       changeChecked();
-      if (landInfo?.filed_type === null) {
+      if (landInfo?.field_type === "empty") {
         setFenceList(newFence);
       }
-
       // todo 선택한 방 filed_type 변경하기
     }
   };
@@ -81,7 +78,6 @@ const LandBox = ({
     setChecked((pre) => {
       const newChecked = [...pre];
       newChecked[idx] = !newChecked[idx];
-      console.log("newChecked", newChecked);
       return newChecked;
     });
   };
