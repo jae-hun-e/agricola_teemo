@@ -91,6 +91,7 @@ const Lobby: NextPage = () => {
   // create room toggle
   const createRoom = () => {
     // 내가 만든 방 있으면 create room 불가
+
     setOpenCreateRoom(!openCreateRoom);
   };
 
@@ -114,12 +115,14 @@ const Lobby: NextPage = () => {
           <DetailRoom userId={userId} socket={client} detailData={detailData} />
         )}
       </div>
-      <div
-        className="w-[200px] h-[50px] rounded-full text-center bg-demo hover:bg-demo2 cursor-pointer flex justify-center items-center"
-        onClick={createRoom}
-      >
-        {openCreateRoom ? "Detail Room" : "Create Room"}
-      </div>
+      {!roomList.find((room: IRoomList) => room.host === userId) && (
+        <div
+          className="w-[200px] h-[50px] rounded-full text-center bg-demo hover:bg-demo2 cursor-pointer flex justify-center items-center"
+          onClick={createRoom}
+        >
+          {openCreateRoom ? "Detail Room" : "Create Room"}
+        </div>
+      )}
     </div>
   );
 };
