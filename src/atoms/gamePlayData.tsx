@@ -2,9 +2,9 @@ import { atom, RecoilState, selector } from "recoil";
 import { IPlayData } from "@ITypes/play";
 import { playDataInit } from "@constants/demoData";
 
-export const gamePlayData: RecoilState<IPlayData> = atom({
+export const gamePlayData: RecoilState<IPlayData | object> = atom({
   key: "playInitData",
-  default: playDataInit,
+  default: {},
 });
 
 export const newData = selector({

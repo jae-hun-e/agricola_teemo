@@ -126,6 +126,16 @@ const LandBox = ({
     setAdditional(() => ({ position: "" }));
   };
 
+  const downSeed = () => {
+    changeChecked();
+    setAdditional(() => ({ position: idx, seed: "grain" }));
+  };
+
+  const upSeed = () => {
+    changeChecked();
+    setAdditional(() => ({ position: "", seed: "" }));
+  };
+
   // 내용물 처리
 
   const inRoom = Object.keys(landInfo.is_in).filter(
@@ -159,7 +169,7 @@ const LandBox = ({
 
     // 씨 뿌리기 => 하나
     else if (seedType.includes(type)) {
-      isChecked[idx] ? upAnything() : downAnything();
+      isChecked[idx] ? upSeed() : downSeed();
     }
 
     // 동물 옮기기 ("my")
@@ -190,8 +200,10 @@ const LandBox = ({
       onClick={handleOnAction}
     >
       {/*농장{idx + 1}*/}
-      <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
-      <p>{isInRoom.join("")}</p>
+      <div className="flex flex-col items-center h-full justify-start">
+        <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
+        <p>{isInRoom.join("")}</p>
+      </div>
     </div>
   );
 };

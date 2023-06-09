@@ -5,18 +5,20 @@ import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import JobCard from "@components/Card/JobCard";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { IPlayData, IPlayers } from "@ITypes/play";
+import { IPlayData, IPlayers, IResources } from "@ITypes/play";
 import { gamePlayData } from "@atom/gamePlayData";
 import { useEffect } from "react";
 import { Simulate } from "react-dom/test-utils";
 import input = Simulate.input;
 interface Props {
-  owner: number;
+  owner: IPlayers;
   direction: string;
+  idx: number;
 }
 
-const UserSubBoard = ({ owner, direction }: Props) => {
+const UserSubBoard = ({ direction, owner, idx }: Props) => {
   const { players, first, turn } = useRecoilValue<IPlayData>(gamePlayData);
+
   const {
     wood,
     clay,
@@ -32,9 +34,7 @@ const UserSubBoard = ({ owner, direction }: Props) => {
     barn,
     family,
     // @ts-ignore
-  } = players[owner].resource;
-
-  useEffect(() => {}, [players]);
+  } = owner.resource;
 
   const materials = [
     { 나무: wood },
@@ -61,16 +61,18 @@ const UserSubBoard = ({ owner, direction }: Props) => {
       )}
     >
       <div className="relative">
-        {first === owner && (
+        {/* 선 플레이어*/}
+        {first === idx && (
           <div
-            className="w-[30px] h-[30px] absolute bg-center bg-no-repeat bg-cover z-10 -top-[5px] right-[10px]"
-            style={{ backgroundImage: `url('/images/mainboard/item1.png')` }}
+            className="w-[25px] h-[35px] absolute bg-center bg-no-repeat bg-cover z-10 -top-[5px] right-[10px]"
+            style={{ backgroundImage: `url('/images/mainboard/item0.png')` }}
           />
         )}
+
         <PlayerButton
           direction={direction}
-          name={players[owner].name}
-          myTurn={turn === owner}
+          name={owner.name}
+          myTurn={turn === idx}
         />
       </div>
       <div
@@ -93,11 +95,11 @@ const UserSubBoard = ({ owner, direction }: Props) => {
           <div className="flex flex-col items-center pt-10 gap-3">
             <p> 상대 보드</p>
             <div className="flex gap-3">
-              <UserBoard owner={owner} type="view" />
+              <UserBoard owner={idx} type="view" />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
                   {"[설비 카드]"}
-                  <FacilityCard owner={owner} />
+                  <FacilityCard owner={idx} />
                 </div>
                 <div className="text-center">
                   {"[직업 카드]"}
@@ -116,9 +118,9 @@ const UserSubBoard = ({ owner, direction }: Props) => {
             : "w-[598px] h-[90px] flex"
         )}
       >
-        {materials.map((material, idx) => (
+        {materials.map((material, i) => (
           <div
-            key={idx}
+            key={i}
             className={cls(
               "flex justify-center items-center",
               direction === "left" ? "flex-row" : "",
@@ -155,9 +157,9 @@ const UserSubBoard = ({ owner, direction }: Props) => {
               )}
               style={{
                 backgroundImage:
-                  idx === 12
-                    ? `url('/images/mainboard/item${idx + 1 + owner}.png')`
-                    : `url('/images/mainboard/item${idx + 1}.png')`,
+                  i === 12
+                    ? `url('/images/mainboard/item${i + 1 + idx}.png')`
+                    : `url('/images/mainboard/item${i + 1}.png')`,
               }}
             />
           </div>

@@ -18,8 +18,7 @@ const UserBoard = ({ owner, type }: Props) => {
   const setAdditional = useSetRecoilState(sendDataUserBoard);
   const { players } = useRecoilValue(gamePlayData);
   const { fields, fences } = players[owner];
-  console.log("fields", fields);
-  const [landInfo, setLandInfo] = useState<IFields[]>(fields);
+
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
   );
@@ -68,7 +67,7 @@ const UserBoard = ({ owner, type }: Props) => {
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i - 1}
-                landInfo={landInfo[i]}
+                landInfo={fields[i]}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />
@@ -87,7 +86,7 @@ const UserBoard = ({ owner, type }: Props) => {
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i + 3}
-                landInfo={landInfo[i + 3]}
+                landInfo={fields[i + 3]}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />
@@ -107,8 +106,7 @@ const UserBoard = ({ owner, type }: Props) => {
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i + 7}
-                landInfo={landInfo[i + 7]}
-                setLandInfo={setLandInfo}
+                landInfo={fields[i + 7]}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />
