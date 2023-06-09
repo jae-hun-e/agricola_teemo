@@ -10,5 +10,5 @@ interface IUserInfo {
 }
 export const userInfo: RecoilState<IUserInfo> = atom({
   key: "userInfo",
-  default: { userId: 10 },
+  default: { userId: 1 },
 });
