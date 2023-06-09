@@ -1,8 +1,7 @@
 import LoginButton from "@components/Button/LoginButton";
 import GameRuleButton from "@components/Button/GameRuleButton";
-import Link from "next/link";
-import {useRecoilValue} from "recoil";
-import {auth} from "@atom/auth";
+import { useRecoilValue } from "recoil";
+import { auth } from "@atom/auth";
 import LinkButton from "@components/Button/LinkButton";
 
 export default function Home() {
