@@ -1,8 +1,10 @@
-import { Dispatch, SetStateAction, useState } from "react";
 import { cls } from "@utils/util";
 import { fenceAddValidation, fenceDelValidation } from "@utils/fence";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import {
+  changeAnimalsUserBoard,
+  sendDataUserBoard,
+} from "@atom/sendUserBoardChangeData";
 import { gamePlayData } from "@atom/gamePlayData";
 import {
   animalsType,
@@ -12,8 +14,11 @@ import {
   seedType,
 } from "@constants/cardCase";
 import { IFields } from "@ITypes/play";
+import { sendChangeSocket } from "@utils/socket";
 
 interface Prop {
+  client: WebSocket;
+  owner: number;
   type: string;
   fenceList: number[][];
   setFenceList: Function;
@@ -24,6 +29,8 @@ interface Prop {
 }
 
 const LandBox = ({
+  client,
+  owner,
   type,
   fenceList,
   setFenceList,
@@ -35,6 +42,9 @@ const LandBox = ({
   const { players } = useRecoilValue(gamePlayData);
   const limit = players[0].resource.wood as number;
   const setAdditional = useSetRecoilState(sendDataUserBoard);
+  const [changeAnimals, setChangeAnimals] = useRecoilState(
+    changeAnimalsUserBoard
+  );
 
   // 사이에 fence 세우기
   const fillFence = () => {
@@ -137,13 +147,35 @@ const LandBox = ({
   };
 
   // 내용물 처리
-
   const inRoom = Object.keys(landInfo.is_in).filter(
     (key) => landInfo.is_in[key] !== 0
   );
   const isInRoom = inRoom.map((key) => {
     return `${key} : ${landInfo.is_in[key]}`;
   });
+
+  // 동물 옮기기
+  const changeAnimal = () => {
+    if (changeAnimals.positions.length === 1) {
+      // 데이터 전송
+      const sendData = { ...changeAnimals };
+      sendData.positions = [...sendData.positions, idx];
+      console.log("sendData", sendData);
+      sendChangeSocket(client, owner, sendData);
+
+      //초기화
+      setChangeAnimals({
+        animals: "",
+        positions: [],
+      });
+    } else {
+      // 시작값
+      setChangeAnimals(() => ({
+        animals: inRoom.join(""),
+        positions: [idx],
+      }));
+    }
+  };
 
   // 어떤 액션할 건지 선택
   const handleOnAction = () => {
@@ -174,7 +206,7 @@ const LandBox = ({
 
     // 동물 옮기기 ("my")
     else {
-      console.log("my", idx);
+      changeAnimal();
     }
   };
 
@@ -195,7 +227,8 @@ const LandBox = ({
         fenceList[idx]?.includes(1) ? "border-l-[5px]" : "",
         fenceList[idx]?.includes(2) ? "border-t-[5px]" : "",
         fenceList[idx]?.includes(3) ? "border-r-[5px]" : "",
-        fenceList[idx]?.includes(4) ? "border-b-[5px]" : ""
+        fenceList[idx]?.includes(4) ? "border-b-[5px]" : "",
+        changeAnimals.positions.includes(idx) ? "bg-red-500" : ""
       )}
       onClick={handleOnAction}
     >

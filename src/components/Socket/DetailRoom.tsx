@@ -1,10 +1,6 @@
 import ModalButton from "@components/Button/ModalButton";
 import { IDetailRoom } from "@ITypes/lobby";
 import { useEffect, useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
-import Modal from "@components/Share/Modal";
-import { cls } from "@utils/util";
 import Timer from "@components/Share/Timer";
 
 interface Props {

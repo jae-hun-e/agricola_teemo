@@ -1,6 +1,6 @@
 import LandBox from "@components/Box/LandBox";
 import RoomBox from "@components/Box/RoomBox";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
 import { gamePlayData } from "@atom/gamePlayData";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -11,10 +11,11 @@ import { fenceType } from "@constants/cardCase";
 interface Props {
   owner: number;
   type: string;
+  client?: WebSocket;
 }
 
 // TODO type : "my" :내꺼 밑에, "view" 남에꺼, 나머지는 카드넘버
-const UserBoard = ({ owner, type }: Props) => {
+const UserBoard = ({ owner, type, client }: Props) => {
   const setAdditional = useSetRecoilState(sendDataUserBoard);
   const { players } = useRecoilValue(gamePlayData);
   const { fields, fences } = players[owner];
@@ -63,6 +64,8 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i} className="flex flex-col  justify-center items-center ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                client={client}
+                owner={owner}
                 type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}
@@ -82,6 +85,8 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i + 4} className="flex flex-col ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                client={client}
+                owner={owner}
                 type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}
@@ -102,6 +107,8 @@ const UserBoard = ({ owner, type }: Props) => {
           <div key={i} className="flex flex-col">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                client={client}
+                owner={owner}
                 type={type}
                 setFenceList={setFenceList}
                 fenceList={fenceList}

@@ -40,3 +40,17 @@ export function sendAdditionalSocket(
   };
   socket?.send(JSON.stringify(actionSend));
 }
+
+export function sendChangeSocket(
+  socket: {},
+  userId: number,
+  additional: { positions: number[]; animals: string }
+) {
+  const actionSend = {
+    command: "always",
+    card_number: "WILD_01",
+    player: userId,
+    additional: additional,
+  };
+  socket?.send(JSON.stringify(actionSend));
+}
