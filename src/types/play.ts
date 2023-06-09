@@ -58,7 +58,7 @@ export interface IBaseCards {
   player: number | null;
 }
 
-interface IPrimaryCards {
+export interface IPrimaryCards {
   card_number: string;
   owner: number;
 }

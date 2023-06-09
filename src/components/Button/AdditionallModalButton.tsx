@@ -13,6 +13,7 @@ import {
   openSubFacilityAdditional,
   openUserBoardAdditional,
 } from "@constants/cardCase";
+import CardViewers from "@components/CardAction/CardViewer";
 
 interface Props {
   client: WebSocket | null;
@@ -23,8 +24,8 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const [additionalCard, setAdditionalCard] = useState<string | Object>("");
   const additionalBoard = useRecoilValue(sendDataUserBoard);
   const { players, primary_cards } = useRecoilValue(gamePlayData);
-  const myJobCard = players[0].cards.slice(0, 7);
-  const mySubFacilityCard = players[0].cards.slice(7);
+  const myJobCard = players[0].cards.filter((card) => card.card_number.includes("JOB"));
+  const mySubFacilityCard = players[0].cards.filter((card) => card.card_number.includes("FAC"));
 
   /*TODO test용 피니시 버튼*/
   const [finish, setFinish] = useState<boolean>(false);
@@ -32,11 +33,11 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     console.log("additionalBoard", additionalBoard);
     setFinish(!finish);
   };
-  const onClick = (data) => {
+  const onClick = (data: string) => {
     console.log("myJobCard", myJobCard);
     console.log("myJobCard", myJobCard);
     setAdditionalCard((pre) => {
-      return pre === "" ? data.card_number : "";
+      return pre === "" ? data : "";
     });
   };
 
@@ -60,85 +61,13 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     >
       {/* 직업 카드*/}
       {base_cards.card_number in openJobAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openJobAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {myJobCard.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_used
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+              <CardViewers title={openJobAdditional[base_cards.card_number]} cards={myJobCard} selectedCard={String(additionalCard)} onClick={onClick}/>
       ) : // 주요설비
       base_cards.card_number in openMainFacilityAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openMainFacilityAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {primary_cards.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.owner
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+              <CardViewers title={openMainFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} primaryCards={primary_cards} selectedCard={String(additionalCard)} onClick={onClick}/>
       ) : //{/* 보조 설비 카드*/}
       base_cards.card_number in openSubFacilityAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openSubFacilityAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {mySubFacilityCard.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] rounded-md bg-cover bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_used
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+              <CardViewers title={openSubFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} selectedCard={String(additionalCard)} onClick={onClick}/>
       ) : (
         //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">

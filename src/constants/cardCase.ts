@@ -12,7 +12,7 @@ export const openSubFacilityAdditional = {
 };
 
 export const openMainFacilityAdditional = {
-  // ACTION_03: "주요설비",
+  ACTION_03: "주요설비",
   ACTION_06: "집 개조",
 };
 
