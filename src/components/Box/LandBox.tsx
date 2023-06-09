@@ -126,6 +126,15 @@ const LandBox = ({
     setAdditional(() => ({ position: "" }));
   };
 
+  // 내용물 처리
+
+  const inRoom = Object.keys(landInfo.is_in).filter(
+    (key) => landInfo.is_in[key] !== 0
+  );
+  const isInRoom = inRoom.map((key) => {
+    return `${key} : ${landInfo.is_in[key]}`;
+  });
+
   // 어떤 액션할 건지 선택
   const handleOnAction = () => {
     // 울타리 치기
@@ -171,7 +180,7 @@ const LandBox = ({
     <div
       className={cls(
         "w-[100px] h-[100px]  flex justify-center items-center cursor-pointer",
-        isChecked[idx] ? "bg-yellow-200" : "bg-demo",
+        isChecked[idx] ? "bg-yellow-300" : "bg-demo",
         "border-solid border-red-500",
         fenceList[idx]?.includes(1) ? "border-l-[5px]" : "",
         fenceList[idx]?.includes(2) ? "border-t-[5px]" : "",
@@ -180,7 +189,9 @@ const LandBox = ({
       )}
       onClick={handleOnAction}
     >
-      농장{idx + 1}
+      {/*농장{idx + 1}*/}
+      <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
+      <p>{isInRoom.join("")}</p>
     </div>
   );
 };

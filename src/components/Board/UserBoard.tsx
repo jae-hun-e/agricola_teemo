@@ -18,7 +18,7 @@ const UserBoard = ({ owner, type }: Props) => {
   const setAdditional = useSetRecoilState(sendDataUserBoard);
   const { players } = useRecoilValue(gamePlayData);
   const { fields, fences } = players[owner];
-
+  console.log("fields", fields);
   const [landInfo, setLandInfo] = useState<IFields[]>(fields);
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
