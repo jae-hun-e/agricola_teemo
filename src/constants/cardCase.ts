@@ -4,6 +4,12 @@ export const openJobAdditional = {
   BASE_05: "교습1 : 직업선택",
   BASE_11: "교습2 : 직업선택",
 };
+
+export const openBuildRoomAdditional = {
+  // 방짓기
+  BASE_07: "농장 확장",
+}
+
 export const openSubFacilityAdditional = {
   BASE_08: "화합장소 : 보조설비",
   ACTION_03: "주요설비",
@@ -16,6 +22,10 @@ export const openMainFacilityAdditional = {
   ACTION_06: "집 개조",
 };
 
+export const openPlumFarmAdditional = {
+  ACTION_12: "밭 농사",
+};
+
 export const openUserBoardAdditional = {
   // 울타리
   ACTION_02: "울타리",
@@ -24,9 +34,6 @@ export const openUserBoardAdditional = {
   // 밭
   BASE_10: "농지",
 
-  // 방짓기
-  BASE_07: "농장 확장",
-
   // 동물놓기
   ACTION_04: "양 시장",
   ACTION_08: "돼지 시장",
@@ -34,7 +41,6 @@ export const openUserBoardAdditional = {
 
   // 씨뿌리기
   ACTION_01: "곡식 활용",
-  ACTION_12: "밭 농사",
 };
 
 // base additional card 리스트

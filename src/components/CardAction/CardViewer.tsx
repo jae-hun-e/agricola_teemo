@@ -10,16 +10,14 @@ interface CardViewerProps {
     primaryCards: IPrimaryCards[];
     selectedCard: string;
     onClick: (data: any) => void;
+    isHouseFix: boolean;
+    isFamilyAdd: boolean;
 }
 
-const CardViewers = ({title, cards = [], primaryCards = [], selectedCard, onClick}: CardViewerProps) => {
+const CardViewers = ({title, cards = [], primaryCards = [], selectedCard, onClick, isHouseFix = false, isFamilyAdd = false}: CardViewerProps) => {
     const [isSub, setIsSub] = useState<boolean | undefined>(undefined);
     const [viewCards, setViewCards] = useState<any[]>([]);
     const isBothCards = cards.length > 0 && primaryCards.length > 0;
-
-    console.log(isSub);
-    console.log(viewCards)
-    console.log(primaryCards)
 
     useEffect(() => {
         setIsSub(undefined);
@@ -28,12 +26,17 @@ const CardViewers = ({title, cards = [], primaryCards = [], selectedCard, onClic
     useEffect(() => {
         if (isSub !== undefined) {
             setViewCards(isSub ? cards : primaryCards);
+        } else {
+            setViewCards(cards);
         }
     }, [isSub, cards, primaryCards])
 
     if (isBothCards && isSub === undefined) {
-        return <div className="flex flex-col justify-center items-center gap-3">
-            <div className="flex gap-3 flex-row h-full my-16 space-x-10">
+        return <div className="flex flex-col justify-center items-center gap-3 my-8">
+            {isHouseFix && <div className="flex flex-row w-full justify-between items-center m-auto">
+                <p className="flex w-full justify-center items-center text-2xl">집 고치기 행동 후 설비 카드 선택</p>
+            </div>}
+            <div className="flex gap-3 flex-row h-full space-x-10">
                 <div className="flex flex-col justify-center items-center" onClick={() => setIsSub(false)}>
                     <div className="flex justify-center items-center text-lg">주요 설비 카드 선택</div>
                     <Image src="/assets/PRI_FAC_01.png" width={250} height={180}/>
@@ -49,13 +52,15 @@ const CardViewers = ({title, cards = [], primaryCards = [], selectedCard, onClic
 
 
     return <div className="flex flex-col justify-center items-center">
-        <div className="flex flex-row w-full justify-between items-center">
+        <div className="flex flex-row w-full justify-between items-center my-1">
             <div onClick={() => setIsSub(undefined)}>
                 {isBothCards && <Image src="/icon/back.png" alt="back icon" height={16} width={16}/>}
             </div>
-            <p className="mt-[10px]">
-                {title}
-            </p>
+            {
+                isFamilyAdd ? <p className="flex w-full justify-center items-center text-2xl">가족 늘리기 행동 후 보조 설비 카드 선택</p> : <p className="mt-[10px]">
+                    {title}
+                </p>
+            }
             <p></p>
         </div>
         <div className="relative flex justify-center">
@@ -66,7 +71,7 @@ const CardViewers = ({title, cards = [], primaryCards = [], selectedCard, onClic
                         className={cls(
                             "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
                             "border-solid border-red-500",
-                            data.card_number === selectedCard || data.is_used
+                            data.card_number === selectedCard || (data.is_used || data.owner === 0)
                                 ? "border-[5px]"
                                 : ""
                         )}

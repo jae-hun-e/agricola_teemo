@@ -8,12 +8,15 @@ import { gamePlayData } from "@atom/gamePlayData";
 import UserBoard from "@components/Board/UserBoard";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 import {
+  openBuildRoomAdditional,
   openJobAdditional,
-  openMainFacilityAdditional,
+  openMainFacilityAdditional, openPlumFarmAdditional,
   openSubFacilityAdditional,
   openUserBoardAdditional,
 } from "@constants/cardCase";
 import CardViewers from "@components/CardAction/CardViewer";
+import BuildHouseCard from "@components/CardAction/BuildHouseCard";
+import PlumFarmCard from "@components/CardAction/PlumFarm";
 
 interface Props {
   client: WebSocket | null;
@@ -44,7 +47,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : base_cards.card_number in openUserBoardAdditional
+      : base_cards.card_number in {...openUserBoardAdditional, ...openPlumFarmAdditional}
       ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
       : sendAdditionalSocket(client, base_cards, 0, additionalCard);
   };
@@ -64,10 +67,16 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
               <CardViewers title={openJobAdditional[base_cards.card_number]} cards={myJobCard} selectedCard={String(additionalCard)} onClick={onClick}/>
       ) : // 주요설비
       base_cards.card_number in openMainFacilityAdditional ? (
-              <CardViewers title={openMainFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} primaryCards={primary_cards} selectedCard={String(additionalCard)} onClick={onClick}/>
+              <CardViewers title={openMainFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} primaryCards={primary_cards} selectedCard={String(additionalCard)} onClick={onClick} isHouseFix={base_cards.card_number === "ACTION_06"}/>
       ) : //{/* 보조 설비 카드*/}
       base_cards.card_number in openSubFacilityAdditional ? (
-              <CardViewers title={openSubFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} selectedCard={String(additionalCard)} onClick={onClick}/>
+              <CardViewers title={openSubFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} selectedCard={String(additionalCard)} onClick={onClick} isFamilyAdd={base_cards.card_number === "ACTION_07"}/>
+      ) :
+      base_cards.card_number in openPlumFarmAdditional ? (
+              <PlumFarmCard cardNumber={base_cards.card_number}/>
+          ) :
+      base_cards.card_number in openBuildRoomAdditional ? (
+          <BuildHouseCard cardNumber={base_cards.card_number}/>
       ) : (
         //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">
