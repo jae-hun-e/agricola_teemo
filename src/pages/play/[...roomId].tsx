@@ -57,14 +57,11 @@ const Play = ({ roomId }: { roomId: number }) => {
           const changesData = serverMsg.data.result;
 
           console.log("changesData", changesData);
-          (async () => {
-            await setPlayData((pre: IPlayData) => {
-              return changeValue(pre, changesData) as IPlayData;
-            });
-          })();
+          setPlayData((pre: IPlayData) => {
+            return changeValue(pre, changesData) as IPlayData;
+          });
 
-          console.log("changeData", playData);
-
+          // console.log("changeData", playData);
           break;
       }
     };
@@ -82,12 +79,14 @@ const Play = ({ roomId }: { roomId: number }) => {
   if (chatSocket === undefined || playSocket === undefined)
     return <div>loading...</div>;
 
+  if (!("turn" in playData)) return <div>loading...</div>;
+
   return (
     <div className="relative">
       <div className="flex gap-[20px] bg-[#b3cd31]">
-        <UserSubBoard direction={"left"} owner={1} />
+        <UserSubBoard direction={"left"} owner={playData.players[1]} idx={1} />
         <div className="flex flex-col items-center bg-[#b3cd31]">
-          <UserSubBoard direction={"top"} owner={2} />
+          <UserSubBoard direction={"top"} owner={playData.players[2]} idx={2} />
 
           {/* Main Map*/}
           <MainMapBoard client={playSocket} />
@@ -95,7 +94,11 @@ const Play = ({ roomId }: { roomId: number }) => {
           {/* User sub Board*/}
           <div className="flex flex-row justify-between w-full relative">
             <ScoreBoard />
-            <UserSubBoard direction={"bottom"} owner={0} />
+            <UserSubBoard
+              direction={"bottom"}
+              owner={playData.players[0]}
+              idx={0}
+            />
             <div className="flex gap-[15px]">
               <FacilityCard owner={0} />
               <JobCard />
@@ -105,7 +108,7 @@ const Play = ({ roomId }: { roomId: number }) => {
             </div>
           </div>
         </div>
-        <UserSubBoard direction={"right"} owner={3} />
+        <UserSubBoard direction={"right"} owner={playData.players[3]} idx={3} />
       </div>
 
       {/* User main Board*/}

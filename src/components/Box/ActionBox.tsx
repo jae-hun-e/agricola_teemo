@@ -1,6 +1,5 @@
 import { cls } from "@utils/util";
 import { IBaseCards } from "@ITypes/play";
-
 import AdditionalModalButton from "@components/Button/AdditionallModalButton";
 import ActionModalButton from "@components/Button/ActionModalButton";
 import { baseAdditionalCardOpen } from "@constants/cardCase";
