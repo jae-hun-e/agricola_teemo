@@ -70,4 +70,5 @@ export const fenceType = ["ACTION_02", "ACTION_14"],
   fieldType = ["BASE_10"],
   roomType = ["BASE_07"],
   animalsType = ["ACTION_04", "ACTION_08", "ACTION_11"],
-  seedType = ["ACTION_01", "ACTION_12"];
+  seedType = ["ACTION_01", "ACTION_12"],
+  barnType = ["BARN"];

@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 import { gamePlayData } from "@atom/gamePlayData";
 import {
-  animalsType,
+  animalsType, barnType,
   fenceType,
   fieldType,
   roomType,
@@ -115,6 +115,25 @@ const LandBox = ({
     });
   };
 
+  const upBarns = () => {
+    changeChecked();
+    setAdditional((pre: { barn_positions: number[] }) => {
+      const tmp: { barn_positions: number[] } = { ...pre };
+      tmp.barn_positions = tmp.barn_positions.filter((v) => v !== idx);
+      return tmp;
+    });
+  };
+
+  const downBarns = () => {
+    changeChecked();
+    setAdditional((pre: { barn_positions: [] | "" }) => {
+      const tmp: { barn_positions: number[] | "" } = { ...pre };
+      tmp.barn_positions = tmp.barn_positions ? [...tmp.barn_positions, idx] : [idx];
+      console.log(tmp);
+      return tmp;
+    });
+  };
+
   // 땅에 무언가(밭, 동물, 씨)를 놓는 경우
   const downAnything = () => {
     changeChecked();
@@ -128,7 +147,7 @@ const LandBox = ({
 
   const downSeed = () => {
     changeChecked();
-    setAdditional(() => ({ position: idx, seed: "grain" }));
+    setAdditional(() => ({ sow_position: idx, seed: "grain" }));
   };
 
   const upSeed = () => {
@@ -147,6 +166,7 @@ const LandBox = ({
 
   // 어떤 액션할 건지 선택
   const handleOnAction = () => {
+    console.log(type);
     // 울타리 치기
     if (fenceType.includes(type)) {
       isChecked[idx] ? doubleOnClick() : addFence();
@@ -170,6 +190,10 @@ const LandBox = ({
     // 씨 뿌리기 => 하나
     else if (seedType.includes(type)) {
       isChecked[idx] ? upSeed() : downSeed();
+    }
+
+    else if (barnType.includes(type)) {
+      isChecked[idx] ? upBarns() : downBarns();
     }
 
     // 동물 옮기기 ("my")
