@@ -8,15 +8,16 @@ import { gamePlayData } from "@atom/gamePlayData";
 import UserBoard from "@components/Board/UserBoard";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 import {
-  openBuildRoomAdditional,
+  openBuildRoomAdditional, openCageAdditional,
   openJobAdditional,
   openMainFacilityAdditional, openPlumFarmAdditional,
-  openSubFacilityAdditional,
+  openSubFacilityAdditional, openUseGrainAdditional,
   openUserBoardAdditional,
 } from "@constants/cardCase";
 import CardViewers from "@components/CardAction/CardViewer";
 import BuildHouseCard from "@components/CardAction/BuildHouseCard";
 import PlumFarmCard from "@components/CardAction/PlumFarm";
+import UseGrain from "@components/CardAction/UseGrain";
 
 interface Props {
   client: WebSocket | null;
@@ -37,8 +38,6 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     setFinish(!finish);
   };
   const onClick = (data: string) => {
-    console.log("myJobCard", myJobCard);
-    console.log("myJobCard", myJobCard);
     setAdditionalCard((pre) => {
       return pre === "" ? data : "";
     });
@@ -49,7 +48,9 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
       : base_cards.card_number in {...openUserBoardAdditional, ...openPlumFarmAdditional, ...openBuildRoomAdditional}
       ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
-      : sendAdditionalSocket(client, base_cards, 0, additionalCard);
+      : sendAdditionalSocket(client, base_cards, 0, {
+            card_number: String(additionalCard),
+            });
   };
 
   return (
@@ -77,6 +78,26 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
           ) :
       base_cards.card_number in openBuildRoomAdditional ? (
           <BuildHouseCard cardNumber={base_cards.card_number}/>
+      ) :
+      base_cards.card_number in openUseGrainAdditional ? (
+              <UseGrain cardNumber={base_cards.card_number}/>
+          ) :
+      base_cards.card_number in openCageAdditional ? (
+          <div className="flex flex-col justify-center items-center">
+              <p className="flex w-full justify-center items-center text-2xl my-4">집 한번 고치기 행동 한 후에 울타리 치기</p>
+            <UserBoard owner={0} type={base_cards.card_number} />
+            {/*TODO test용 피니시 버튼*/}
+            <button
+                type="button"
+                className={cls(
+                    "w-[100px] h-[40px]  mt-[20px]",
+                    finish ? "bg-yellow-300" : "bg-demo2"
+                )}
+                onClick={onFinish}
+            >
+              finish
+            </button>
+          </div>
       ) : (
         //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">

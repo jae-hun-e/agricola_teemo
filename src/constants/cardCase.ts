@@ -29,7 +29,6 @@ export const openPlumFarmAdditional = {
 export const openUserBoardAdditional = {
   // 울타리
   ACTION_02: "울타리",
-  ACTION_14: "농장 개조",
 
   // 밭
   BASE_10: "농지",
@@ -42,6 +41,14 @@ export const openUserBoardAdditional = {
   // 씨뿌리기
   ACTION_01: "곡식 활용",
 };
+
+export const openUseGrainAdditional = {
+  ACTION_01: "곡식 활용",
+}
+
+export const openCageAdditional = {
+  ACTION_14: "농장 개조",
+}
 
 // base additional card 리스트
 export const baseAdditionalCardOpen = [
@@ -63,6 +70,7 @@ export const roundAdditionalCardOpen = [
   "ACTION_08",
   "ACTION_11",
   "ACTION_12",
+  "ACTION_14",
 ];
 
 // 어디서 온 액션인지 판별 리스트

@@ -67,7 +67,7 @@ const UserBoard = ({ owner, type }: Props) => {
                 setFenceList={setFenceList}
                 fenceList={fenceList}
                 idx={i - 1}
-                landInfo={fields[i]}
+                landInfo={fields[i - 1]}
                 isChecked={isChecked}
                 setChecked={setChecked}
               />
@@ -78,6 +78,7 @@ const UserBoard = ({ owner, type }: Props) => {
         {/* 둘째 줄*/}
 
         <RoomBox idx={14} />
+
         {[2, 3, 4, 5].map((i) => (
           <div key={i + 4} className="flex flex-col ">
             <div className={cls("w-[100px]", "flex")}>
