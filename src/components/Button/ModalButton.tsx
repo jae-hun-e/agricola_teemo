@@ -6,9 +6,18 @@ interface Props {
   name?: string;
   children: ReactNode;
   childrenCSS?: string;
+  type?: string;
+  handleAction?: () => void;
 }
 
-const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
+const ModalButton = ({
+  layoutCSS,
+  name,
+  children,
+  childrenCSS,
+  type,
+  handleAction,
+}: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -17,7 +26,7 @@ const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
   };
 
   return (
-    <div className={layoutCSS}>
+    <div className={layoutCSS} data-testid={"ModalButton"}>
       <button
         type="button"
         onClick={toggleModal}
@@ -29,6 +38,8 @@ const ModalButton = ({ layoutCSS, name, children, childrenCSS }: Props) => {
         show={showModal}
         handleClose={toggleModal}
         childrenCSS={childrenCSS}
+        type={type}
+        handleAction={handleAction}
       >
         {children}
       </Modal>

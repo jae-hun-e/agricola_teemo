@@ -1,19 +1,14 @@
-import { cls } from "@utils/util";
-
-export interface IRoomList {
-  host: number;
-  room_id: number;
-  participant: number;
-  options: { title: string; mode: string; password: string };
-}
+import {cls} from "@utils/util";
+import {IRoomList} from "@ITypes/lobby";
 
 interface Props {
+  socket: WebSocket | undefined;
   userId: number;
   roomList: IRoomList[];
-  changeViewRoom: (room_id: number) => void;
+  changeDeTailRoom: Function;
 }
 
-const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
+const WaitingRoomList = ({socket, userId, roomList}: Props) => {
   const detailRoom = (room_idx: number) => {
     // console.log("detailRoom", roomList[room_idx]);
     if (roomList[room_idx]?.options.mode === "private") {
@@ -24,17 +19,22 @@ const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
         return;
       } else {
         alert("방에 입장했습니다.");
-        changeViewRoom(roomList[room_idx].room_id);
+        // changeViewRoom(roomList[room_idx].room_id);
       }
       return;
     }
-    changeViewRoom(roomList[room_idx].room_id);
+    const watch = {
+      command: "watch",
+      user_id: userId,
+      room_id: roomList[room_idx].room_id,
+    };
+    socket?.send(JSON.stringify(watch));
   };
 
   return (
-    <div className="w-[630px] h-[520px] bg-demo flex flex-col items-center">
+    <div className="w-[630px] h-[520px] bg-lobby1 border-2 border-solid border-[#bba027] flex flex-col items-center">
       <div className="flex w-[610px] h-[50px]  items-center">
-        <div className="w-[40px]">logo</div>
+        <div className="w-[40px] ml-[20px]">logo</div>
         <div className="w-[calc(100%-40px)] flex justify-between  text-center">
           <div className="w-[120px]">Player</div>
           <div className="w-[120px]">Game Name</div>
@@ -47,12 +47,12 @@ const WaitingRoomList = ({ userId, roomList, changeViewRoom }: Props) => {
             <div
               key={room.room_id}
               className={cls(
-                room.host === Number(userId) ? "bg-yellow-200" : "bg-demo",
+                room.host === Number(userId) ? "bg-yellow-200" : "bg-[#dddacd]",
                 "flex w-[610px] min-h-[60px] items-center justify-center hover:bg-demo2 cursor-pointer"
               )}
               onClick={() => detailRoom(idx)}
             >
-              <div className="w-[40px]">logo</div>
+              <div className="w-[40px] ml-[20px]">logo</div>
               <div className="w-[calc(100%-40px)] flex justify-between  text-center">
                 <div className="w-[120px]">{room.participant}/4</div>
                 <div className="max-w-[200px]">{room.options.title}</div>

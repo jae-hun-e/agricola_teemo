@@ -20,6 +20,7 @@
       "@components/*": ["src/components/*"],
       "@atom/*" : ["src/atoms/*"],
       "@ITypes/*": ["src/types/*"],
+      "@constants/*": ["src/constants/*"],
       "@public/*": ["public/*"],
     },
   },

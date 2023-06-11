@@ -1,43 +1,83 @@
-import { GetServerSideProps, NextPage } from "next";
-import WaitingRoomList, { IRoomList } from "@components/Socket/WaitingRoomList";
-import CreateRoom, { IRoom } from "@components/Socket/CreateRoom";
+import { NextPage } from "next";
+import WaitingRoomList from "@components/Socket/WaitingRoomList";
+import CreateRoom from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
-
 import DetailRoom from "@components/Socket/DetailRoom";
+import { connectSocket } from "@utils/socket";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userInfo } from "@atom/auth";
+import { IDetailRoom, IRoomList } from "@ITypes/lobby";
 
 const Lobby: NextPage = () => {
-  const [viewRoom, setViewRoom] = useState<number>(1);
+  const [detailData, setDetailData] = useState<IDetailRoom>();
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
-  const [userId, setUserId] = useState(5);
+  const { userId } = useRecoilValue(userInfo);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
-
-  const createRoom = () => {
-    setOpenCreateRoom(!openCreateRoom);
-  };
-
-  //socket
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
-  const namespace = "/lobby/";
-  const client = new WebSocket(baseURL + namespace + userId);
+  const [client, setClient] = useState<WebSocket>();
 
   useEffect(() => {
-    client.onopen = () => {
-      console.log("roomList Connected : ", client, namespace, userId);
-    };
+    //socket
+    const client = connectSocket("/lobby/");
+    setClient(client);
+
     client.onmessage = (message) => {
-      // 내가 만든 방 상단으로 올리기
-      setRoomList(() => {
-        let list = JSON.parse(message.data);
-        const myCreateRoom = list.find(
-          (room: IRoomList) => room.host === userId
-        );
-        return myCreateRoom
-          ? [
-              myCreateRoom,
-              ...list.filter((room: IRoomList) => room.host !== userId),
-            ]
-          : list;
-      });
+      // console.log("data", message);
+      console.log("data", JSON.parse(message.data));
+
+      let serverMsg = JSON.parse(message.data);
+
+      // msg Type - 0:lobby, 1:watch, 2:join,exit ,4:start
+      let msgType: number;
+      !serverMsg?.is_success
+        ? (msgType = 0)
+        : serverMsg?.data.type === "lobby"
+        ? (msgType = 1)
+        : serverMsg?.data.type === "room"
+        ? (msgType = 2)
+        : (msgType = 3);
+
+      switch (msgType) {
+        // error
+        case 0:
+          alert(`error msg : \n${serverMsg?.error}`);
+          break;
+
+        // lobby data
+        case 1:
+          const { result: roomList } = serverMsg.data;
+          roomList.length !== 0 &&
+            // 내가 만든 방 상단으로 올리기
+            setRoomList(() => {
+              const myCreateRoom = roomList.find(
+                (room: IRoomList) => room.host === userId
+              );
+              return myCreateRoom
+                ? [
+                    myCreateRoom,
+                    ...roomList.filter(
+                      (room: IRoomList) => room.host !== userId
+                    ),
+                  ]
+                : roomList;
+            });
+
+          break;
+
+        // room data
+        case 2:
+          const { result: room } = serverMsg.data;
+          setDetailData(room);
+          break;
+
+        // start data
+        case 3:
+          const {
+            result: { participants },
+          } = serverMsg.data;
+          console.log("start data", participants);
+          // setPlayerData(participants);
+          break;
+      }
     };
 
     return () => {
@@ -47,13 +87,21 @@ const Lobby: NextPage = () => {
     };
   }, []);
 
+  // create room toggle
+  const createRoom = () => {
+    // 내가 만든 방 있으면 create room 불가
+
+    setOpenCreateRoom(!openCreateRoom);
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">
+    <div className="w-[1260px] h-[750px] bg-[url('/images/lobby/bg3.png')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center gap-[20px]">
       <div className="flex gap-[10px]">
         <WaitingRoomList
+          socket={client}
           roomList={roomList}
           userId={userId}
-          changeViewRoom={setViewRoom}
+          changeDeTailRoom={setDetailData}
         />
         {openCreateRoom ? (
           <CreateRoom
@@ -61,18 +109,19 @@ const Lobby: NextPage = () => {
             setOpenCreateRoom={setOpenCreateRoom}
             userId={userId}
             roomList={roomList}
-            changeViewRoom={setViewRoom}
           />
         ) : (
-          <DetailRoom userId={userId} roomId={viewRoom} />
+          <DetailRoom userId={userId} socket={client} detailData={detailData} />
         )}
       </div>
-      <div
-        className="w-[200px] h-[50px] rounded-full text-center bg-demo hover:bg-demo2 cursor-pointer flex justify-center items-center"
-        onClick={createRoom}
-      >
-        {openCreateRoom ? "Detail Room" : "Create Room"}
-      </div>
+      {!roomList.find((room: IRoomList) => room.host === userId) && (
+        <div
+          className="w-[200px] h-[50px] rounded-full text-center bg-demo hover:bg-demo2 cursor-pointer flex justify-center items-center"
+          onClick={createRoom}
+        >
+          {openCreateRoom ? "Detail Room" : "Create Room"}
+        </div>
+      )}
     </div>
   );
 };

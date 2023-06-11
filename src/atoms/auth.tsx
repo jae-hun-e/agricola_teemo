@@ -5,7 +5,10 @@ export const auth: RecoilState<boolean> = atom({
   default: false,
 });
 
-export const userInfo: RecoilState<object> = atom({
+interface IUserInfo {
+  userId: number;
+}
+export const userInfo: RecoilState<IUserInfo> = atom({
   key: "userInfo",
-  default: {},
+  default: { userId: 1 },
 });

@@ -1,13 +1,25 @@
 import Link from "next/link";
 import Modal from "@components/Share/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
-import { useRecoilValue } from "recoil";
-import { auth } from "@atom/auth";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { auth, userInfo } from "@atom/auth";
 const Header = () => {
-  const isAuth = useRecoilValue(auth);
+  const [isAuth, setIsAuth] = useRecoilState(auth);
+  const setInfo = useSetRecoilState(userInfo);
 
+  useEffect(() => {
+    const auth = localStorage.getItem("access_token");
+    if (auth) {
+      setIsAuth(true);
+      const payload = Buffer.from(auth.split(".")[1], "base64");
+      const info = JSON.parse(payload.toString());
+      setInfo((pre) => ({ ...pre, userId: info.user_id }));
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
   return (
     <div className="w-[1280px] h-[80px] flex justify-between items-center">
       <Link

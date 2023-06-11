@@ -5,6 +5,7 @@ import { RecoilRoot } from "recoil";
 import Layout from "@components/Share/Layout";
 
 import Script from "next/script";
+import { Suspense } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,6 @@ declare global {
     Kakao: any;
   }
 }
-
 export default function App({ Component, pageProps }: AppProps) {
   function kakaoInit() {
     // 페이지가 로드되면 실행
@@ -31,15 +31,17 @@ export default function App({ Component, pageProps }: AppProps) {
   }
   return (
     <RecoilRoot>
-      <Script
-        src="https://developers.kakao.com/sdk/js/kakao.js"
-        onLoad={kakaoInit}
-      />
-      <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </QueryClientProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Script
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+          onLoad={kakaoInit}
+        />
+        <QueryClientProvider client={queryClient}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </QueryClientProvider>
+      </Suspense>
     </RecoilRoot>
   );
 }

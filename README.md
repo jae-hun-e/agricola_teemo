@@ -22,7 +22,8 @@
 - babel-jest
 - ts-jest
 - ts-loader
-
+- jest-websocket-mock
+- supertest
 
 ## Next 디렉토리 구조
 

@@ -1,7 +1,7 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { cls } from "@utils/util";
-import { IRoomList } from "@components/Socket/WaitingRoomList";
+import { IRoomList } from "@ITypes/lobby";
 
 export interface IRoom {
   command: string;
@@ -10,30 +10,39 @@ export interface IRoom {
 }
 
 interface Props {
-  socket: WebSocket;
+  socket: WebSocket | undefined;
   setOpenCreateRoom: Dispatch<SetStateAction<boolean>>;
   userId: number;
   roomList: IRoomList[];
-  changeViewRoom: (room_id: number) => void;
 }
-const CreateRoom = ({
-  socket,
-  setOpenCreateRoom,
-  userId,
-  roomList,
-  changeViewRoom,
-}: Props) => {
+const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
 
   // socket
 
   const onSubmit = (data: FieldValues) => {
+    console.log("create room data", data);
     const createRoomInfo = {
       command: "create",
-      mode: "public",
-      title: data.title,
+      user_id: userId,
+      options: {
+        title: data.title,
+        mode: data.isPassword.length === 0 ? "public" : "private",
+        password: data.isPassword === 0 ? "" : data.isPassword,
+        is_chat: data?.isChat,
+        time_limit: data?.time,
+      },
     };
-    socket.send(JSON.stringify(createRoomInfo));
+    socket?.send(JSON.stringify(createRoomInfo));
+
+    const watch = {
+      command: "watch",
+      user_id: userId,
+      room_id: roomList[roomList.length - 1]
+        ? roomList[roomList.length - 1].room_id + 1
+        : 1,
+    };
+    socket?.send(JSON.stringify(watch));
     setOpenCreateRoom((pre) => !pre);
 
     alert(`'${getValues("title")}'방 생성완료`);
@@ -43,7 +52,7 @@ const CreateRoom = ({
     if (e.key === "Enter") e.preventDefault();
   };
   return (
-    <div className="w-[400px] h-[520px] bg-demo ">
+    <div className="w-[400px] h-[520px]  bg-lobby1 border-2 border-solid border-[#bba027]">
       <form
         className="flex flex-col justify-start items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -64,10 +73,12 @@ const CreateRoom = ({
               return (
                 <div
                   key={idx}
-                  className={cls(
+                  /* className={cls(
                     "w-[160px] h-[160px]  flex justify-center items-center ",
                     "bg-gray-200"
                   )}
+                  */
+                  className="w-[160px] h-[160px]  flex justify-center items-center bg-[url('/images/lobby/place.png')] bg-cover"
                 >
                   <div className="w-full h-full flex justify-center items-center">
                     <p>빈 자리</p>
@@ -106,10 +117,7 @@ const CreateRoom = ({
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
-        >
+        <button type="submit" className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2">
           create
         </button>
       </form>

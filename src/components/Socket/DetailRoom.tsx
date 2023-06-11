@@ -1,36 +1,53 @@
-import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
+import { IDetailRoom } from "@ITypes/lobby";
 import { useEffect, useState } from "react";
+import Timer from "@components/Share/Timer";
 
 interface Props {
+  socket: WebSocket | undefined;
   userId: number;
-  roomId: number;
+  detailData: IDetailRoom | undefined;
 }
 
-const DetailRoom = ({ userId, roomId }: Props) => {
-  const [detailData, setDetailData] = useState();
-  let room: WebSocket;
+const DetailRoom = ({ socket, userId, detailData }: Props) => {
+  const [full, setFull] = useState<boolean>(false);
+
   useEffect(() => {
-    room = new WebSocket(
-      "ws://127.0.0.1:8000/ws/v1/lobby/" + roomId + "/" + userId
-    );
-    room.onopen = () => {
-      console.log("room Connected : ", room);
+    console.log("detailData", detailData);
+    detailData?.participants.length === 4 ? setFull(true) : setFull(false);
+  }, [detailData]);
+
+  // room exit
+  const onExit = () => {
+    const exitRoom = {
+      command: "exit",
+      user_id: userId,
+      room_id: detailData?.room_id,
     };
 
-    room.onmessage = (msg: MessageEvent) => {
-      setDetailData(() => JSON.parse(msg.data));
-    };
+    socket?.send(JSON.stringify(exitRoom));
+  };
 
-    return () => {};
-  }, [roomId]);
-
+  // room join
   const onJoin = () => {
-    // join command 추가
     console.log("onJoin", userId);
+
+    const joinRoom = {
+      command: "enter",
+      user_id: userId,
+      room_id: detailData?.room_id,
+    };
+    socket?.send(JSON.stringify(joinRoom));
   };
   return (
-    <div className="w-[400px] h-[520px] bg-demo ">
+    <div className="w-[400px] h-[520px]  bg-lobby1 border-2 border-solid border-[#bba027]">
+      {full && (
+        <Timer
+          roomId={detailData?.room_id as number}
+          time={3}
+          key={"lobbyToPlay"}
+        />
+      )}
       <div className="flex flex-col justify-start items-center">
         <div className="w-[200px] h-[40px] bg-demo2 rounded-xl  text-white my-[10px] flex justify-center items-center">
           {detailData?.options.title}
@@ -39,18 +56,14 @@ const DetailRoom = ({ userId, roomId }: Props) => {
         {/*  참가인원들 */}
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
-            {Array.from({ length: 4 }, (_, i) => i + 1).map((num, idx) => {
+            {Array.from({ length: 4 }, (_, i) => i).map((num, idx) => {
               // TODO 참가자 정보들 가져오기
-              // const user = user ? null : null;
-              const user = null;
+              const user = detailData?.participants[idx];
 
               return (
                 <div
                   key={idx}
-                  className={cls(
-                    "w-[160px] h-[160px]  flex justify-center items-center ",
-                    user ? "bg-demo2" : "bg-gray-200"
-                  )}
+                  className="w-[160px] h-[160px]  flex justify-center items-center bg-[url('/images/lobby/place.png')] bg-cover"
                 >
                   {user ? (
                     <ModalButton
@@ -58,6 +71,7 @@ const DetailRoom = ({ userId, roomId }: Props) => {
                       name={user.name}
                     >
                       <div className="flex flex-col ">
+                        <div>{user}</div>
                         <div>{user.name}</div>
                         <div>{user.img}</div>
                         <div>{user.user_detail}</div>
@@ -96,16 +110,16 @@ const DetailRoom = ({ userId, roomId }: Props) => {
 
           <div className="w-[150px] h-[20px] flex justify-start items-center gap-3">
             <p>Time : </p>
-            <div className="w-[80px]">{detailData?.options.time}min</div>
+            <div className="w-[80px]">{detailData?.options.time_limit} min</div>
           </div>
         </div>
 
         <button
           type="submit"
           className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
-          onClick={onJoin}
+          onClick={detailData?.participants.includes(userId) ? onExit : onJoin}
         >
-          join
+          {detailData?.participants.includes(userId) ? "exit" : "join"}
         </button>
       </div>
     </div>

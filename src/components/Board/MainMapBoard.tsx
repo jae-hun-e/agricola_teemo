@@ -1,80 +1,153 @@
 import RoundCard from "@components/Card/RoundCard";
 import AccumlatedBox from "@components/Box/AccumlatedBox";
 import MainFacilityCard from "@components/Card/MainFacilityCard";
-
 import ActionBox from "@components/Box/ActionBox";
-import { action_on_round } from "@ITypes/play";
+import { useRecoilState } from "recoil";
+import { gamePlayData } from "@atom/gamePlayData";
+import { IPlayData } from "@ITypes/play";
 
-interface Props {
-  turn: number;
-  round: number;
-  phase: number;
-  action_on_round: action_on_round[];
-}
+const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
+  const [{ base_cards, round_cards }, setPlayData] =
+    useRecoilState<IPlayData>(gamePlayData);
 
-const MainMapBoard = () => {
   return (
-    <div className="w-[1060px] h-[490px] flex gap-[10px] mt-[20px] mb-[20px] text-xs">
+    <div className="w-[1060px] h-[490px] flex gap-[10px] mt-[20px] mb-[20px] text-xs bg-[url('/images/mainboard/bg.png')] bg-cover">
       {/* 라운드카드 이전*/}
       <div className="w-[240px] h-[490px] flex flex-row gap-[20px]">
         {/*  첫째 줄*/}
-        <div className="flex flex-col gap-[15px]">
-          <AccumlatedBox name={"덤불"} direction={"left"} />
-          <AccumlatedBox name={"수풀"} direction={"right"} />
-          <ActionBox layout={"h-[60px] my-[5px]"} name={"자원시장"} />
-          <AccumlatedBox name={"점토 채굴장"} direction={"left"} />
-          <ActionBox layout={"h-[60px] mt-[5px]"} name={"교습1"} />
-          <AccumlatedBox name={"유량극단"} direction={"right"} />
+        <div className="flex flex-col gap-[16px]">
+          <AccumlatedBox
+            client={client}
+            base_cards={base_cards[0]}
+            direction={"left"}
+            imgidx="1_1"
+          />
+          <AccumlatedBox
+            client={client}
+            base_cards={base_cards[1]}
+            direction={"right"}
+            imgidx="1_2"
+          />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[2]}
+            layout={"h-[50px]"}
+            imgidx="1_3"
+          />
+          <AccumlatedBox
+            client={client}
+            base_cards={base_cards[3]}
+            direction={"left"}
+            imgidx="1_4"
+          />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[4]}
+            layout={"h-[80px]"}
+            imgidx="1_5"
+          />
+          <AccumlatedBox
+            client={client}
+            base_cards={base_cards[5]}
+            direction={"right"}
+            imgidx="1_6"
+          />
         </div>
         {/* 둘째 줄*/}
         <div className="flex flex-col gap-[10px]">
-          <ActionBox layout={"h-[120px]"} name={"농장확장"} />
-          <ActionBox layout={"h-[60px]"} name={"화합장소"} />
-          <ActionBox layout={"h-[60px]"} name={"곡식종자"} />
-          <ActionBox name={"농지"} />
-          <ActionBox name={"교습2"} />
-          <ActionBox layout={"h-[60px]"} name={"날품팔이"} />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[6]}
+            layout={"h-[120px]"}
+            imgidx="2_1"
+          />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[7]}
+            layout={"h-[70px]"}
+            imgidx="2_2"
+          />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[8]}
+            layout={"h-[50px]"}
+            imgidx="2_3"
+          />
+          <ActionBox client={client} base_cards={base_cards[9]} imgidx="2_4" />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[10]}
+            layout={"h-[80px]"}
+            imgidx="2_5"
+          />
+          <ActionBox
+            client={client}
+            base_cards={base_cards[11]}
+            layout={"h-[50px]"}
+            imgidx="2_6"
+          />
         </div>
       </div>
+
       {/* 라운드카드 이후*/}
       <div className="w-[820px] flex flex-col gap-[20px]">
         {/*  첫째 줄 */}
         <div className="flex gap-[20px]">
-          <RoundCard idx={1}></RoundCard>
-          <RoundCard idx={2}></RoundCard>
-          <RoundCard idx={5}></RoundCard>
-          <RoundCard idx={8}></RoundCard>
-          <RoundCard idx={10}></RoundCard>
-          <RoundCard idx={12}></RoundCard>
-          <RoundCard idx={14}></RoundCard>
+          <RoundCard client={client} idx={1} round_cards={round_cards[0]} />
+          <RoundCard client={client} idx={2} round_cards={round_cards[1]} />
+          <RoundCard client={client} idx={5} round_cards={round_cards[4]} />
+          <RoundCard client={client} idx={8} round_cards={round_cards[7]} />
+          <RoundCard client={client} idx={10} round_cards={round_cards[9]} />
+          <RoundCard client={client} idx={12} round_cards={round_cards[11]} />
+          <RoundCard client={client} idx={14} round_cards={round_cards[13]} />
         </div>
 
         {/*  둘째 줄 */}
         <div className="flex gap-[20px]">
           <div className="flex flex-col gap-[10px]">
-            <AccumlatedBox name={"숲"} direction={"right"} />
-            <AccumlatedBox name={"흙 채굴장"} direction={"left"} />
+            <AccumlatedBox
+              client={client}
+              base_cards={base_cards[12]}
+              direction={"right"}
+              imgidx="3_1"
+            />
+            <AccumlatedBox
+              client={client}
+              base_cards={base_cards[13]}
+              direction={"left"}
+              imgidx="3_2"
+            />
           </div>
 
-          <RoundCard idx={3}></RoundCard>
-          <RoundCard idx={6}></RoundCard>
-          <RoundCard idx={9}></RoundCard>
-          <RoundCard idx={11}></RoundCard>
-          <RoundCard idx={13}></RoundCard>
+          <RoundCard client={client} idx={3} round_cards={round_cards[2]} />
+          <RoundCard client={client} idx={6} round_cards={round_cards[5]} />
+          <RoundCard client={client} idx={9} round_cards={round_cards[8]} />
+          <RoundCard client={client} idx={11} round_cards={round_cards[10]} />
+          <RoundCard client={client} idx={13} round_cards={round_cards[12]} />
         </div>
 
         {/*  셋째 줄 */}
         <div className=" flex gap-[20px]">
           <div className="flex flex-col gap-[10px]">
-            <AccumlatedBox name={"갈대밭"} direction={"right"} />
-            <AccumlatedBox name={"낚시"} direction={"left"} />
+            <AccumlatedBox
+              client={client}
+              base_cards={base_cards[14]}
+              direction={"right"}
+              imgidx="3_3"
+            />
+            <AccumlatedBox
+              client={client}
+              base_cards={base_cards[15]}
+              direction={"left"}
+              imgidx="3_4"
+            />
           </div>
 
-          <RoundCard idx={4}></RoundCard>
-          <RoundCard idx={7}></RoundCard>
+          <RoundCard client={client} idx={4} round_cards={round_cards[3]} />
+          <RoundCard client={client} idx={7} round_cards={round_cards[6]} />
 
           <div className="w-[100px] h-[150px] flex justify-center items-center">
-            <MainFacilityCard owner={0} />
+            <MainFacilityCard owner={-1} />
           </div>
         </div>
       </div>

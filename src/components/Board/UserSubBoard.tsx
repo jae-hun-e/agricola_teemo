@@ -1,18 +1,23 @@
-import OtherPlayerButton from "@components/Button/OtherPlayerButton";
+import PlayerButton from "@components/Button/PlayerButton";
 import { cls } from "@utils/util";
 import ModalButton from "@components/Button/ModalButton";
 import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import JobCard from "@components/Card/JobCard";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IPlayData, IPlayers, IResources } from "@ITypes/play";
+import { gamePlayData } from "@atom/gamePlayData";
+import { useEffect } from "react";
+import { Simulate } from "react-dom/test-utils";
+import input = Simulate.input;
 interface Props {
-  owner: object;
+  owner: IPlayers;
   direction: string;
-  num: number;
+  idx: number;
 }
 
-const UserSubBoard = ({ owner, direction, num }: Props) => {
-  // console.log("owner", owner);
-
+const UserSubBoard = ({ direction, owner, idx }: Props) => {
+  const { first, turn } = useRecoilValue<IPlayData>(gamePlayData);
   const {
     wood,
     clay,
@@ -54,8 +59,21 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
           : "flex flex-row h-[90px] w-[688px] relative"
       )}
     >
-      {/*// @ts-ignore*/}
-      <OtherPlayerButton direction={direction} name={owner.name} />
+      <div className="relative">
+        {/* 선 플레이어*/}
+        {first === idx && (
+          <div
+            className="w-[25px] h-[35px] absolute bg-center bg-no-repeat bg-cover z-10 -top-[5px] right-[10px]"
+            style={{ backgroundImage: `url('/images/mainboard/item0.png')` }}
+          />
+        )}
+
+        <PlayerButton
+          direction={direction}
+          name={owner.name}
+          myTurn={turn === idx}
+        />
+      </div>
       <div
         className={cls(
           "absolute ",
@@ -76,14 +94,14 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
           <div className="flex flex-col items-center pt-10 gap-3">
             <p> 상대 보드</p>
             <div className="flex gap-3">
-              <UserBoard owner={owner} />
+              <UserBoard owner={idx} type="view" />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
                 <div className="text-center">
-                  [설비 카드]
-                  <FacilityCard owner={num} />
+                  {"[설비 카드]"}
+                  <FacilityCard owner={idx} />
                 </div>
                 <div className="text-center">
-                  [직업 카드]
+                  {"[직업 카드]"}
                   <JobCard />
                 </div>
               </div>
@@ -99,9 +117,9 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
             : "w-[598px] h-[90px] flex"
         )}
       >
-        {materials.map((material, idx) => (
+        {materials.map((material, i) => (
           <div
-            key={idx}
+            key={i}
             className={cls(
               "flex justify-center items-center",
               direction === "left" ? "flex-row" : "",
@@ -120,8 +138,6 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
                 direction === "bottom" ? "h-[50px] w-[46px]" : ""
               )}
             >
-              {/* TODO 실제 데이터 넣기*/}
-
               {Object.keys(material)[0] === "울타리"
                 ? `${Object.values(material)[0]}/15`
                 : Object.keys(material)[0] === "외양간"
@@ -132,15 +148,19 @@ const UserSubBoard = ({ owner, direction, num }: Props) => {
             </p>
             <p
               className={cls(
-                "flex justify-center items-center",
+                "flex justify-center items-center bg-contain bg-center bg-no-repeat",
                 direction === "left" ? "w-[40px] h-[46px]" : "",
                 direction === "right" ? "w-[40px] h-[46px]" : "",
                 direction === "top" ? "h-[40px] w-[46px]" : "",
                 direction === "bottom" ? "h-[40px] w-[46px]" : ""
               )}
-            >
-              {Object.keys(material)}
-            </p>
+              style={{
+                backgroundImage:
+                  i === 12
+                    ? `url('/images/mainboard/item${i + 1 + idx}.png')`
+                    : `url('/images/mainboard/item${i + 1}.png')`,
+              }}
+            />
           </div>
         ))}
       </div>

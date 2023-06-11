@@ -6,7 +6,7 @@ const Logout = () => {
   };
   return (
     <div
-      className="w-full h-full flex justify-center items-center"
+      className="flex items-center justify-center px-4  w-[500px] h-[80px] border-4 border-solid border-yellow-500 rounded-xl bg-yellow-200 hover:bg-yellow-400"
       onClick={onClick}
     >
       <h1>Logout</h1>
