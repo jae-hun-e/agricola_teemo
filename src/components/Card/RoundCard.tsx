@@ -38,7 +38,7 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
         backgroundImage: `url('/assets/${round_cards.card_number}.png')`,
       }}
     >
-      {round_cards.player !== null && (
+      {round_cards.player !== null ? (
         <div
           className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[30px] bottom-[10px]"
           style={{
@@ -47,6 +47,22 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
             }.png')`,
           }}
         />
+      ) : (
+        <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[25px] bottom-[10px] text-white  font-bold justify-center items-center flex">
+          <div
+            className="w-[25px] h-[30px] bg-cover"
+            style={{
+              backgroundImage: `url('/images/mainboard/${
+                // @ts-ignore
+                Object.keys(base_cards.resource)[0]
+              }.png')`,
+            }}
+          />
+          <p className="text-sm w-[20px]">
+            X{/*// @ts-ignore*/}
+            {base_cards.resource[Object.keys(base_cards.resource).join("")]}
+          </p>
+        </div>
       )}
       {roundAdditionalCardOpen.includes(round_cards.card_number) ? (
         <AdditionalModalButton
