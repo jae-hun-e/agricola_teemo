@@ -8,11 +8,16 @@ import { gamePlayData } from "@atom/gamePlayData";
 import UserBoard from "@components/Board/UserBoard";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 import {
+  openBuildRoomAdditional, openCageAdditional,
   openJobAdditional,
-  openMainFacilityAdditional,
-  openSubFacilityAdditional,
+  openMainFacilityAdditional, openPlumFarmAdditional,
+  openSubFacilityAdditional, openUseGrainAdditional,
   openUserBoardAdditional,
 } from "@constants/cardCase";
+import CardViewers from "@components/CardAction/CardViewer";
+import BuildHouseCard from "@components/CardAction/BuildHouseCard";
+import PlumFarmCard from "@components/CardAction/PlumFarm";
+import UseGrain from "@components/CardAction/UseGrain";
 
 interface Props {
   client: WebSocket | null;
@@ -23,8 +28,8 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const [additionalCard, setAdditionalCard] = useState<string | Object>("");
   const additionalBoard = useRecoilValue(sendDataUserBoard);
   const { players, primary_cards } = useRecoilValue(gamePlayData);
-  const myJobCard = players[0].cards.slice(0, 7);
-  const mySubFacilityCard = players[0].cards.slice(7);
+  const myJobCard = players[0].cards.filter((card) => card.card_number.includes("JOB"));
+  const mySubFacilityCard = players[0].cards.filter((card) => card.card_number.includes("FAC"));
 
   /*TODO test용 피니시 버튼*/
   const [finish, setFinish] = useState<boolean>(false);
@@ -32,20 +37,20 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     console.log("additionalBoard", additionalBoard);
     setFinish(!finish);
   };
-  const onClick = (data) => {
-    console.log("myJobCard", myJobCard);
-    console.log("myJobCard", myJobCard);
+  const onClick = (data: string) => {
     setAdditionalCard((pre) => {
-      return pre === "" ? data.card_number : "";
+      return pre === "" ? data : "";
     });
   };
 
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : base_cards.card_number in openUserBoardAdditional
+      : base_cards.card_number in {...openUserBoardAdditional, ...openPlumFarmAdditional, ...openBuildRoomAdditional, ...openUseGrainAdditionalomz}
       ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
-      : sendAdditionalSocket(client, base_cards, 0, additionalCard);
+      : sendAdditionalSocket(client, base_cards, 0, {
+            card_number: String(additionalCard),
+            });
   };
 
   return (
@@ -60,85 +65,39 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
     >
       {/* 직업 카드*/}
       {base_cards.card_number in openJobAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openJobAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {myJobCard.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_used
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+              <CardViewers title={openJobAdditional[base_cards.card_number]} cards={myJobCard} selectedCard={String(additionalCard)} onClick={onClick}/>
       ) : // 주요설비
       base_cards.card_number in openMainFacilityAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openMainFacilityAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {primary_cards.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.owner
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+              <CardViewers title={openMainFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} primaryCards={primary_cards} selectedCard={String(additionalCard)} onClick={onClick} isHouseFix={base_cards.card_number === "ACTION_06"}/>
       ) : //{/* 보조 설비 카드*/}
       base_cards.card_number in openSubFacilityAdditional ? (
-        <div className="flex flex-col justify-center items-center">
-          <p className="mt-[10px]">
-            {openSubFacilityAdditional[base_cards.card_number]}
-          </p>
-          <div className="relative flex justify-center">
-            <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-              {mySubFacilityCard.map((data, i) => (
-                <div
-                  key={i}
-                  className={cls(
-                    "w-[136px] h-[212px] rounded-md bg-cover bg-center bg-no-repeat",
-                    "border-solid border-red-500",
-                    data.card_number === additionalCard || data.is_used
-                      ? "border-[5px]"
-                      : ""
-                  )}
-                  style={{
-                    backgroundImage: `url('/assets/${data.card_number}.png')`,
-                  }}
-                  onClick={() => onClick(data)}
-                ></div>
-              ))}
-            </div>
+              <CardViewers title={openSubFacilityAdditional[base_cards.card_number]} cards={mySubFacilityCard} selectedCard={String(additionalCard)} onClick={onClick} isFamilyAdd={base_cards.card_number === "ACTION_07"}/>
+      ) :
+      base_cards.card_number in openPlumFarmAdditional ? (
+              <PlumFarmCard cardNumber={base_cards.card_number}/>
+          ) :
+      base_cards.card_number in openBuildRoomAdditional ? (
+          <BuildHouseCard cardNumber={base_cards.card_number}/>
+      ) :
+      base_cards.card_number in openUseGrainAdditional ? (
+              <UseGrain cardNumber={base_cards.card_number}/>
+          ) :
+      base_cards.card_number in openCageAdditional ? (
+          <div className="flex flex-col justify-center items-center">
+              <p className="flex w-full justify-center items-center text-2xl my-4">집 한번 고치기 행동 한 후에 울타리 치기</p>
+            <UserBoard owner={0} type={base_cards.card_number} />
+            {/*TODO test용 피니시 버튼*/}
+            <button
+                type="button"
+                className={cls(
+                    "w-[100px] h-[40px]  mt-[20px]",
+                    finish ? "bg-yellow-300" : "bg-demo2"
+                )}
+                onClick={onFinish}
+            >
+              finish
+            </button>
           </div>
-        </div>
       ) : (
         //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">
