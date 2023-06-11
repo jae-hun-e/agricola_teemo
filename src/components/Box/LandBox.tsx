@@ -178,7 +178,7 @@ const LandBox = ({
   );
   const isInRoom = inRoom.map((key) => {
     // @ts-ignore
-    return `${key} : ${landInfo.is_in[key]}`;
+    return `X ${landInfo.is_in[key]}`;
   });
 
   // 동물 옮기기
@@ -264,9 +264,18 @@ const LandBox = ({
       onClick={handleOnAction}
     >
       {/*농장{idx + 1}*/}
-      <div className="flex flex-col items-center h-full justify-start">
+      <div className="flex flex-col items-center h-full justify-around w-full">
         <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
-        <p>{isInRoom.join("")}</p>
+
+        <div className="w-full flex justify-center items-center">
+          <div
+            className="w-[40px] h-[30px] bg-cover"
+            style={{
+              backgroundImage: `url('/assets/${inRoom}.png')`,
+            }}
+          />
+          <p>{isInRoom}</p>
+        </div>
       </div>
     </div>
   );
