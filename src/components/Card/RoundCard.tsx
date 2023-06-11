@@ -16,17 +16,17 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
   const { round } = useRecoilValue(gamePlayData);
 
   // 비활성화
-  if (idx > round + 1)
-    return (
-      <div
-        className="w-[100px] h-[150px] bg-cover rounded-md relative"
-        style={{
-          backgroundImage: `url('/assets/ACTION_${
-            idx < 10 ? `0${idx}` : idx
-          }_FLIPPED.png')`,
-        }}
-      />
-    );
+  // if (idx > round + 1)
+  //   return (
+  //     <div
+  //       className="w-[100px] h-[150px] bg-cover rounded-md relative"
+  //       style={{
+  //         backgroundImage: `url('/assets/ACTION_${
+  //           idx < 10 ? `0${idx}` : idx
+  //         }_FLIPPED.png')`,
+  //       }}
+  //     />
+  //   );
 
   return (
     <div
@@ -49,7 +49,7 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
         />
       ) : (
         <div className="absolute w-[100px] h-[40px] bg-contain bg-center bg-no-repeat left-0 bottom-[20px] text-white  font-bold justify-center items-center flex">
-          <p className="text-xl w-[30px] text-center">
+          <p className="text-xl w-[50px] text-center">
             {round_cards.resource !== null &&
               `X ${
                 // @ts-ignore

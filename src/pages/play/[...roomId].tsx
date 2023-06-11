@@ -17,6 +17,7 @@ import { userInfo } from "@atom/auth";
 
 const Play = ({ roomId }: { roomId: number }) => {
   const [playData, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
+  console.log("playData", playData);
   const { userId } = useRecoilValue(userInfo);
   const [userList, setUserList] = useRecoilState(playIndex);
   const [playSocket, setPlaySocket] = useState<WebSocket>();
@@ -29,7 +30,7 @@ const Play = ({ roomId }: { roomId: number }) => {
       const findIdx = playerList.findIndex((id) => id === userId);
       const tmp = [0, 1, 2, 3];
       const newMapping = tmp.slice(findIdx).concat(tmp.slice(0, findIdx));
-      console.log("newMapping", newMapping);
+
       setUserList(() => newMapping);
     }
   }, [playData]);
@@ -74,8 +75,6 @@ const Play = ({ roomId }: { roomId: number }) => {
           setPlayData((pre: IPlayData) => {
             return changeValue(pre, changesData) as IPlayData;
           });
-
-          // console.log("changeData", playData);
           break;
       }
     };
@@ -97,8 +96,6 @@ const Play = ({ roomId }: { roomId: number }) => {
     userList.length === 0
   )
     return <div>loading...</div>;
-
-  console.log("userList", userList);
 
   return (
     <div className="relative">

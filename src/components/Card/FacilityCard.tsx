@@ -11,7 +11,6 @@ interface Props {
 const FacilityCard = ({ owner }: Props) => {
   const { players } = useRecoilValue(gamePlayData);
   const { userId } = useRecoilValue(userInfo);
-  console.log("FacilityCard", players[owner].name, userId);
   return (
     <ModalButton
       name={
@@ -26,7 +25,7 @@ const FacilityCard = ({ owner }: Props) => {
           ? "내 설비"
           : `Player${players[owner].name} 설비`}
         <div className="flex gap-3">
-          <MainFacilityCard owner={Number(players[owner].name)} />
+          <MainFacilityCard owner={owner} />
           <SubFacilityCard owner={owner} />
         </div>
       </div>

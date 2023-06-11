@@ -11,7 +11,6 @@ interface Props {
 const JobCard = ({ owner }: Props) => {
   const { players } = useRecoilValue(gamePlayData);
   const myJobCard = players[owner].cards.slice(0, 7);
-  console.log("idx ,JobCard", owner, myJobCard[0]);
   return (
     <ModalButton
       name="직업카드"
