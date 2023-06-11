@@ -25,19 +25,22 @@ const MainFacilityCard = ({ owner }: Props) => {
           : `Player${owner} 주요설비`}
         <div className="relative flex justify-center">
           <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
-            {primary_cards.map((data, i) => (
-              <div
-                key={i}
-                className={cls(
-                  "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
-                  "border-solid border-red-500",
-                  data.owner ? "border-[5px]" : ""
-                )}
-                style={{
-                  backgroundImage: `url('/assets/${data.card_number}.png')`,
-                }}
-              ></div>
-            ))}
+            {primary_cards.map(
+              (data, i) =>
+                data.owner === userId && (
+                  <div
+                    key={i}
+                    className={cls(
+                      "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
+                      "border-solid border-red-500",
+                      data.owner ? "border-[5px]" : ""
+                    )}
+                    style={{
+                      backgroundImage: `url('/assets/${data.card_number}.png')`,
+                    }}
+                  />
+                )
+            )}
           </div>
         </div>
       </div>

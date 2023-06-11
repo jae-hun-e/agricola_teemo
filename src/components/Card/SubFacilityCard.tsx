@@ -28,6 +28,7 @@ const SubFacilityCard = ({ owner }: Props) => {
               key={i}
               className={cls(
                 "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
+                "border-solid border-red-500",
                 data.is_used ? "border-[5px]" : ""
               )}
               style={{
