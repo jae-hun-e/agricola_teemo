@@ -74,9 +74,10 @@ const Lobby: NextPage = () => {
         // start data
         case 3:
           const {
-            result: { roomId, participant },
+            result: { participants },
           } = serverMsg.data;
-          setPlayerData(participant);
+          console.log("start data", participants);
+          // setPlayerData(participants);
           break;
       }
     };

@@ -9,13 +9,16 @@ import FacilityCard from "@components/Card/FacilityCard";
 import { useEffect, useState } from "react";
 import { IPlayData } from "@ITypes/play";
 import { connectSocket } from "@utils/socket";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import { changeValue } from "@utils/util";
+import { playIndex } from "@atom/lobbyToPlay";
 
 const Play = ({ roomId }: { roomId: number }) => {
   const [playData, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
   console.log("play data", playData);
+  const playerList = useRecoilValue(playIndex);
+  console.log("playerList", playerList);
   const [playSocket, setPlaySocket] = useState<WebSocket>();
   const [chatSocket, setChatSocket] = useState<WebSocket>();
 

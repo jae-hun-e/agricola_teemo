@@ -14,7 +14,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
 
   useEffect(() => {
     console.log("detailData", detailData);
-    detailData?.participants.length === 1 ? setFull(true) : setFull(false);
+    detailData?.participants.length === 4 ? setFull(true) : setFull(false);
   }, [detailData]);
 
   // room exit
