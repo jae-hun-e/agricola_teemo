@@ -48,8 +48,8 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
           }}
         />
       ) : (
-        <div className="absolute w-[50px] h-[40px] bg-contain bg-center bg-no-repeat left-[20px] bottom-[10px] text-white  font-bold justify-center items-center flex">
-          <p className="text-xl w-[50px]">
+        <div className="absolute w-[100px] h-[40px] bg-contain bg-center bg-no-repeat left-0 bottom-[20px] text-white  font-bold justify-center items-center flex">
+          <p className="text-xl w-[30px] text-center">
             {round_cards.resource !== null &&
               `X ${
                 // @ts-ignore
