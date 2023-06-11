@@ -3,36 +3,44 @@ import { ReactNode, useState } from "react";
 
 interface Props {
   layoutCSS?: string;
-  buttonCSS?: string;
   name?: string;
   children: ReactNode;
+  childrenCSS?: string;
+  type?: string;
+  handleAction?: () => void;
 }
 
-const ModalButton = ({ layoutCSS, buttonCSS,name, children }: Props) => {
+const ModalButton = ({
+  layoutCSS,
+  name,
+  children,
+  childrenCSS,
+  type,
+  handleAction,
+}: Props) => {
   const [showModal, setShowModal] = useState(false);
-  const handleShowModal = (idx: number) => {
-    console.log("모달 열기");
-    setShowModal(!showModal);
-  };
 
-  const handleCloseModal = (idx: number) => {
-    console.log("모달 닫기");
+  const toggleModal = () => {
+    // console.log("모달 닫기");
     setShowModal(!showModal);
   };
 
   return (
-    <div className={layoutCSS}>
+    <div className={layoutCSS} data-testid={"ModalButton"}>
       <button
-        onClick={() => handleShowModal(1)}
-        className={
-          buttonCSS
-            ? buttonCSS
-            : "flex justify-center items-center"
-        }
+        type="button"
+        onClick={toggleModal}
+        className="flex justify-center items-center w-full h-full"
       >
-          {name}
+        {name}
       </button>
-      <Modal show={showModal} handleClose={() => handleCloseModal(1)}>
+      <Modal
+        show={showModal}
+        handleClose={toggleModal}
+        childrenCSS={childrenCSS}
+        type={type}
+        handleAction={handleAction}
+      >
         {children}
       </Modal>
     </div>
