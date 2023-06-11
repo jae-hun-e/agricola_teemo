@@ -57,9 +57,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
         <div className="relative">
           <div className="w-[322px] h-[320px] flex flex-wrap mb-[20px] gap-[2px] ">
             {Array.from({ length: 4 }, (_, i) => i).map((num, idx) => {
-              // TODO 참가자 정보들 가져오기
               const user = detailData?.participants[idx];
-
               return (
                 <div
                   key={idx}
@@ -68,7 +66,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
                   {user ? (
                     <ModalButton
                       layoutCSS="w-[160px] h-[160px]  flex justify-center items-center cursor-pointer hover:bg-yellow-200 bg-demo2 cursor-pointer"
-                      name={userId + ""}
+                      name={user + ""}
                     >
                       <div className="flex flex-col ">
                         <div>user 개인 정보들</div>

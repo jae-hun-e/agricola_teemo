@@ -14,6 +14,7 @@ const Header = () => {
       setIsAuth(true);
       const payload = Buffer.from(auth.split(".")[1], "base64");
       const info = JSON.parse(payload.toString());
+      console.log("info", info);
       setInfo((pre) => ({ ...pre, userId: info.user_id }));
     } else {
       setIsAuth(false);
