@@ -51,16 +51,18 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
         <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[25px] bottom-[10px] text-white  font-bold justify-center items-center flex">
           <div
             className="w-[25px] h-[30px] bg-cover"
-            style={{
-              backgroundImage: `url('/images/mainboard/${
-                // @ts-ignore
-                Object.keys(base_cards.resource)[0]
-              }.png')`,
-            }}
+            // style={{
+            //   backgroundImage: `url('/images/mainboard/${
+            //     Object.keys(round_cards.resource)[0]
+            //   }.png')`,
+            // }}
           />
-          <p className="text-sm w-[20px]">
-            X{/*// @ts-ignore*/}
-            {base_cards.resource[Object.keys(base_cards.resource).join("")]}
+          <p className="text-xl w-[20px]">
+            {round_cards.resource !== null &&
+              `X ${
+                // @ts-ignore
+                round_cards.resource[Object.keys(round_cards.resource).join("")]
+              }`}
           </p>
         </div>
       )}
