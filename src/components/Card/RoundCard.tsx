@@ -14,19 +14,19 @@ interface Props {
 }
 const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
   const { round } = useRecoilValue(gamePlayData);
-  console.log(round_cards);
+
   // 비활성화
-  // if (idx > round + 1)
-  //   return (
-  //     <div
-  //       className="w-[100px] h-[150px] bg-cover rounded-md relative"
-  //       style={{
-  //         backgroundImage: `url('/assets/ACTION_${
-  //           idx < 10 ? `0${idx}` : idx
-  //         }_FLIPPED.png')`,
-  //       }}
-  //     />
-  //   );
+  if (idx > round + 1)
+    return (
+      <div
+        className="w-[100px] h-[150px] bg-cover rounded-md relative"
+        style={{
+          backgroundImage: `url('/assets/ACTION_${
+            idx < 10 ? `0${idx}` : idx
+          }_FLIPPED.png')`,
+        }}
+      />
+    );
 
   return (
     <div
