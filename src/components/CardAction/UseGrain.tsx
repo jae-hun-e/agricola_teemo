@@ -13,6 +13,7 @@ const UseGrainCard = ({cardNumber}: UseGrainCardProps) => {
     const [isLeft, setIsLeft] = useState<boolean | undefined>(undefined);
     const [isSow, setIsSow] = useState<boolean>(false);
     const [isBake, setIsBake] = useState<boolean>(false);
+    const [isGrain, setIsGrain] = useState<boolean>(true);
     const [customSendData, setCustomSendData] = useState<any>({});
     const [sendData, setSendData] = useRecoilState(sendDataUserBoard);
 
@@ -23,12 +24,12 @@ const UseGrainCard = ({cardNumber}: UseGrainCardProps) => {
     }, [])
 
     useEffect(() => {
-        setSendData(customSendData)
+        setSendData((prev) => ({...prev, ...customSendData, seed: isGrain ? "grain" : "vegetable"}))
     }, [isSow, isBake])
 
     useEffect(() => {
         if (sendData) {
-            setCustomSendData((prev) => ({...prev, ...sendData}))
+            setCustomSendData((prev) => ({...prev, ...sendData}));
         }
     }, [sendData])
 
@@ -72,13 +73,27 @@ const UseGrainCard = ({cardNumber}: UseGrainCardProps) => {
         </div>
         <div className="relative flex justify-center">
             {isLeft ? (
-                <UserBoard owner={0} type={"BASE_07"} />
+                <UserBoard owner={0} type={"ACTION_01"} />
             ) : (<div className="flex justify-center items-center h-[200px] w-[600px] text-lg">
                 현재 게임 내 모든 화로들이 고장이 나서 사용할 수 없는 기능입니다.&nbsp;
                 최대한 빠른 시일 내에 수정하도록 하겠습니다.
             </div>)}
         </div>
         <div className="flex flex-row space-x-5">
+            {
+                isLeft && (
+                    <div>
+                        <button className={cls(
+                            "w-[100px] h-[40px]  mt-[20px]",
+                            isGrain ? "bg-yellow-500" : "hidden"
+                        )} onClick={() => setIsGrain(prev => !prev)}>곡식</button>
+                        <button className={cls(
+                            "w-[100px] h-[40px]  mt-[20px]",
+                            !isGrain ? "bg-orange-400" : "hidden"
+                        )}  onClick={() => setIsGrain(prev => !prev)}>채소</button>
+                    </div>
+                )
+            }
             {isLeft && <button
                 type="button"
                 className={cls(

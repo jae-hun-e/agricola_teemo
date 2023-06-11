@@ -46,7 +46,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : base_cards.card_number in {...openUserBoardAdditional, ...openPlumFarmAdditional, ...openBuildRoomAdditional}
+      : base_cards.card_number in {...openUserBoardAdditional, ...openPlumFarmAdditional, ...openBuildRoomAdditional, ...openUseGrainAdditionalomz}
       ? sendAdditionalSocket(client, base_cards, 0, additionalBoard)
       : sendAdditionalSocket(client, base_cards, 0, {
             card_number: String(additionalCard),

@@ -37,9 +37,6 @@ export const openUserBoardAdditional = {
   ACTION_04: "양 시장",
   ACTION_08: "돼지 시장",
   ACTION_11: "소 시장",
-
-  // 씨뿌리기
-  ACTION_01: "곡식 활용",
 };
 
 export const openUseGrainAdditional = {
