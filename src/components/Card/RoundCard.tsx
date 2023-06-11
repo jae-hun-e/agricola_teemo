@@ -5,6 +5,7 @@ import ActionModalButton from "@components/Button/ActionModalButton";
 import { roundAdditionalCardOpen } from "@constants/cardCase";
 import { gamePlayData } from "@atom/gamePlayData";
 import { useRecoilValue } from "recoil";
+import Image from "next/image";
 
 interface Props {
   client: WebSocket | null;
@@ -12,8 +13,13 @@ interface Props {
   round_cards: IRoundCards;
   idx: number;
 }
+
 const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
   const { round } = useRecoilValue(gamePlayData);
+  const leftTop: any = Object.values(round_cards.additional_action)[0];
+  const leftBottom: any = Object.values(round_cards.additional_action)[1];
+  const rightTop: any = Object.values(round_cards.additional_action)[2];
+  const rightBottom: any = Object.values(round_cards.additional_action)[3];
 
   // 비활성화
   if (idx > round + 1)
@@ -25,7 +31,104 @@ const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
             idx < 10 ? `0${idx}` : idx
           }_FLIPPED.png')`,
         }}
-      />
+      >
+        {Object.entries(leftTop).map((item, idx) => {
+          if (item[1] !== 0) {
+            return (
+              <div
+                key={idx}
+                className="absolute -left-1"
+                style={{
+                  top: idx * 2,
+                  zIndex: 20 + idx,
+                }}
+              >
+                <div className="flex flex-row gap-0.5">
+                  <Image
+                    src={`/images/mainboard/item${idx + 1}.png`}
+                    alt={"leftTop"}
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-white text-xs">X{item[1] + ""}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
+        {Object.entries(leftBottom).map((item, idx) => {
+          if (item[1] !== 0) {
+            return (
+              <div
+                key={idx}
+                className="absolute -left-1"
+                style={{
+                  bottom: idx * 2,
+                  zIndex: 20 + idx,
+                }}
+              >
+                <div className="flex flex-row gap-0.5">
+                  <Image
+                    src={`/images/mainboard/item${idx + 1}.png`}
+                    alt={"leftTop"}
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-white text-xs">X{item[1] + ""}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
+        {Object.entries(rightTop).map((item, idx) => {
+          if (item[1] !== 0) {
+            return (
+              <div
+                key={idx}
+                className="absolute -right-1"
+                style={{
+                  top: idx * 2,
+                  zIndex: 20 + idx,
+                }}
+              >
+                <div className="flex flex-row gap-0.5">
+                  <Image
+                    src={`/images/mainboard/item${idx + 1}.png`}
+                    alt={"leftTop"}
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-white text-xs">X{item[1] + ""}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
+        {Object.entries(rightBottom).map((item, idx) => {
+          if (item[1] !== 0) {
+            return (
+              <div
+                key={idx}
+                className="absolute -right-1"
+                style={{
+                  bottom: idx * 2,
+                  zIndex: 20 + idx,
+                }}
+              >
+                <div className="flex flex-row gap-0.5">
+                  <Image
+                    src={`/images/mainboard/item${idx + 1}.png`}
+                    alt={"leftTop"}
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-white text-xs">X{item[1] + ""}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
     );
 
   return (
