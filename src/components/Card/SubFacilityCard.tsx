@@ -2,6 +2,7 @@ import ModalButton from "@components/Button/ModalButton";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import { userInfo } from "@atom/auth";
+import { cls } from "@utils/util";
 interface Props {
   owner: number;
 }
@@ -25,7 +26,10 @@ const SubFacilityCard = ({ owner }: Props) => {
           {mySubFacilityCard.map((data, i) => (
             <div
               key={i}
-              className="w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat"
+              className={cls(
+                "w-[136px] h-[212px] bg-cover rounded-md bg-center bg-no-repeat",
+                data.is_used ? "border-[5px]" : ""
+              )}
               style={{
                 backgroundImage: `url('/assets/${data.card_number}.png')`,
               }}
