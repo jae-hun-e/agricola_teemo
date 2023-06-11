@@ -131,7 +131,7 @@ const Play = ({ roomId }: { roomId: number }) => {
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
-              <ChatBox userId={roomId} client={chatSocket} />
+              <ChatBox userId={userId} client={chatSocket} />
             </div>
           </div>
         </div>

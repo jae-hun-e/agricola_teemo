@@ -16,6 +16,7 @@ import {
 } from "@constants/cardCase";
 import { IFields } from "@ITypes/play";
 import { sendChangeSocket } from "@utils/socket";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface Prop {
   client?: WebSocket;
@@ -42,7 +43,8 @@ const LandBox = ({
 }: Prop) => {
   // @ts-ignore
   const { players } = useRecoilValue(gamePlayData);
-  const limit = players[0].resource.wood as number;
+  const userList = useRecoilValue(playIndex);
+  const limit = players[userList[0]].resource.wood as number;
   const setAdditional = useSetRecoilState(sendDataUserBoard);
   const [changeAnimals, setChangeAnimals] = useRecoilState(
     changeAnimalsUserBoard

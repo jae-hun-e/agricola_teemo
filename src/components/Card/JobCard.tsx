@@ -2,10 +2,12 @@ import ModalButton from "@components/Button/ModalButton";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import { cls } from "@utils/util";
+import { playIndex } from "@atom/lobbyToPlay";
 
 const JobCard = () => {
   const { players } = useRecoilValue(gamePlayData);
-  const myJobCard = players[0].cards.slice(0, 7);
+  const userList = useRecoilValue(playIndex);
+  const myJobCard = players[userList[0]].cards.slice(0, 7);
   return (
     <ModalButton
       name="직업카드"

@@ -32,11 +32,12 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const [additionalCard, setAdditionalCard] = useState<string | Object>("");
   const additionalBoard = useRecoilValue(sendDataUserBoard);
   const { players, primary_cards } = useRecoilValue(gamePlayData);
-  const userId = useRecoilValue(playIndex);
-  const myJobCard = players[userId[0]].cards.filter((card) =>
+  const userList = useRecoilValue(playIndex);
+  console.log("userList", userList);
+  const myJobCard = players[userList[0]].cards.filter((card) =>
     card.card_number.includes("JOB")
   );
-  const mySubFacilityCard = players[userId[0]].cards.filter((card) =>
+  const mySubFacilityCard = players[userList[0]].cards.filter((card) =>
     card.card_number.includes("FAC")
   );
 
@@ -62,8 +63,8 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
           ...openBuildRoomAdditional,
           ...openUseGrainAdditional,
         }
-      ? sendAdditionalSocket(client, base_cards, userId[0], additionalBoard)
-      : sendAdditionalSocket(client, base_cards, userId[0], {
+      ? sendAdditionalSocket(client, base_cards, userList[0], additionalBoard)
+      : sendAdditionalSocket(client, base_cards, userList[0], {
           card_number: String(additionalCard),
         });
   };
@@ -119,7 +120,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
           <p className="flex w-full justify-center items-center text-2xl my-4">
             집 한번 고치기 행동 한 후에 울타리 치기
           </p>
-          <UserBoard owner={0} type={base_cards.card_number} />
+          <UserBoard owner={userList[0]} type={base_cards.card_number} />
           {/*TODO test용 피니시 버튼*/}
           <button
             type="button"
@@ -139,7 +140,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
             {/*// @ts-ignore*/}
             {openUserBoardAdditional[base_cards.card_number]}
           </p>
-          <UserBoard owner={0} type={base_cards.card_number} />
+          <UserBoard owner={userList[0]} type={base_cards.card_number} />
           {/*TODO test용 피니시 버튼*/}
           <button
             type="button"
