@@ -24,9 +24,14 @@ const Header = () => {
     <div className="w-[1280px] h-[80px] flex justify-between items-center">
       <Link
         href="/"
-        className="w-[120px] h-full flex justify-center items-center bg-demo "
+        className="w-[120px] h-full flex justify-center items-center "
       >
-        <p>Logo</p>
+        <p
+          className="w-full h-full bg-no-repeat bg-contain bg-center"
+          style={{
+            backgroundImage: `url('/images/teemo.png')`,
+          }}
+        ></p>
       </Link>
       <ModalButton
         name="Mypage"

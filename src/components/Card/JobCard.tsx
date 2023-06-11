@@ -13,8 +13,8 @@ const JobCard = ({ owner }: Props) => {
   const myJobCard = players[owner].cards.slice(0, 7);
   return (
     <ModalButton
-      name="직업카드"
-      layoutCSS="bg-demo h-[80px] w-[80px] flex justify-center"
+      // name="직업카드"
+      layoutCSS="bg-[url('/assets/Job_Flipped.png')] bg-cover bg-center bg-no-repeat rounded-xl h-[81px] w-[80px] flex justify-center"
       childrenCSS="w-[700px] h-[600px]"
     >
       <div className="flex flex-col justify-center items-center">

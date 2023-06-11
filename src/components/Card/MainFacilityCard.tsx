@@ -14,7 +14,7 @@ const MainFacilityCard = ({ owner }: Props) => {
   return (
     <ModalButton
       name="주요 설비"
-      layoutCSS=" flex justify-center w-[80px] h-[80px] bg-demo cursor-pointer"
+      layoutCSS=" flex justify-center w-[90px] h-[135px] bg-[url('/assets/MainFacility_flipped.png')] bg-cover cursor-pointer"
       childrenCSS="w-[700px] h-[600px]"
     >
       <div className="flex flex-col justify-center items-center text-xl">

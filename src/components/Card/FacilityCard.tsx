@@ -13,12 +13,12 @@ const FacilityCard = ({ owner }: Props) => {
   const { userId } = useRecoilValue(userInfo);
   return (
     <ModalButton
-      name={
-        Number(players[owner].name) === userId
-          ? "내 설비"
-          : `Player${players[owner].name} 설비`
-      }
-      layoutCSS="bg-demo h-[80px] w-[80px] flex justify-center"
+      // name={
+      //   Number(players[owner].name) === userId
+      //     ? "내 설비"
+      //     : `Player${players[owner].name} 설비`
+      // }
+      layoutCSS="bg-[url('/assets/Facility_Flipped.png')] bg-cover rounded-xl bg-center bg-no-repeat h-[81px] w-[80px] flex justify-center"
     >
       <div className="flex flex-col justify-center items-center gap-3">
         {Number(players[owner].name) === userId
