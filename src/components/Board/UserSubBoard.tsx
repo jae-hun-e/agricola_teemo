@@ -17,8 +17,7 @@ interface Props {
 }
 
 const UserSubBoard = ({ direction, owner, idx }: Props) => {
-  const { players, first, turn } = useRecoilValue<IPlayData>(gamePlayData);
-
+  const { first, turn } = useRecoilValue<IPlayData>(gamePlayData);
   const {
     wood,
     clay,

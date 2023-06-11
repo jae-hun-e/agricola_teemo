@@ -73,7 +73,6 @@ const ChatBox = ({ userId, client }: Props) => {
 
   // 메세지 받기
   useEffect(() => {
-    console.log("======================rerender======================");
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
       const newChat: IMsg = {

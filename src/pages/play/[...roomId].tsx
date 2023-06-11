@@ -9,18 +9,31 @@ import FacilityCard from "@components/Card/FacilityCard";
 import { useEffect, useState } from "react";
 import { IPlayData } from "@ITypes/play";
 import { connectSocket } from "@utils/socket";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import { changeValue } from "@utils/util";
 import { playIndex } from "@atom/lobbyToPlay";
+import { userInfo } from "@atom/auth";
 
 const Play = ({ roomId }: { roomId: number }) => {
   const [playData, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
-  console.log("play data", playData);
-  const playerList = useRecoilValue(playIndex);
-  console.log("playerList", playerList);
+  const { userId } = useRecoilValue(userInfo);
+  const [userList, setUserList] = useRecoilState(playIndex);
   const [playSocket, setPlaySocket] = useState<WebSocket>();
   const [chatSocket, setChatSocket] = useState<WebSocket>();
+
+  // userData mapping
+  useEffect(() => {
+    console.log("play data", playData);
+    if ("players" in playData) {
+      const playerList = playData.players.map((player) => Number(player.name));
+      const findIdx = playerList.findIndex((id) => id === userId);
+      const tmp = [0, 1, 2, 3];
+      const newMapping = tmp.slice(findIdx).concat(tmp.slice(0, findIdx));
+      console.log("newMapping", newMapping);
+      setUserList(() => newMapping);
+    }
+  }, [playData]);
 
   useEffect((message?: any) => {
     // socket
@@ -78,17 +91,28 @@ const Play = ({ roomId }: { roomId: number }) => {
     };
   }, []);
 
-  if (chatSocket === undefined || playSocket === undefined)
+  if (
+    chatSocket === undefined ||
+    playSocket === undefined ||
+    !("turn" in playData) ||
+    userList.length === 0
+  )
     return <div>loading...</div>;
-
-  if (!("turn" in playData)) return <div>loading...</div>;
 
   return (
     <div className="relative">
       <div className="flex gap-[20px] bg-[#b3cd31]">
-        <UserSubBoard direction={"left"} owner={playData.players[1]} idx={1} />
+        <UserSubBoard
+          direction={"left"}
+          owner={playData.players[userList[1]]}
+          idx={userList[1]}
+        />
         <div className="flex flex-col items-center bg-[#b3cd31]">
-          <UserSubBoard direction={"top"} owner={playData.players[2]} idx={2} />
+          <UserSubBoard
+            direction={"top"}
+            owner={playData.players[userList[2]]}
+            idx={userList[2]}
+          />
 
           {/* Main Map*/}
           <MainMapBoard client={playSocket} />
@@ -98,11 +122,11 @@ const Play = ({ roomId }: { roomId: number }) => {
             <ScoreBoard />
             <UserSubBoard
               direction={"bottom"}
-              owner={playData.players[0]}
-              idx={0}
+              owner={playData.players[userList[0]]}
+              idx={userList[0]}
             />
             <div className="flex gap-[15px]">
-              <FacilityCard owner={0} />
+              <FacilityCard owner={userList[0]} />
               <JobCard />
             </div>
             <div className="absolute right-0 -top-11">
@@ -110,12 +134,16 @@ const Play = ({ roomId }: { roomId: number }) => {
             </div>
           </div>
         </div>
-        <UserSubBoard direction={"right"} owner={playData.players[3]} idx={3} />
+        <UserSubBoard
+          direction={"right"}
+          owner={playData.players[userList[3]]}
+          idx={userList[3]}
+        />
       </div>
 
       {/* User main Board*/}
       <div className="absolute left-[338.5px]">
-        <UserBoard owner={0} type="my" client={playSocket} />
+        <UserBoard owner={userList[0]} type="my" client={playSocket} />
       </div>
     </div>
   );

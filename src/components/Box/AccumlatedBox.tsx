@@ -1,6 +1,8 @@
 import { IBaseCards } from "@ITypes/play";
 import ModalButton from "@components/Button/ModalButton";
 import { sendActionSocket } from "@utils/socket";
+import { useRecoilValue } from "recoil";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface Props {
   client: WebSocket | null;
@@ -11,10 +13,11 @@ interface Props {
 
 // 쌓이는 개수 표시해야함
 const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
+  const userId = useRecoilValue(playIndex);
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : sendActionSocket(client, base_cards, 0);
+      : sendActionSocket(client, base_cards, userId[0]);
 
     console.log("user action_", imgidx);
   };

@@ -5,6 +5,7 @@ import { sendActionSocket, sendAdditionalSocket } from "@utils/socket";
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { IBaseCards } from "@ITypes/play";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface Props {
   client: WebSocket | null;
@@ -14,10 +15,11 @@ interface Props {
 }
 
 const ActionModalButton = ({ client, base_cards, layout, imgidx }: Props) => {
+  const userId = useRecoilValue(playIndex);
   const handleAction = () => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
-      : sendActionSocket(client, base_cards, 0);
+      : sendActionSocket(client, base_cards, userId[0]);
   };
   return (
     <ModalButton
