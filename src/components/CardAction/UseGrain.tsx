@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { cls } from "@utils/util";
 import UserBoard from "@components/Board/UserBoard";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface UseGrainCardProps {
   cardNumber: string;
@@ -16,7 +17,7 @@ const UseGrainCard = ({ cardNumber }: UseGrainCardProps) => {
   const [isGrain, setIsGrain] = useState<boolean>(true);
   const [customSendData, setCustomSendData] = useState<any>({});
   const [sendData, setSendData] = useRecoilState(sendDataUserBoard);
-
+  const userList = useRecoilValue(playIndex);
   useEffect(() => {
     setIsLeft(undefined);
   }, []);
@@ -105,7 +106,7 @@ const UseGrainCard = ({ cardNumber }: UseGrainCardProps) => {
       </div>
       <div className="relative flex justify-center">
         {isLeft ? (
-          <UserBoard owner={0} type={"ACTION_01"} />
+          <UserBoard owner={userList[0]} type={"ACTION_01"} />
         ) : (
           <div className="flex justify-center items-center h-[200px] w-[600px] text-lg">
             현재 게임 내 모든 화로들이 고장이 나서 사용할 수 없는
