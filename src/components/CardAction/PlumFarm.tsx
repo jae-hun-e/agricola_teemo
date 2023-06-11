@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { cls } from "@utils/util";
 import UserBoard from "@components/Board/UserBoard";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface PlumFarmCardProps {
   cardNumber: string;
@@ -16,7 +17,7 @@ const PlumFarmCard = ({ cardNumber }: PlumFarmCardProps) => {
   const [isGrain, setIsGrain] = useState<boolean>(true);
   const [customSendData, setCustomSendData] = useState<any>({});
   const [sendData, setSendData] = useRecoilState(sendDataUserBoard);
-
+  const userList = useRecoilValue(playIndex);
   useEffect(() => {
     setIsLeft(undefined);
   }, []);
@@ -109,9 +110,9 @@ const PlumFarmCard = ({ cardNumber }: PlumFarmCardProps) => {
       </div>
       <div className="relative flex justify-center">
         {isLeft ? (
-          <UserBoard owner={0} type="BASE_10" />
+          <UserBoard owner={userList[0]} type="BASE_10" />
         ) : (
-          <UserBoard owner={0} type="ACTION_01" />
+          <UserBoard owner={userList[0]} type="ACTION_01" />
         )}
       </div>
       <div className="flex justify-center items-center flex-row space-x-5">
