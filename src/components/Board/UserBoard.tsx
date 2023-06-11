@@ -77,7 +77,6 @@ const UserBoard = ({ owner, type, client }: Props) => {
         ))}
 
         {/* 둘째 줄*/}
-
         <RoomBox idx={14} />
 
         {[2, 3, 4, 5].map((i) => (
@@ -99,7 +98,6 @@ const UserBoard = ({ owner, type, client }: Props) => {
         ))}
 
         {/*셋째 줄*/}
-
         <RoomBox idx={15} />
 
         {[2, 3, 4, 5].map((i) => (
@@ -120,7 +118,7 @@ const UserBoard = ({ owner, type, client }: Props) => {
           </div>
         ))}
       </div>
-      {owner !== 0 && (
+      {type === "view" && (
         <div className="w-[598px] h-[368px]  flex flex-wrap justify-center p-[4px] gap-[15px] absolute top-0 left-0" />
       )}
     </div>
