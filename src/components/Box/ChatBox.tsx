@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { connectSocket } from "@utils/socket";
-import { webpack } from "next/dist/compiled/webpack/webpack";
 
 interface IMsg {
   idx: number;
@@ -20,7 +18,7 @@ const ChatBox = ({ userId, client }: Props) => {
   const [lastViewChatIdx, setLastViewChatIdx] = useState<number[]>([0, 0]);
   const Chat = useRef<HTMLDivElement>(null);
   const chatView = useRef<HTMLDivElement>(null);
-  const { register, handleSubmit, reset, getFieldState } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   // 채팅창 열기
   const toggleChatBot = () => {

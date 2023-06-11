@@ -31,7 +31,7 @@ const PlumFarmCard = ({ cardNumber }: PlumFarmCardProps) => {
 
   useEffect(() => {
     if (sendData) {
-      setCustomSendData((prev) => ({ ...prev, ...sendData }));
+      setCustomSendData((prev: any) => ({ ...prev, ...sendData }));
     }
   }, [sendData]);
 

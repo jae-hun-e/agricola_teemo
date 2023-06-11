@@ -3,10 +3,10 @@ import RoomBox from "@components/Box/RoomBox";
 import { useEffect, useState } from "react";
 import { cls } from "@utils/util";
 import { gamePlayData } from "@atom/gamePlayData";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { IFields } from "@ITypes/play";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
 import { fenceType } from "@constants/cardCase";
+import { IFences } from "@ITypes/play";
 
 interface Props {
   owner: number;
@@ -45,7 +45,7 @@ const UserBoard = ({ owner, type, client }: Props) => {
     // SocketSendData
     if (fenceType.includes(type))
       setAdditional(() => {
-        const sendFence = {};
+        const sendFence: IFences = {};
         fenceList.forEach((fence, i) => {
           if (fence.length > 0) {
             sendFence[i] = fence;

@@ -1,8 +1,7 @@
 import SocialLogin from "@components/Share/Login";
-import { useEffect } from "react";
 import Logout from "@components/Share/Logout";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { auth, userInfo } from "@atom/auth";
+import { useRecoilValue } from "recoil";
+import { auth } from "@atom/auth";
 
 const LoginButton = () => {
   const isAuth = useRecoilValue(auth);

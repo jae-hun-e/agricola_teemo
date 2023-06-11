@@ -1,16 +1,7 @@
-import { atom, RecoilState, selector } from "recoil";
+import { atom } from "recoil";
 import { IPlayData } from "@ITypes/play";
-import { playDataInit } from "@constants/demoData";
 
-export const gamePlayData: RecoilState<IPlayData | object> = atom({
+export const gamePlayData = atom<IPlayData>({
   key: "playInitData",
-  default: {},
-});
-
-export const newData = selector({
-  key: "userSubBoardData",
-  get: async ({ get }) => {
-    const response = await get(gamePlayData);
-    return response;
-  },
+  default: {} as IPlayData,
 });

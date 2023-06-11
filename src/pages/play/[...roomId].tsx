@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps } from "next";
 import MainMapBoard from "@components/Board/MainMapBoard";
 import UserSubBoard from "@components/Board/UserSubBoard";
 import JobCard from "@components/Card/JobCard";
@@ -24,7 +24,6 @@ const Play = ({ roomId }: { roomId: number }) => {
 
   // userData mapping
   useEffect(() => {
-    console.log("play data", playData);
     if ("players" in playData) {
       const playerList = playData.players.map((player) => Number(player.name));
       const findIdx = playerList.findIndex((id) => id === userId);
@@ -99,7 +98,7 @@ const Play = ({ roomId }: { roomId: number }) => {
   )
     return <div>loading...</div>;
 
-  // console.log("userList", userList);
+  console.log("userList", userList);
 
   return (
     <div className="relative">

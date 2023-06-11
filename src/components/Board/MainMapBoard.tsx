@@ -2,13 +2,12 @@ import RoundCard from "@components/Card/RoundCard";
 import AccumlatedBox from "@components/Box/AccumlatedBox";
 import MainFacilityCard from "@components/Card/MainFacilityCard";
 import ActionBox from "@components/Box/ActionBox";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
 import { IPlayData } from "@ITypes/play";
 
 const MainMapBoard = ({ client }: { client: WebSocket | null }) => {
-  const [{ base_cards, round_cards }, setPlayData] =
-    useRecoilState<IPlayData>(gamePlayData);
+  const { base_cards, round_cards } = useRecoilValue<IPlayData>(gamePlayData);
 
   return (
     <div className="w-[1060px] h-[490px] flex gap-[10px] mt-[20px] mb-[20px] text-xs bg-[url('/images/mainboard/bg.png')] bg-cover">

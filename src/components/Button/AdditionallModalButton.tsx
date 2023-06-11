@@ -81,6 +81,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
       {/* 직업 카드*/}
       {base_cards.card_number in openJobAdditional ? (
         <CardViewers
+          // @ts-ignore
           title={openJobAdditional[base_cards.card_number]}
           cards={myJobCard}
           selectedCard={String(additionalCard)}
@@ -89,6 +90,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
       ) : // 주요설비
       base_cards.card_number in openMainFacilityAdditional ? (
         <CardViewers
+          // @ts-ignore
           title={openMainFacilityAdditional[base_cards.card_number]}
           cards={mySubFacilityCard}
           primaryCards={primary_cards}
@@ -99,6 +101,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
       ) : //{/* 보조 설비 카드*/}
       base_cards.card_number in openSubFacilityAdditional ? (
         <CardViewers
+          // @ts-ignore
           title={openSubFacilityAdditional[base_cards.card_number]}
           cards={mySubFacilityCard}
           selectedCard={String(additionalCard)}
@@ -133,6 +136,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
         //{/* user board 카드*/}
         <div className="flex flex-col justify-center items-center">
           <p className="mt-[10px]">
+            {/*// @ts-ignore*/}
             {openUserBoardAdditional[base_cards.card_number]}
           </p>
           <UserBoard owner={0} type={base_cards.card_number} />

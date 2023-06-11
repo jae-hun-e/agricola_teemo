@@ -21,6 +21,7 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
 
     console.log("user action_", imgidx);
   };
+
   return (
     <div className="w-[100px] h-[70px]">
       {direction === "right" ? (
@@ -45,17 +46,19 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
               }}
             />
           ) : (
-            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[5px] top-[15px] text-white  font-bold flex justify-center items-center flex">
+            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat left-[5px] top-[15px] text-white  font-bold justify-center items-center flex">
               <div
                 className="w-[25px] h-[30px] bg-cover"
                 style={{
                   backgroundImage: `url('/images/mainboard/${
+                    // @ts-ignore
                     Object.keys(base_cards.resource)[0]
                   }.png')`,
                 }}
               />
               <p className="text-sm w-[20px]">
-                X{base_cards.resource[Object.keys(base_cards.resource)[0]]}
+                X{/*// @ts-ignore*/}
+                {base_cards.resource[Object.keys(base_cards.resource).join("")]}
               </p>
             </div>
           )}
@@ -99,8 +102,9 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
               }}
             />
           ) : (
-            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px] text-white  font-bold flex justify-center items-center flex">
+            <div className="absolute w-[40px] h-[40px] bg-contain bg-center bg-no-repeat right-[5px] top-[15px] text-white  font-bold justify-center items-center flex">
               <p className="text-sm w-[20px]">
+                {/*// @ts-ignore*/}
                 {base_cards.resource[Object.keys(base_cards.resource)[0]]}X
               </p>
 

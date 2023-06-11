@@ -42,7 +42,7 @@ export function sendAdditionalSocket(
 }
 
 export function sendChangeSocket(
-  socket: {},
+  socket: WebSocket | null,
   userId: number,
   additional: { positions: number[]; animals: string }
 ) {

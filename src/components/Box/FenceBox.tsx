@@ -1,5 +1,5 @@
 import { cls } from "@utils/util";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   direction: string;

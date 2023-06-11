@@ -14,6 +14,6 @@ export const changeAnimalsUserBoard: RecoilState<IChangeAnimals> = atom({
   key: "changeAnimalsUserBoard",
   default: {
     animals: "",
-    positions: [],
+    positions: [] as number[],
   },
 });

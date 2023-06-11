@@ -1,4 +1,3 @@
-import { openJobAdditional } from "@constants/cardCase";
 import { cls } from "@utils/util";
 import { ICards, IPrimaryCards } from "@ITypes/play";
 import { useEffect, useState } from "react";

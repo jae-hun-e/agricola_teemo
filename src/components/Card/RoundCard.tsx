@@ -3,6 +3,8 @@ import { IRoundCards } from "@ITypes/play";
 import AdditionalModalButton from "@components/Button/AdditionallModalButton";
 import ActionModalButton from "@components/Button/ActionModalButton";
 import { roundAdditionalCardOpen } from "@constants/cardCase";
+import { gamePlayData } from "@atom/gamePlayData";
+import { useRecoilValue } from "recoil";
 
 interface Props {
   client: WebSocket | null;
@@ -10,19 +12,21 @@ interface Props {
   round_cards: IRoundCards;
   idx: number;
 }
-const RoundCard = ({ client, layoutCSS, round_cards }: Props) => {
+const RoundCard = ({ client, layoutCSS, round_cards, idx }: Props) => {
+  const { round } = useRecoilValue(gamePlayData);
+
   // 비활성화
-  // if (idx > round + 1)
-  //   return (
-  //     <div
-  //       className="w-[100px] h-[150px] bg-cover rounded-md relative"
-  //       style={{
-  //         backgroundImage: `url('/assets/ACTION_${
-  //           idx < 10 ? `0${idx}` : idx
-  //         }_FLIPPED.png')`,
-  //       }}
-  //     />
-  //   );
+  if (idx > round + 1)
+    return (
+      <div
+        className="w-[100px] h-[150px] bg-cover rounded-md relative"
+        style={{
+          backgroundImage: `url('/assets/ACTION_${
+            idx < 10 ? `0${idx}` : idx
+          }_FLIPPED.png')`,
+        }}
+      />
+    );
 
   return (
     <div

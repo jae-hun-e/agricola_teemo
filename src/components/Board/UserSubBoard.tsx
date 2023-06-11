@@ -4,12 +4,9 @@ import ModalButton from "@components/Button/ModalButton";
 import UserBoard from "@components/Board/UserBoard";
 import FacilityCard from "@components/Card/FacilityCard";
 import JobCard from "@components/Card/JobCard";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { IPlayData, IPlayers, IResources } from "@ITypes/play";
+import { useRecoilValue } from "recoil";
+import { IPlayData, IPlayers } from "@ITypes/play";
 import { gamePlayData } from "@atom/gamePlayData";
-import { useEffect } from "react";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
 interface Props {
   owner: IPlayers;
   direction: string;
@@ -32,7 +29,6 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
     fence,
     barn,
     family,
-    // @ts-ignore
   } = owner.resource;
 
   const materials = [
@@ -47,7 +43,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
     { 소: cattle },
     { 음식: food },
     { 울타리: fence },
-    { 외양간: family },
+    { 외양간: barn },
     { 가족: family },
   ];
   return (

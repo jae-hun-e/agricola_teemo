@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { gamePlayData } from "@atom/gamePlayData";
-import { sendActionSocket, sendAdditionalSocket } from "@utils/socket";
+import { sendActionSocket } from "@utils/socket";
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { IBaseCards } from "@ITypes/play";

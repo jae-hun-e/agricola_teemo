@@ -7,7 +7,8 @@ import {
 } from "@atom/sendUserBoardChangeData";
 import { gamePlayData } from "@atom/gamePlayData";
 import {
-  animalsType, barnType,
+  animalsType,
+  barnType,
   fenceType,
   fieldType,
   roomType,
@@ -17,7 +18,7 @@ import { IFields } from "@ITypes/play";
 import { sendChangeSocket } from "@utils/socket";
 
 interface Prop {
-  client: WebSocket;
+  client?: WebSocket;
   owner: number;
   type: string;
   fenceList: number[][];
@@ -39,6 +40,7 @@ const LandBox = ({
   isChecked,
   setChecked,
 }: Prop) => {
+  // @ts-ignore
   const { players } = useRecoilValue(gamePlayData);
   const limit = players[0].resource.wood as number;
   const setAdditional = useSetRecoilState(sendDataUserBoard);
@@ -138,7 +140,9 @@ const LandBox = ({
     changeChecked();
     setAdditional((pre: { barn_positions: [] | "" }) => {
       const tmp: { barn_positions: number[] | "" } = { ...pre };
-      tmp.barn_positions = tmp.barn_positions ? [...tmp.barn_positions, idx] : [idx];
+      tmp.barn_positions = tmp.barn_positions
+        ? [...tmp.barn_positions, idx]
+        : [idx];
       console.log(tmp);
       return tmp;
     });
@@ -167,9 +171,11 @@ const LandBox = ({
 
   // 내용물 처리
   const inRoom = Object.keys(landInfo.is_in).filter(
+    // @ts-ignore
     (key) => landInfo.is_in[key] !== 0
   );
   const isInRoom = inRoom.map((key) => {
+    // @ts-ignore
     return `${key} : ${landInfo.is_in[key]}`;
   });
 
@@ -180,6 +186,7 @@ const LandBox = ({
       const sendData = { ...changeAnimals };
       sendData.positions = [...sendData.positions, idx];
       console.log("sendData", sendData);
+      // @ts-ignore
       sendChangeSocket(client, owner, sendData);
 
       //초기화
@@ -222,9 +229,7 @@ const LandBox = ({
     // 씨 뿌리기 => 하나
     else if (seedType.includes(type)) {
       isChecked[idx] ? upSeed() : downSeed();
-    }
-
-    else if (barnType.includes(type)) {
+    } else if (barnType.includes(type)) {
       isChecked[idx] ? upBarns() : downBarns();
     }
 

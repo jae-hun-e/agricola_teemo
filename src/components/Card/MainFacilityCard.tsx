@@ -34,7 +34,6 @@ const MainFacilityCard = ({ owner }: Props) => {
                 style={{
                   backgroundImage: `url('/assets/${data.card_number}.png')`,
                 }}
-                onClick={() => onClick(data)}
               ></div>
             ))}
           </div>

@@ -31,7 +31,7 @@ const UseGrainCard = ({ cardNumber }: UseGrainCardProps) => {
 
   useEffect(() => {
     if (sendData) {
-      setCustomSendData((prev) => ({ ...prev, ...sendData }));
+      setCustomSendData((prev: any) => ({ ...prev, ...sendData }));
     }
   }, [sendData]);
 

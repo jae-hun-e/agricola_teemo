@@ -1,5 +1,4 @@
 import ModalButton from "@components/Button/ModalButton";
-import UserBoard from "@components/Board/UserBoard";
 import { cls } from "@utils/util";
 
 interface Props {

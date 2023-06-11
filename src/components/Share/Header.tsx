@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Modal from "@components/Share/Modal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { useRecoilState, useSetRecoilState } from "recoil";

@@ -1,18 +1,18 @@
 export interface IResources {
-  wood?: number;
-  clay?: number;
-  reed?: number;
-  stone?: number;
-  grain?: number;
-  vegetable?: number;
-  sheep?: number;
-  boar?: number;
-  cattle?: number;
-  food?: number;
-  family?: number;
-  room?: number;
-  fence?: number;
-  barn?: number;
+  wood: number;
+  clay: number;
+  reed: number;
+  stone: number;
+  grain: number;
+  vegetable: number;
+  sheep: number;
+  boar: number;
+  cattle: number;
+  food: number;
+  family: number;
+  room: number;
+  fence: number;
+  barn: number;
 }
 export interface IFields {
   field_type: string;
@@ -53,7 +53,7 @@ export interface IBaseCards {
   card_number: string;
   is_stacked: boolean;
   count: number;
-  resource: IResources | null;
+  resource: IResources;
   additional_action: any | null;
   player: number | null;
 }

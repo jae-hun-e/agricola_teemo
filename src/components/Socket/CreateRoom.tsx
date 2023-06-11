@@ -1,13 +1,6 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { cls } from "@utils/util";
 import { IRoomList } from "@ITypes/lobby";
-
-export interface IRoom {
-  command: string;
-  mode: string;
-  title: string;
-}
 
 interface Props {
   socket: WebSocket | undefined;
@@ -117,7 +110,10 @@ const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
           </div>
         </div>
 
-        <button type="submit" className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2">
+        <button
+          type="submit"
+          className="bg-white w-[100px] h-[30px] rounded-full text-center hover:bg-demo2"
+        >
           create
         </button>
       </form>
