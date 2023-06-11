@@ -55,7 +55,7 @@ const UserBoard = ({ owner, type, client }: Props) => {
 
   return (
     <div className="relative">
-      <div className="w-[598px] h-[368px] bg-demo2 flex flex-wrap justify-center p-[4px] gap-[15px]">
+      <div className="w-[598px] h-[368px] bg-[#8a6e12] flex flex-wrap justify-center p-[4px] gap-[15px]">
         {/*첫 줄*/}
 
         {[1, 2, 3, 4, 5].map((i) => (

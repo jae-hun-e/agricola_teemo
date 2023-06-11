@@ -93,14 +93,16 @@ const ChatBox = ({ userId, client }: Props) => {
   return (
     <div
       ref={Chat}
-      className="w-[340px] h-[30px] bg-demo2 cursor-pointer relative flex items-center
+      className="w-[340px] h-[30px] bg-yellow-400 cursor-pointer relative flex items-center
       transition duration-500 ease-in-out"
       onClick={!isChatOpen ? toggleChatBot : () => {}}
     >
-      <div className="absolute left-2 w-[28px] h-[26px] bg-demo">Icon</div>
+      <div className="absolute left-2 w-[28px] h-[26px] bg-yellow-100 rounded-xl text-center">
+        🤫
+      </div>
       <div className="absolute left-14">Chat</div>
       <div
-        className="absolute right-2 w-[25px] h-[25px] bg-demo flex justify-center items-center"
+        className="absolute right-2 w-[25px] h-[25px] bg-blue-300 rounded-xl flex justify-center items-center"
         onClick={isChatOpen ? toggleChatBot : () => {}}
       >
         <div className="relative w-full h-full flex justify-center items-center">

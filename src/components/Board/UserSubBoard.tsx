@@ -107,7 +107,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
       </div>
       <div
         className={cls(
-          "bg-demo text-xs",
+          "bg-[#8a6e12] text-xs",
           direction === "left" || direction === "right"
             ? "w-[90px] h-[598px]"
             : "w-[598px] h-[90px] flex"
@@ -126,7 +126,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
           >
             <p
               className={cls(
-                "bg-demo2",
+                "bg-[#aa8c2a]",
                 "flex justify-center items-center",
                 direction === "left" ? "w-[50px] h-[46px]" : "",
                 direction === "right" ? "w-[50px] h-[46px]" : "",
