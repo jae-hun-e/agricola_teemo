@@ -88,7 +88,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
           childrenCSS="w-[800px] h-[600px] bg-demo"
         >
           <div className="flex flex-col items-center pt-10 gap-3">
-            <p> 상대 보드</p>
+            <p>{owner.name}의 보드</p>
             <div className="flex gap-3">
               <UserBoard owner={idx} type="view" />
               <div className="flex flex-col justify-center items-center gap-[30px] w-[100px]">
@@ -98,7 +98,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
                 </div>
                 <div className="text-center">
                   {"[직업 카드]"}
-                  <JobCard />
+                  <JobCard owner={idx} />
                 </div>
               </div>
             </div>

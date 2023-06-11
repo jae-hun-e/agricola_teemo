@@ -38,8 +38,6 @@ const UserBoard = ({ owner, type, client }: Props) => {
     }
   }, [fences]);
 
-  // TODO type에 따라 다르게 처리하기
-
   // 울타리 치기
   useEffect(() => {
     // SocketSendData

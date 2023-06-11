@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { cls } from "@utils/util";
 import UserBoard from "@components/Board/UserBoard";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { sendDataUserBoard } from "@atom/sendUserBoardChangeData";
+import { playIndex } from "@atom/lobbyToPlay";
 
 interface BuildHouseCardProps {
   cardNumber: string;
@@ -15,7 +16,7 @@ const BuildHouseCard = ({ cardNumber }: BuildHouseCardProps) => {
   const [isBuildBarn, setIsBuildBarn] = useState<boolean>(false);
   const [customSendData, setCustomSendData] = useState<any>({});
   const [sendData, setSendData] = useRecoilState(sendDataUserBoard);
-
+  const userList = useRecoilValue(playIndex);
   useEffect(() => {
     setIsLeft(undefined);
   }, []);
@@ -100,9 +101,9 @@ const BuildHouseCard = ({ cardNumber }: BuildHouseCardProps) => {
       </div>
       <div className="relative flex justify-center">
         {isLeft ? (
-          <UserBoard owner={0} type={"BASE_07"} />
+          <UserBoard owner={userList[0]} type={"BASE_07"} />
         ) : (
-          <UserBoard owner={0} type={"BARN"} />
+          <UserBoard owner={userList[0]} type={"BARN"} />
         )}
       </div>
       <div className="flex flex-row space-x-5">

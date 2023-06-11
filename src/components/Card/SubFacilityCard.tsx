@@ -1,12 +1,14 @@
 import ModalButton from "@components/Button/ModalButton";
-import {useRecoilValue} from "recoil";
-import {gamePlayData} from "@atom/gamePlayData";
+import { useRecoilValue } from "recoil";
+import { gamePlayData } from "@atom/gamePlayData";
+import { userInfo } from "@atom/auth";
 interface Props {
   owner: number;
 }
-const SubFacilityCard = ({owner}: Props) => {
-  const {players} = useRecoilValue(gamePlayData);
-  const mySubFacilityCard = players[0].cards.slice(7);
+const SubFacilityCard = ({ owner }: Props) => {
+  const { players } = useRecoilValue(gamePlayData);
+  const mySubFacilityCard = players[owner].cards.slice(7);
+  const { userId } = useRecoilValue(userInfo);
   return (
     <ModalButton
       name="보조 설비"
@@ -14,9 +16,11 @@ const SubFacilityCard = ({owner}: Props) => {
       childrenCSS="w-[700px] h-[600px]"
     >
       <div className="flex flex-col justify-center items-center">
-        <p className="mt-[10px]">{owner === 0 ? "내 보조설비" : `Player${owner} 보조설비`}</p>
-
-        {/*TODO 재영아 이거 layout 수정할 때 모달창 크기도 같이 수정해야 된다!!*/}
+        <p className="mt-[10px]">
+          {Number(players[owner].name) === userId
+            ? "내 보조설비"
+            : `Player${Number(players[owner].name)} 보조설비`}
+        </p>
         <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
           {mySubFacilityCard.map((data, i) => (
             <div

@@ -128,7 +128,7 @@ const Play = ({ roomId }: { roomId: number }) => {
             />
             <div className="flex gap-[15px]">
               <FacilityCard owner={userList[0]} />
-              <JobCard />
+              <JobCard owner={userList[0]} />
             </div>
             <div className="absolute right-0 -top-11">
               <ChatBox userId={userId} client={chatSocket} />

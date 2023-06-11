@@ -33,7 +33,6 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   const additionalBoard = useRecoilValue(sendDataUserBoard);
   const { players, primary_cards } = useRecoilValue(gamePlayData);
   const userList = useRecoilValue(playIndex);
-  console.log("userList", userList);
   const myJobCard = players[userList[0]].cards.filter((card) =>
     card.card_number.includes("JOB")
   );

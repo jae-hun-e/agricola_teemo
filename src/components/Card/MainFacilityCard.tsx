@@ -2,12 +2,14 @@ import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { useRecoilValue } from "recoil";
 import { gamePlayData } from "@atom/gamePlayData";
+import { userInfo } from "@atom/auth";
 
 interface Props {
   owner: number;
 }
 
 const MainFacilityCard = ({ owner }: Props) => {
+  const { userId } = useRecoilValue(userInfo);
   const { primary_cards } = useRecoilValue(gamePlayData);
   return (
     <ModalButton
@@ -18,7 +20,7 @@ const MainFacilityCard = ({ owner }: Props) => {
       <div className="flex flex-col justify-center items-center text-xl">
         {owner === -1
           ? "공용 설비"
-          : owner === 0
+          : owner === userId
           ? "내 주요설비"
           : `Player${owner} 주요설비`}
         <div className="relative flex justify-center">

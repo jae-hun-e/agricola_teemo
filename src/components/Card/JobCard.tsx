@@ -4,10 +4,14 @@ import { gamePlayData } from "@atom/gamePlayData";
 import { cls } from "@utils/util";
 import { playIndex } from "@atom/lobbyToPlay";
 
-const JobCard = () => {
+interface Props {
+  owner: number;
+}
+
+const JobCard = ({ owner }: Props) => {
   const { players } = useRecoilValue(gamePlayData);
-  const userList = useRecoilValue(playIndex);
-  const myJobCard = players[userList[0]].cards.slice(0, 7);
+  const myJobCard = players[owner].cards.slice(0, 7);
+  console.log("idx ,JobCard", owner, myJobCard[0]);
   return (
     <ModalButton
       name="직업카드"
