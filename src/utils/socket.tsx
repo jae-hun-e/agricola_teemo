@@ -1,7 +1,7 @@
 import { IBaseCards } from "@ITypes/play";
 
 export function connectSocket(namespace: string, id?: number) {
-  const baseURL = "ws://127.0.0.1:8000/ws/v1";
+  const baseURL = process.env.NEXT_PUBLIC_WS_BASE_URL;
   const client = id
     ? new WebSocket(baseURL + namespace + id)
     : new WebSocket(baseURL + namespace);

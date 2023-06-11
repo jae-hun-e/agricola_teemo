@@ -68,7 +68,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
                   {user ? (
                     <ModalButton
                       layoutCSS="w-[160px] h-[160px]  flex justify-center items-center cursor-pointer hover:bg-yellow-200 bg-demo2 cursor-pointer"
-                      name={"user name"}
+                      name={userId + ""}
                     >
                       <div className="flex flex-col ">
                         <div>user 개인 정보들</div>
