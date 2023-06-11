@@ -36,7 +36,7 @@ export default function Timer({ time, roomId }: Prop) {
       <div
         className={cls(
           "w-1/2 h-1/3  flex justify-center items-start font-bold text-9xl",
-          `text-red-${Math.abs(lastTime - 6)}00`
+          `text-red-${Math.abs(lastTime - 7)}00`
         )}
       >
         {lastTime}

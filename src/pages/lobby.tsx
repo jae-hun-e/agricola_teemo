@@ -7,13 +7,11 @@ import { connectSocket } from "@utils/socket";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userInfo } from "@atom/auth";
 import { IDetailRoom, IRoomList } from "@ITypes/lobby";
-import { playIndex } from "@atom/lobbyToPlay";
 
 const Lobby: NextPage = () => {
   const [detailData, setDetailData] = useState<IDetailRoom>();
   const [openCreateRoom, setOpenCreateRoom] = useState<boolean>(false);
   const { userId } = useRecoilValue(userInfo);
-  const setPlayerData = useSetRecoilState(playIndex);
   const [roomList, setRoomList] = useState<IRoomList[]>([]);
   const [client, setClient] = useState<WebSocket>();
 

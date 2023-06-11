@@ -8,7 +8,7 @@ export const openJobAdditional = {
 export const openBuildRoomAdditional = {
   // 방짓기
   BASE_07: "농장 확장",
-}
+};
 
 export const openSubFacilityAdditional = {
   BASE_08: "화합장소 : 보조설비",
@@ -41,11 +41,11 @@ export const openUserBoardAdditional = {
 
 export const openUseGrainAdditional = {
   ACTION_01: "곡식 활용",
-}
+};
 
 export const openCageAdditional = {
   ACTION_14: "농장 개조",
-}
+};
 
 // base additional card 리스트
 export const baseAdditionalCardOpen = [

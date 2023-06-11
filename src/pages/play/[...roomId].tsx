@@ -99,6 +99,8 @@ const Play = ({ roomId }: { roomId: number }) => {
   )
     return <div>loading...</div>;
 
+  // console.log("userList", userList);
+
   return (
     <div className="relative">
       <div className="flex gap-[20px] bg-[#b3cd31]">
@@ -155,7 +157,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // todo : test용으로 roomId 3으로 작성
 
   return {
-    // props: { roomId: context.query.roomId },
-    props: { roomId: 3 },
+    props: { roomId: context.query.roomId },
+    // props: { roomId: 3 },
   };
 };

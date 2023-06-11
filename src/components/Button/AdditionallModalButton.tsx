@@ -60,7 +60,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
           ...openUserBoardAdditional,
           ...openPlumFarmAdditional,
           ...openBuildRoomAdditional,
-          ...openUseGrainAdditionalomz,
+          ...openUseGrainAdditional,
         }
       ? sendAdditionalSocket(client, base_cards, userId[0], additionalBoard)
       : sendAdditionalSocket(client, base_cards, userId[0], {
