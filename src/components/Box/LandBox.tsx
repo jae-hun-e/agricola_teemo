@@ -265,17 +265,20 @@ const LandBox = ({
     >
       {/*농장{idx + 1}*/}
       <div className="flex flex-col items-center h-full justify-around w-full">
-        <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
-
-        {/*barn UI*/}
-        {landInfo.is_barn && (
-          <div
-            className="w-[30px] h-[30px] bg-cover"
-            style={{
-              backgroundImage: `url('/assets/barn.png')`,
-            }}
-          />
-        )}
+        <div className="flex w-2/3 justify-around">
+          {/*barn UI*/}
+          {landInfo.is_barn && (
+            <div
+              className="w-[30px] h-[30px] bg-cover"
+              style={{
+                backgroundImage: `url('/assets/barn.png')`,
+              }}
+            />
+          )}
+          <p>
+            {landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}
+          </p>
+        </div>
 
         {/*resource UI*/}
         <div className="w-full flex justify-center items-center">
