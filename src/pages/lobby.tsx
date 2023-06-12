@@ -3,8 +3,8 @@ import WaitingRoomList from "@components/Socket/WaitingRoomList";
 import CreateRoom from "@components/Socket/CreateRoom";
 import { useEffect, useState } from "react";
 import DetailRoom from "@components/Socket/DetailRoom";
-import { connectSocket } from "@utils/socket";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { connectSocket } from "@apis/socket";
+import { useRecoilValue } from "recoil";
 import { userInfo } from "@atom/auth";
 import { IDetailRoom, IRoomList } from "@ITypes/lobby";
 

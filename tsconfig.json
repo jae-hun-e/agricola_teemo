@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@utils/*": ["src/utils/*"],
+      "@apis/*": ["src/apis/*"],
       "@components/*": ["src/components/*"],
       "@atom/*" : ["src/atoms/*"],
       "@ITypes/*": ["src/types/*"],

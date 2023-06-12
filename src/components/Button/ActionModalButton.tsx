@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { sendActionSocket } from "@utils/socket";
+import { sendActionSocket } from "@apis/socket";
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
 import { IBaseCards } from "@ITypes/play";

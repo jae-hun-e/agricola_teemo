@@ -15,7 +15,7 @@ import {
   seedType,
 } from "@constants/cardCase";
 import { IFields } from "@ITypes/play";
-import { sendChangeSocket } from "@utils/socket";
+import { sendChangeSocket } from "@apis/socket";
 import { playIndex } from "@atom/lobbyToPlay";
 
 interface Prop {
@@ -267,6 +267,17 @@ const LandBox = ({
       <div className="flex flex-col items-center h-full justify-around w-full">
         <p>{landInfo.field_type !== "empty" ? landInfo.field_type : "빈방"}</p>
 
+        {/*barn UI*/}
+        {landInfo.is_barn && (
+          <div
+            className="w-[30px] h-[30px] bg-cover"
+            style={{
+              backgroundImage: `url('/assets/barn.png')`,
+            }}
+          />
+        )}
+
+        {/*resource UI*/}
         <div className="w-full flex justify-center items-center">
           <div
             className="w-[40px] h-[30px] bg-cover"

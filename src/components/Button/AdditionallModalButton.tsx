@@ -1,6 +1,6 @@
 import ModalButton from "@components/Button/ModalButton";
 import { cls } from "@utils/util";
-import { sendAdditionalSocket } from "@utils/socket";
+import { sendAdditionalSocket } from "@apis/socket";
 import { useState } from "react";
 import { IBaseCards } from "@ITypes/play";
 import { useRecoilValue } from "recoil";

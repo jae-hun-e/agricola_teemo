@@ -1,6 +1,6 @@
 import { IBaseCards } from "@ITypes/play";
 import ModalButton from "@components/Button/ModalButton";
-import { sendActionSocket } from "@utils/socket";
+import { sendActionSocket } from "@apis/socket";
 import { useRecoilValue } from "recoil";
 import { playIndex } from "@atom/lobbyToPlay";
 
