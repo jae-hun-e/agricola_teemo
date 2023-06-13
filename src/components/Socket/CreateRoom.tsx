@@ -14,7 +14,7 @@ const CreateRoom = ({ socket, setOpenCreateRoom, userId, roomList }: Props) => {
   // socket
 
   const onSubmit = (data: FieldValues) => {
-    console.log("create room data", data);
+    // console.log("create room data", data);
     const createRoomInfo = {
       command: "create",
       user_id: userId,

@@ -21,7 +21,6 @@ const ModalButton = ({
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
-    // console.log("모달 닫기");
     setShowModal(!showModal);
   };
 

@@ -44,7 +44,7 @@ const Kakao: NextPage = () => {
           // window.close();
         }
       } catch (e) {
-        console.log("error", e);
+        // console.log("error", e);
         // window.close();
       }
     },

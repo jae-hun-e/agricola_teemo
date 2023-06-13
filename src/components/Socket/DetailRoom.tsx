@@ -13,7 +13,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
   const [full, setFull] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("detailData", detailData);
+    // console.log("detailData", detailData);
     detailData?.participants.length === 4 ? setFull(true) : setFull(false);
   }, [detailData]);
 
@@ -30,7 +30,7 @@ const DetailRoom = ({ socket, userId, detailData }: Props) => {
 
   // room join
   const onJoin = () => {
-    console.log("onJoin", userId);
+    // console.log("onJoin", userId);
 
     const joinRoom = {
       command: "enter",

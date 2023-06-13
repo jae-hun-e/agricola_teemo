@@ -85,7 +85,7 @@ const ChatBox = ({ userId, client }: Props) => {
 
     return () => {
       client.onclose = () => {
-        console.log("WebSocket Client Closed");
+        // console.log("WebSocket Client Closed");
       };
     };
   }, []);

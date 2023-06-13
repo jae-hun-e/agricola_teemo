@@ -17,7 +17,6 @@ import { userInfo } from "@atom/auth";
 
 const Play = ({ roomId }: { roomId: number }) => {
   const [playData, setPlayData] = useRecoilState<IPlayData>(gamePlayData);
-  console.log("playData", playData);
   const { userId } = useRecoilValue(userInfo);
   const [userList, setUserList] = useRecoilState(playIndex);
   const [playSocket, setPlaySocket] = useState<WebSocket>();
@@ -44,7 +43,7 @@ const Play = ({ roomId }: { roomId: number }) => {
 
     client.onmessage = (message) => {
       const serverMsg = JSON.parse(message.data);
-      console.log("data", serverMsg);
+      // console.log("data", serverMsg);
 
       /* server msg handling */
       // msgType - 0: error, 1: sync, 2: change
@@ -63,7 +62,7 @@ const Play = ({ roomId }: { roomId: number }) => {
 
         // sync data
         case 1:
-          console.log("sync data");
+          // console.log("sync data");
           setPlayData(() => serverMsg.data.result);
           break;
 
@@ -71,7 +70,7 @@ const Play = ({ roomId }: { roomId: number }) => {
         case 2:
           const changesData = serverMsg.data.result;
 
-          console.log("changesData", changesData);
+          // console.log("changesData", changesData);
           setPlayData((pre: IPlayData) => {
             return changeValue(pre, changesData) as IPlayData;
           });
@@ -81,10 +80,10 @@ const Play = ({ roomId }: { roomId: number }) => {
 
     return () => {
       client.onclose = () => {
-        console.log("play WebSocket Client Closed");
+        // console.log("play WebSocket Client Closed");
       };
       chatting.onclose = () => {
-        console.log("chatting WebSocket Client Closed");
+        // console.log("chatting WebSocket Client Closed");
       };
     };
   }, []);

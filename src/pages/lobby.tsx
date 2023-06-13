@@ -21,8 +21,7 @@ const Lobby: NextPage = () => {
     setClient(client);
 
     client.onmessage = (message) => {
-      // console.log("data", message);
-      console.log("data", JSON.parse(message.data));
+      // console.log("data", JSON.parse(message.data));
 
       let serverMsg = JSON.parse(message.data);
 
@@ -74,7 +73,7 @@ const Lobby: NextPage = () => {
           const {
             result: { participants },
           } = serverMsg.data;
-          console.log("start data", participants);
+          // console.log("start data", participants);
           // setPlayerData(participants);
           break;
       }
@@ -82,7 +81,7 @@ const Lobby: NextPage = () => {
 
     return () => {
       client.onclose = () => {
-        console.log("WebSocket Client Closed");
+        // console.log("WebSocket Client Closed");
       };
     };
   }, []);

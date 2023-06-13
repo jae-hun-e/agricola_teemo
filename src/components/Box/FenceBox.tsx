@@ -14,9 +14,6 @@ const FenceBox = ({ direction, list, matrix, isHide, plusFence }: Props) => {
   const [checked, setChecked] = useState<boolean>(false);
 
   const onClick = () => {
-    {
-      console.log("matrix", matrix);
-    }
     plusFence(matrix, !checked);
     // setChecked(!checked);
   };

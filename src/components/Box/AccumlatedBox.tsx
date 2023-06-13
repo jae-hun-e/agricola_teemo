@@ -18,8 +18,6 @@ const AccumlatedBox = ({ client, base_cards, direction, imgidx }: Props) => {
     base_cards.player !== null
       ? alert("다른 player가 있는 칸은 선택할 수 없습니다.")
       : sendActionSocket(client, base_cards, userId[0]);
-
-    console.log("user action_", imgidx);
   };
 
   return (

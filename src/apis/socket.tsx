@@ -7,7 +7,7 @@ export function connectSocket(namespace: string, id?: number) {
     : new WebSocket(baseURL + namespace);
 
   client.onopen = () => {
-    console.log(`${namespace} Connected : `, client);
+    // console.log(`${namespace} Connected : `, client);
   };
 
   return client;

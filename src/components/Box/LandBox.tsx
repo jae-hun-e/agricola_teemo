@@ -65,14 +65,13 @@ const LandBox = ({
     newFence[idx] = [];
     newFence = fenceDelValidation(newFence, idx, isChecked);
     setFenceList(() => newFence);
-    changeChecked();
 
     // todo 선택한 방 filed_type 변경하기
   };
 
   // fence 추가하기
   const addFence = () => {
-    console.log(idx, fenceList[idx], landInfo);
+    // console.log(idx, fenceList[idx], landInfo);
     // fenceValidation isChecked
     let newFence = [...fenceList];
     newFence[idx] = [1, 2, 3, 4];
@@ -86,7 +85,7 @@ const LandBox = ({
       return;
     } else {
       // 빈방일 때
-      changeChecked();
+
       if (landInfo?.field_type === "empty") {
         setFenceList(() => newFence);
       }
@@ -105,7 +104,6 @@ const LandBox = ({
 
   // 땅에 무언가(방)들을 놓는 경우
   const downAnythings = () => {
-    changeChecked();
     setAdditional((pre: { positions: [] | "" }) => {
       const tmp: { positions: number[] | "" } = { ...pre };
 
@@ -116,14 +114,11 @@ const LandBox = ({
       // }
       // 없으면 넣고 있으면 추가
       tmp.positions = tmp.positions ? [...tmp.positions, idx] : [idx];
-
-      console.log(tmp);
       return tmp;
     });
   };
 
   const upAnythings = () => {
-    changeChecked();
     setAdditional((pre: { positions: number[] }) => {
       const tmp: { positions: number[] } = { ...pre };
       tmp.positions = tmp.positions.filter((v) => v !== idx);
@@ -132,7 +127,6 @@ const LandBox = ({
   };
 
   const upBarns = () => {
-    changeChecked();
     setAdditional((pre: { barn_positions: number[] }) => {
       const tmp: { barn_positions: number[] } = { ...pre };
       tmp.barn_positions = tmp.barn_positions.filter((v) => v !== idx);
@@ -141,35 +135,30 @@ const LandBox = ({
   };
 
   const downBarns = () => {
-    changeChecked();
     setAdditional((pre: { barn_positions: [] | "" }) => {
       const tmp: { barn_positions: number[] | "" } = { ...pre };
       tmp.barn_positions = tmp.barn_positions
         ? [...tmp.barn_positions, idx]
         : [idx];
-      console.log(tmp);
+
       return tmp;
     });
   };
 
   // 땅에 무언가(밭, 동물, 씨)를 놓는 경우
   const downAnything = () => {
-    changeChecked();
     setAdditional(() => ({ position: idx }));
   };
 
   const upAnything = () => {
-    changeChecked();
     setAdditional(() => ({ position: "" }));
   };
 
   const downSeed = () => {
-    changeChecked();
     setAdditional(() => ({ sow_position: idx, seed: "grain" }));
   };
 
   const upSeed = () => {
-    changeChecked();
     setAdditional(() => ({ position: "", seed: "" }));
   };
 
@@ -189,7 +178,7 @@ const LandBox = ({
       // 데이터 전송
       const sendData = { ...changeAnimals };
       sendData.positions = [...sendData.positions, idx];
-      console.log("sendData", sendData);
+
       // @ts-ignore
       sendChangeSocket(client, owner, sendData);
 
@@ -197,6 +186,10 @@ const LandBox = ({
       setChangeAnimals({
         animals: "",
         positions: [],
+      });
+      setChecked((pre: boolean[]) => {
+        const newChecked = Array.from({ length: pre.length }, () => false);
+        return newChecked;
       });
     } else {
       // 시작값
@@ -209,7 +202,7 @@ const LandBox = ({
 
   // 어떤 액션할 건지 선택
   const handleOnAction = () => {
-    console.log(type);
+    changeChecked();
     // 울타리 치기
     if (fenceType.includes(type)) {
       isChecked[idx] ? doubleOnClick() : addFence();
@@ -243,6 +236,7 @@ const LandBox = ({
     }
   };
 
+  // 체크박스
   const changeChecked = () => {
     setChecked((pre: boolean[]) => {
       const newChecked = [...pre];
@@ -254,9 +248,9 @@ const LandBox = ({
   return (
     <div
       className={cls(
-        "w-[100px] h-[100px]  flex justify-center items-center cursor-pointer",
-        isChecked[idx] ? "bg-yellow-300" : "bg-demo",
+        "w-[100px] h-[100px]  flex justify-center items-center cursor-pointer hover:opacity-50",
         "border-solid border-red-500",
+        isChecked[idx] ? "opacity-50" : "",
         fenceList[idx]?.includes(1) ? "border-l-[5px]" : "",
         fenceList[idx]?.includes(2) ? "border-t-[5px]" : "",
         fenceList[idx]?.includes(3) ? "border-r-[5px]" : "",

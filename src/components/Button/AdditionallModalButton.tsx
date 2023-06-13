@@ -43,7 +43,7 @@ const AdditionalModalButton = ({ client, base_cards, layout }: Props) => {
   /*TODO test용 피니시 버튼*/
   const [finish, setFinish] = useState<boolean>(false);
   const onFinish = () => {
-    console.log("additionalBoard", additionalBoard);
+    // console.log("additionalBoard", additionalBoard);
     setFinish(!finish);
   };
   const onClick = (data: string) => {
