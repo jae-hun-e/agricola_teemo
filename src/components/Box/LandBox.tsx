@@ -19,6 +19,7 @@ import { sendChangeSocket } from "@apis/socket";
 import { playIndex } from "@atom/lobbyToPlay";
 
 interface Prop {
+  house_type: string;
   client?: WebSocket;
   owner: number;
   type: string;
@@ -31,6 +32,7 @@ interface Prop {
 }
 
 const LandBox = ({
+  house_type,
   client,
   owner,
   type,
@@ -262,6 +264,17 @@ const LandBox = ({
         changeAnimals.positions.includes(idx) ? "bg-red-500" : ""
       )}
       onClick={handleOnAction}
+      style={{
+        backgroundColor: `${
+          landInfo.field_type === "room" && house_type === "wood"
+            ? "#8B4513"
+            : house_type === "clay"
+            ? "#FFDAB9"
+            : house_type === "stone"
+            ? "#808080"
+            : "#D9D9D9"
+        }`,
+      }}
     >
       {/*농장{idx + 1}*/}
       <div className="flex flex-col items-center h-full justify-around w-full">

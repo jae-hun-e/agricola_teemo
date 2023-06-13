@@ -18,7 +18,7 @@ interface Props {
 const UserBoard = ({ owner, type, client }: Props) => {
   const setAdditional = useSetRecoilState(sendDataUserBoard);
   const { players } = useRecoilValue(gamePlayData);
-  const { fields, fences } = players[owner];
+  const { fields, fences, house_type } = players[owner];
 
   const [fenceList, setFenceList] = useState<number[][]>(
     Array.from({ length: 13 }, () => [])
@@ -62,6 +62,7 @@ const UserBoard = ({ owner, type, client }: Props) => {
           <div key={i} className="flex flex-col  justify-center items-center ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                house_type={house_type}
                 client={client}
                 owner={owner}
                 type={type}
@@ -77,12 +78,13 @@ const UserBoard = ({ owner, type, client }: Props) => {
         ))}
 
         {/* 둘째 줄*/}
-        <RoomBox idx={14} />
+        <RoomBox idx={14} house_type={house_type} />
 
         {[2, 3, 4, 5].map((i) => (
           <div key={i + 4} className="flex flex-col ">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                house_type={house_type}
                 client={client}
                 owner={owner}
                 type={type}
@@ -98,12 +100,13 @@ const UserBoard = ({ owner, type, client }: Props) => {
         ))}
 
         {/*셋째 줄*/}
-        <RoomBox idx={15} />
+        <RoomBox idx={15} house_type={house_type} />
 
         {[2, 3, 4, 5].map((i) => (
           <div key={i} className="flex flex-col">
             <div className={cls("w-[100px]", "flex")}>
               <LandBox
+                house_type={house_type}
                 client={client}
                 owner={owner}
                 type={type}
