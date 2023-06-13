@@ -48,7 +48,7 @@ const MainFacilityCard = ({ owner }: Props) => {
               <div className="grid grid-cols-4 gap-[10px] mt-[20px]">
                 {primary_cards.map(
                   (data, i) =>
-                    data.owner === Number(players[owner].name) && (
+                    data.owner === owner && (
                       <div
                         key={i}
                         className={cls(

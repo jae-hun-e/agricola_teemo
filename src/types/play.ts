@@ -13,6 +13,7 @@ export interface IResources {
   room: number;
   fence: number;
   barn: number;
+  begging: number;
 }
 export interface IFields {
   field_type: string;
@@ -40,6 +41,23 @@ export interface ICards {
   used_round: number;
 }
 
+export interface IScores {
+  begging: number;
+  boar: number;
+  cage: number;
+  cage_barn: number;
+  cattle: number;
+  clay_room: number;
+  empty: number;
+  family: number;
+  farm: number;
+  grain: number;
+  sheep: number;
+  stone_room: number;
+  sum: number;
+  vegetable: number;
+}
+
 export interface IPlayers {
   name: string;
   resource: IResources;
@@ -47,6 +65,7 @@ export interface IPlayers {
   house_type: string;
   fences?: IFences;
   cards: ICards[];
+  scores: IScores;
 }
 
 export interface IBaseCards {

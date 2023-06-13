@@ -29,6 +29,7 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
     fence,
     barn,
     family,
+    begging,
   } = owner.resource;
 
   const materials = [
@@ -69,6 +70,20 @@ const UserSubBoard = ({ direction, owner, idx }: Props) => {
           name={owner.name}
           myTurn={turn === idx}
         />
+        {/* 구걸카드 유무*/}
+        {begging > 0 && (
+          <div>
+            <div
+              className="w-[25px] h-[35px] absolute bg-center bg-no-repeat bg-cover z-10 bottom-[5px] -left-[10px]"
+              style={{
+                backgroundImage: `url('/images/mainboard/begging.png')`,
+              }}
+            />
+            <p className="w-[25px] h-[35px] absolute bg-center bg-no-repeat bg-cover z-10 bottom-0 left-[10px] text-red-500">
+              X {begging}
+            </p>
+          </div>
+        )}
       </div>
       <div
         className={cls(

@@ -38,7 +38,7 @@ const Modal = ({
         <div className="w-full h-full flex justify-center items-start">
           {children}
         </div>
-        <div className="absolute bottom-10">
+        <div className="fixed bottom-[50px]">
           {type === "action" && (
             <button
               type="button"

@@ -5,8 +5,6 @@ interface Prop {
 
 const RoomBox = ({ idx, house_type }: Prop) => {
   // fence : top, right, bottom, left
-  const fence = [1, 2, 3, 4];
-  console.log(house_type);
   return (
     <div
       className="w-[100px] h-[100px] flex justify-center items-center"
